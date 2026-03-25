@@ -2,9 +2,19 @@
 <html lang="vi">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
     <title>Hành Trình Tùng Văn</title>
+    
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="Tùng Văn Trip">
+    
+    <link rel="apple-touch-icon" href="https://via.placeholder.com/192x192.png?text=TV">
+    
+    <link rel="manifest" href="./manifest.json">
+    
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
     <style>
         :root {
             --primary: #007AFF; /* iOS Blue */
@@ -26,7 +36,7 @@
             background: rgba(255, 255, 255, 0.85); 
             backdrop-filter: blur(12px);
             -webkit-backdrop-filter: blur(12px);
-            padding: 20px 20px 15px; 
+            padding: env(safe-area-inset-top, 20px) 20px 15px; /* Hỗ trợ tai thỏ iPhone */
             position: sticky; 
             top: 0; 
             z-index: 100; 
@@ -59,58 +69,59 @@
         .day-title { font-size: 1.15rem; font-weight: 700; color: var(--text-main); margin-bottom: 20px; display: flex; flex-direction: column;}
         .day-title span.date { font-size: 0.85rem; color: var(--primary); text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 4px; font-weight: 600;}
         
-        .task-item { display: flex; align-items: flex-start; margin-bottom: 20px; position: relative;}
+        .task-item { display: flex; align-items: flex-start; margin-bottom: 25px; position: relative;}
         .task-item:last-child { margin-bottom: 0; }
         
         /* Custom Modern Checkbox */
         .checkbox-wrapper { margin-right: 15px; margin-top: 2px; flex-shrink: 0;}
         .custom-checkbox {
             appearance: none; -webkit-appearance: none;
-            width: 24px; height: 24px; border: 2px solid var(--border);
+            width: 26px; height: 26px; border: 2px solid var(--border);
             border-radius: 50%; outline: none; cursor: pointer;
             transition: all 0.2s ease-in-out; position: relative;
             background: white;
         }
         .custom-checkbox:checked { background-color: var(--success); border-color: var(--success); }
         .custom-checkbox:checked::after {
-            content: ''; position: absolute; left: 7px; top: 4px;
-            width: 5px; height: 10px; border: solid white;
+            content: ''; position: absolute; left: 8px; top: 5px;
+            width: 5px; height: 11px; border: solid white;
             border-width: 0 2px 2px 0; transform: rotate(45deg);
         }
         
-        .task-content { flex: 1; }
-        .task-content.completed .task-desc { text-decoration: line-through; color: var(--text-muted); }
+        .task-content { flex: 1; transition: opacity 0.3s ease;}
+        .task-content.completed { opacity: 0.6; }
+        .task-content.completed .task-desc { text-decoration: line-through; }
         
-        .task-time { font-size: 0.8rem; font-weight: 700; color: var(--primary); margin-bottom: 6px; display: inline-block; background: var(--primary-light); padding: 4px 10px; border-radius: 8px;}
-        .task-desc { font-size: 1.05rem; font-weight: 600; margin-bottom: 10px; color: var(--text-main); transition: color 0.3s ease;}
+        .task-time { font-size: 0.8rem; font-weight: 700; color: var(--primary); margin-bottom: 8px; display: inline-block; background: var(--primary-light); padding: 5px 10px; border-radius: 8px;}
+        .task-desc { font-size: 1.05rem; font-weight: 600; margin-bottom: 12px; color: var(--text-main); transition: color 0.3s ease; line-height: 1.4;}
         
         /* Modern Image */
         .task-image { width: 100%; height: 180px; object-fit: cover; border-radius: 14px; margin-bottom: 12px; border: 1px solid rgba(0,0,0,0.05);}
 
         /* Modern Chinese Copy Box */
-        .cn-box { display: flex; align-items: center; justify-content: space-between; background: #F2F2F7; padding: 10px 14px; border-radius: 12px; margin-bottom: 10px; }
+        .cn-box { display: flex; align-items: center; justify-content: space-between; background: #F2F2F7; padding: 12px 14px; border-radius: 12px; margin-bottom: 12px; }
         .cn-text { font-size: 1.1rem; font-weight: 600; color: #1C1C1E; }
-        .btn-copy { background: #FFFFFF; border: none; padding: 6px 12px; border-radius: 8px; font-size: 0.85rem; color: var(--primary); cursor: pointer; font-weight: 600; box-shadow: 0 2px 5px rgba(0,0,0,0.05); transition: background 0.2s;}
+        .btn-copy { background: #FFFFFF; border: none; padding: 6px 14px; border-radius: 8px; font-size: 0.85rem; color: var(--primary); cursor: pointer; font-weight: 600; box-shadow: 0 2px 5px rgba(0,0,0,0.05); transition: background 0.2s;}
         .btn-copy:active { background: #E5E5EA; transform: scale(0.96); }
 
         /* Notes & Transport Badges */
         .info-group { display: flex; flex-direction: column; gap: 8px; }
-        .badge { display: flex; align-items: flex-start; padding: 10px 14px; border-radius: 12px; font-size: 0.9rem; font-weight: 500;}
+        .badge { display: flex; align-items: flex-start; padding: 10px 14px; border-radius: 12px; font-size: 0.9rem; font-weight: 500; line-height: 1.4;}
         .badge-transport { background: #E8F5E9; color: #2E7D32; }
         .badge-note { background: #FFF3E0; color: #E65100; }
         .badge span.icon { margin-right: 8px; font-size: 1.1rem; }
         
         /* Toast Notification */
-        #toast { visibility: hidden; min-width: 200px; background-color: rgba(0,0,0,0.8); color: #fff; text-align: center; border-radius: 20px; padding: 12px 20px; position: fixed; z-index: 1000; left: 50%; bottom: 40px; transform: translateX(-50%); font-size: 0.95rem; font-weight: 500; backdrop-filter: blur(5px); transition: visibility 0s, opacity 0.3s, bottom 0.3s; opacity: 0; }
+        #toast { visibility: hidden; min-width: 200px; background-color: rgba(0,0,0,0.8); color: #fff; text-align: center; border-radius: 24px; padding: 12px 20px; position: fixed; z-index: 1000; left: 50%; bottom: 40px; transform: translateX(-50%); font-size: 0.95rem; font-weight: 500; backdrop-filter: blur(5px); transition: visibility 0s, opacity 0.3s, bottom 0.3s; opacity: 0; }
         #toast.show { visibility: visible; opacity: 1; bottom: 50px;}
     </style>
 </head>
 <body>
 
     <header>
-        <h1>Trợ Lý Lịch Trình Tùng Văn</h1>
+        <h1>Chuyến Đi Gia Đình Tùng Văn</h1>
         <div class="search-container">
-            <input type="text" id="searchInput" placeholder="Tìm kiếm địa điểm...">
+            <input type="text" id="searchInput" placeholder="Tìm kiếm địa điểm, ngày... (VD: Tô Châu)">
         </div>
     </header>
 
@@ -130,7 +141,7 @@
     <div id="toast">Đã copy thành công!</div>
 
     <script>
-        // Dữ liệu hình ảnh đã được fix bằng link công khai ổn định từ Wikimedia
+        // Dữ liệu Lịch trình siêu chuẩn (Phương án đảo ngược an toàn cho bé)
         const itineraryData = [
             {
                 date: "Ngày 1 (Thứ 5, 23/4)",
@@ -154,7 +165,7 @@
                 date: "Ngày 3 (Thứ 7, 25/4)",
                 title: "Vạn Lý Trường Thành (Mộ Điền Dục)",
                 tasks: [
-                    { id: "d3-1", time: "Sáng", desc: "Chinh phục Vạn Lý Trường Thành.", img: "https://upload.wikimedia.org/wikipedia/commons/thumb/1/1b/Mutianyu_Great_Wall_11.JPG/800px-Mutianyu_Great_Wall_11.JPG", cn: "慕田峪长城", transport: "Bao xe riêng 7 chỗ. Đi cáp treo lên thành.", note: "Gửi xe đẩy ở ga cáp treo. Dùng địu trợ lực bế bé." }
+                    { id: "d3-1", time: "Sáng", desc: "Chinh phục Vạn Lý Trường Thành.", img: "https://upload.wikimedia.org/wikipedia/commons/thumb/1/1b/Mutianyu_Great_Wall_11.JPG/800px-Mutianyu_Great_Wall_11.JPG", cn: "慕田峪长城", transport: "Bao xe riêng 7 chỗ. Đi cáp treo lên thành.", note: "Gửi xe đẩy ở ga cáp treo. Mẹ Hà/Ba Thạnh dùng địu trợ lực bế bé." }
                 ]
             },
             {
@@ -178,16 +189,16 @@
                 title: "Thượng Hải 🚄 Tô Châu",
                 tasks: [
                     { id: "d6-1", time: "Sáng", desc: "Tàu cao tốc tới Tô Châu. Đi Chuyết Chính Viên.", cn: "苏州站 - 拙政园", transport: "Tàu 30 phút. DiDi nội ô Tô Châu.", note: "Linh động đi Metro nếu DiDi kẹt xe." },
-                    { id: "d6-2", time: "Đầu giờ chiều", desc: "Thuyền mộc chèo tay Phố cổ Bình Giang.", cn: "平江路", transport: "Đi bộ hoặc xe công nghệ ngắn.", note: "Trải nghiệm bắt buộc để ngắm thủy trấn nguyên bản." },
-                    { id: "d6-3", time: "Chiều muộn", desc: "Phố cổ Sơn Đường, ăn Cá tùng thử.", cn: "山塘街 - 松鼠桂鱼", transport: "Gọi xe sang Sơn Đường, sau đó ra Ga về Thượng Hải.", note: "Giữ em bé cẩn thận vì rất sầm uất." }
+                    { id: "d6-2", time: "Đầu giờ chiều", desc: "Thuyền mộc chèo tay Phố cổ Bình Giang.", cn: "平江路", transport: "Đi bộ hoặc xe công nghệ ngắn.", note: "Trải nghiệm bắt buộc để bé ngắm thủy trấn nguyên bản." },
+                    { id: "d6-3", time: "Chiều muộn", desc: "Phố cổ Sơn Đường, ăn Cá tùng thử.", cn: "山塘街 - 松鼠桂鱼", transport: "Gọi xe sang Sơn Đường, sau đó ra Ga về Thượng Hải.", note: "Giữ em bé cẩn thận vì lúc lên đèn rất sầm uất." }
                 ]
             },
             {
                 date: "Ngày 7 (Thứ 4, 29/4)",
                 title: "Phim trường & Tô Giới Pháp",
                 tasks: [
-                    { id: "d7-1", time: "Sáng", desc: "Tham quan Phim trường Thượng Hải.", cn: "上海影视乐园", transport: "DiDi chạy ra ngoại ô.", note: "Đường lát đá cuội giả cổ, đẩy xe sẽ hơi rung." },
-                    { id: "d7-2", time: "Chiều", desc: "Tô Giới Pháp lãng mạn & đường Vũ Khang.", cn: "法租界 - 武康路", transport: "DiDi về trung tâm.", note: "Vỉa hè rộng rãi, ngô đồng rợp bóng. Tận hưởng trà chiều." }
+                    { id: "d7-1", time: "Sáng", desc: "Tham quan Phim trường Thượng Hải.", cn: "上海影视乐园", transport: "DiDi chạy ra ngoại ô.", note: "Đường lát đá cuội giả cổ, đẩy xe Mios sẽ hơi rung." },
+                    { id: "d7-2", time: "Chiều", desc: "Tô Giới Pháp lãng mạn & đường Vũ Khang.", cn: "法租界 - 武康路", transport: "DiDi về trung tâm.", note: "Vỉa hè cực rộng, ngô đồng rợp bóng. Rất hợp uống trà chiều." }
                 ]
             },
             {
@@ -201,15 +212,15 @@
                 date: "Ngày 9 (Thứ 6, 1/5 - Lễ LĐ)",
                 title: "Ô Trấn 🚗 Hàng Châu",
                 tasks: [
-                    { id: "d9-1", time: "Trưa", desc: "Về Hàng Châu, nhận phòng.", cn: "杭州", transport: "Bao xe riêng (1.5 tiếng).", note: "Đi ngược vào thành phố để né đám đông nghỉ lễ." },
-                    { id: "d9-2", time: "Tối", desc: "Xem Show ánh sáng Tiền Giang.", cn: "钱江新城灯光秀", transport: "Ăn tối Raffles City đi bộ ra.", note: "Ra sớm trước 19h để xí chỗ sát lan can." }
+                    { id: "d9-1", time: "Trưa", desc: "Về Hàng Châu, nhận phòng.", cn: "杭州", transport: "Bao xe riêng (1.5 tiếng).", note: "Tất cả mọi người đi ngoại ô, nhà mình đi ngược vào phố để né bão đám đông." },
+                    { id: "d9-2", time: "Tối", desc: "Xem Show ánh sáng Tiền Giang.", cn: "钱江新城灯光秀", transport: "Ăn tối Raffles City đi bộ ra.", note: "Ra sớm trước 19h để xí chỗ sát lan can cho thoáng." }
                 ]
             },
             {
                 date: "Ngày 10 (Thứ 7, 2/5)",
                 title: "Trọn vẹn Tây Hồ",
                 tasks: [
-                    { id: "d10-1", time: "Cả ngày", desc: "Tản bộ Tây Hồ, Shopping mall in77.", img: "https://upload.wikimedia.org/wikipedia/commons/thumb/7/70/West_Lake_-_Hangzhou_-_China_-_panoramio.jpg/800px-West_Lake_-_Hangzhou_-_China_-_panoramio.jpg", cn: "西湖 - 湖滨银泰in77", transport: "DiDi nội ô.", note: "Khảo sát thị trường, mua sắm đồ sơ sinh." }
+                    { id: "d10-1", time: "Cả ngày", desc: "Tản bộ Tây Hồ, Shopping mall in77.", img: "https://upload.wikimedia.org/wikipedia/commons/thumb/7/70/West_Lake_-_Hangzhou_-_China_-_panoramio.jpg/800px-West_Lake_-_Hangzhou_-_China_-_panoramio.jpg", cn: "西湖 - 湖滨银泰in77", transport: "DiDi nội ô.", note: "Mẹ Hà tha hồ khảo sát thị trường, săn đồ sơ sinh hot trend cho Uñ Uñ Baby." }
                 ]
             },
             {
@@ -291,7 +302,7 @@
         function updateProgress(checkbox) {
             localStorage.setItem(checkbox.id, checkbox.checked);
             
-            // UI Update for text strikethrough
+            // Xử lý hiệu ứng gạch ngang chữ khi check
             const contentDiv = document.getElementById(`content-${checkbox.id}`);
             if(checkbox.checked) {
                 contentDiv.classList.add('completed');
@@ -329,8 +340,18 @@
             renderItinerary(e.target.value.toLowerCase());
         });
 
-        // Initialize
+        // Khởi tạo giao diện
         renderItinerary();
+    </script>
+    
+    <script>
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('./sw.js')
+                    .then(reg => console.log('Service Worker đã đăng ký thành công!', reg))
+                    .catch(err => console.log('Lỗi đăng ký Service Worker: ', err));
+            });
+        }
     </script>
 </body>
 </html>
