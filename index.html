@@ -3,62 +3,106 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Lịch Trình Giang Nam & Bắc Kinh - Gia đình Tùng Văn</title>
+    <title>Hành Trình Tùng Văn</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <style>
         :root {
-            --primary: #2563eb;
-            --bg: #f3f4f6;
-            --card-bg: #ffffff;
-            --text-main: #1f2937;
-            --text-muted: #6b7280;
-            --border: #e5e7eb;
-            --success: #10b981;
+            --primary: #007AFF; /* iOS Blue */
+            --primary-light: #E5F1FF;
+            --bg: #F2F2F7; /* iOS Gray background */
+            --card-bg: #FFFFFF;
+            --text-main: #1C1C1E;
+            --text-muted: #8E8E93;
+            --border: #E5E5EA;
+            --success: #34C759; /* iOS Green */
+            --warning: #FF9500;
         }
-        * { box-sizing: border-box; margin: 0; padding: 0; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; }
-        body { background-color: var(--bg); color: var(--text-main); padding-bottom: 40px; }
         
-        /* Header & Search */
-        header { background: var(--primary); color: white; padding: 20px 15px 15px; position: sticky; top: 0; z-index: 100; box-shadow: 0 2px 4px rgba(0,0,0,0.1); }
-        h1 { font-size: 1.25rem; margin-bottom: 10px; font-weight: 600; }
-        .search-container input { width: 100%; padding: 12px; border: none; border-radius: 8px; font-size: 1rem; outline: none; }
+        * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif; -webkit-tap-highlight-color: transparent;}
+        body { background-color: var(--bg); color: var(--text-main); padding-bottom: 50px; line-height: 1.5; }
+        
+        /* Glassmorphism Header */
+        header { 
+            background: rgba(255, 255, 255, 0.85); 
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            padding: 20px 20px 15px; 
+            position: sticky; 
+            top: 0; 
+            z-index: 100; 
+            border-bottom: 1px solid rgba(0,0,0,0.05);
+        }
+        h1 { font-size: 1.4rem; margin-bottom: 12px; font-weight: 700; letter-spacing: -0.5px; color: #000; text-align: center;}
+        
+        .search-container input { 
+            width: 100%; padding: 12px 16px; border: none; 
+            border-radius: 12px; font-size: 0.95rem; outline: none; 
+            background: #e3e3e8; color: var(--text-main);
+            transition: all 0.3s ease;
+        }
+        .search-container input:focus { background: #d1d1d6; }
         
         /* Progress Bar */
-        .progress-container { background: white; padding: 15px; border-bottom: 1px solid var(--border); margin-bottom: 15px; }
-        .progress-text { display: flex; justify-content: space-between; font-size: 0.875rem; color: var(--text-muted); margin-bottom: 5px; font-weight: 500;}
-        .progress-bar { width: 100%; height: 8px; background: #e5e7eb; border-radius: 4px; overflow: hidden; }
-        .progress-fill { height: 100%; background: var(--success); width: 0%; transition: width 0.3s ease; }
+        .progress-container { padding: 20px 20px 10px; }
+        .progress-text { display: flex; justify-content: space-between; font-size: 0.9rem; color: var(--text-muted); margin-bottom: 8px; font-weight: 600;}
+        .progress-bar { width: 100%; height: 10px; background: #E5E5EA; border-radius: 10px; overflow: hidden; }
+        .progress-fill { height: 100%; background: var(--success); width: 0%; transition: width 0.5s cubic-bezier(0.4, 0, 0.2, 1); border-radius: 10px;}
 
         /* Timeline / Cards */
-        .container { padding: 0 15px; }
-        .day-card { background: var(--card-bg); border-radius: 12px; padding: 15px; margin-bottom: 15px; box-shadow: 0 1px 3px rgba(0,0,0,0.05); }
-        .day-title { font-size: 1.1rem; font-weight: 700; color: var(--primary); margin-bottom: 15px; padding-bottom: 10px; border-bottom: 1px dashed var(--border); }
+        .container { padding: 10px 20px; }
+        .day-card { 
+            background: var(--card-bg); border-radius: 20px; padding: 20px; 
+            margin-bottom: 20px; 
+            box-shadow: 0 4px 20px rgba(0,0,0,0.04);
+            border: 1px solid rgba(0,0,0,0.02);
+        }
+        .day-title { font-size: 1.15rem; font-weight: 700; color: var(--text-main); margin-bottom: 20px; display: flex; flex-direction: column;}
+        .day-title span.date { font-size: 0.85rem; color: var(--primary); text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 4px; font-weight: 600;}
         
-        .task-item { display: flex; align-items: flex-start; margin-bottom: 15px; padding-bottom: 15px; border-bottom: 1px solid var(--border); }
-        .task-item:last-child { margin-bottom: 0; padding-bottom: 0; border-bottom: none; }
+        .task-item { display: flex; align-items: flex-start; margin-bottom: 20px; position: relative;}
+        .task-item:last-child { margin-bottom: 0; }
         
-        .checkbox-wrapper { margin-right: 12px; margin-top: 2px; }
-        .checkbox-wrapper input { width: 22px; height: 22px; accent-color: var(--success); }
+        /* Custom Modern Checkbox */
+        .checkbox-wrapper { margin-right: 15px; margin-top: 2px; flex-shrink: 0;}
+        .custom-checkbox {
+            appearance: none; -webkit-appearance: none;
+            width: 24px; height: 24px; border: 2px solid var(--border);
+            border-radius: 50%; outline: none; cursor: pointer;
+            transition: all 0.2s ease-in-out; position: relative;
+            background: white;
+        }
+        .custom-checkbox:checked { background-color: var(--success); border-color: var(--success); }
+        .custom-checkbox:checked::after {
+            content: ''; position: absolute; left: 7px; top: 4px;
+            width: 5px; height: 10px; border: solid white;
+            border-width: 0 2px 2px 0; transform: rotate(45deg);
+        }
         
         .task-content { flex: 1; }
-        .task-time { font-size: 0.85rem; font-weight: 600; color: var(--primary); margin-bottom: 6px; display: inline-block; background: #eff6ff; padding: 4px 8px; border-radius: 6px;}
-        .task-desc { font-size: 1rem; font-weight: 600; margin-bottom: 8px; line-height: 1.4;}
+        .task-content.completed .task-desc { text-decoration: line-through; color: var(--text-muted); }
         
-        /* Image Style */
-        .task-image { width: 100%; height: 160px; object-fit: cover; border-radius: 8px; margin-bottom: 10px; border: 1px solid var(--border); box-shadow: 0 1px 2px rgba(0,0,0,0.1);}
+        .task-time { font-size: 0.8rem; font-weight: 700; color: var(--primary); margin-bottom: 6px; display: inline-block; background: var(--primary-light); padding: 4px 10px; border-radius: 8px;}
+        .task-desc { font-size: 1.05rem; font-weight: 600; margin-bottom: 10px; color: var(--text-main); transition: color 0.3s ease;}
+        
+        /* Modern Image */
+        .task-image { width: 100%; height: 180px; object-fit: cover; border-radius: 14px; margin-bottom: 12px; border: 1px solid rgba(0,0,0,0.05);}
 
-        /* Chinese Copy Box */
-        .cn-box { display: flex; align-items: center; justify-content: space-between; background: #f8fafc; border: 1px solid #cbd5e1; padding: 8px 10px; border-radius: 6px; margin-bottom: 8px; }
-        .cn-text { font-size: 1.1rem; font-weight: bold; color: #334155; }
-        .btn-copy { background: white; border: 1px solid var(--border); padding: 4px 10px; border-radius: 4px; font-size: 0.8rem; color: var(--primary); cursor: pointer; font-weight: 600;}
-        .btn-copy:active { background: #e2e8f0; }
+        /* Modern Chinese Copy Box */
+        .cn-box { display: flex; align-items: center; justify-content: space-between; background: #F2F2F7; padding: 10px 14px; border-radius: 12px; margin-bottom: 10px; }
+        .cn-text { font-size: 1.1rem; font-weight: 600; color: #1C1C1E; }
+        .btn-copy { background: #FFFFFF; border: none; padding: 6px 12px; border-radius: 8px; font-size: 0.85rem; color: var(--primary); cursor: pointer; font-weight: 600; box-shadow: 0 2px 5px rgba(0,0,0,0.05); transition: background 0.2s;}
+        .btn-copy:active { background: #E5E5EA; transform: scale(0.96); }
 
-        /* Notes & Transport */
-        .note-box { background: #fffbeb; border-left: 3px solid #f59e0b; padding: 8px 10px; font-size: 0.875rem; color: #78350f; margin-bottom: 6px; border-radius: 0 4px 4px 0; line-height: 1.4;}
-        .transport-box { background: #f0fdf4; border-left: 3px solid var(--success); padding: 8px 10px; font-size: 0.875rem; color: #166534; border-radius: 0 4px 4px 0; margin-bottom: 6px; line-height: 1.4;}
+        /* Notes & Transport Badges */
+        .info-group { display: flex; flex-direction: column; gap: 8px; }
+        .badge { display: flex; align-items: flex-start; padding: 10px 14px; border-radius: 12px; font-size: 0.9rem; font-weight: 500;}
+        .badge-transport { background: #E8F5E9; color: #2E7D32; }
+        .badge-note { background: #FFF3E0; color: #E65100; }
+        .badge span.icon { margin-right: 8px; font-size: 1.1rem; }
         
         /* Toast Notification */
-        #toast { visibility: hidden; min-width: 200px; background-color: #333; color: #fff; text-align: center; border-radius: 20px; padding: 10px; position: fixed; z-index: 1000; left: 50%; bottom: 30px; transform: translateX(-50%); font-size: 0.9rem; transition: visibility 0s, opacity 0.3s linear; opacity: 0; }
-        #toast.show { visibility: visible; opacity: 1; }
+        #toast { visibility: hidden; min-width: 200px; background-color: rgba(0,0,0,0.8); color: #fff; text-align: center; border-radius: 20px; padding: 12px 20px; position: fixed; z-index: 1000; left: 50%; bottom: 40px; transform: translateX(-50%); font-size: 0.95rem; font-weight: 500; backdrop-filter: blur(5px); transition: visibility 0s, opacity 0.3s, bottom 0.3s; opacity: 0; }
+        #toast.show { visibility: visible; opacity: 1; bottom: 50px;}
     </style>
 </head>
 <body>
@@ -66,7 +110,7 @@
     <header>
         <h1>Trợ Lý Lịch Trình Tùng Văn</h1>
         <div class="search-container">
-            <input type="text" id="searchInput" placeholder="Tìm địa điểm, ngày đi... (VD: Tử Cấm Thành)">
+            <input type="text" id="searchInput" placeholder="Tìm kiếm địa điểm...">
         </div>
     </header>
 
@@ -86,94 +130,93 @@
     <div id="toast">Đã copy thành công!</div>
 
     <script>
-        // Dữ liệu Lịch Trình (Đã bổ sung hình ảnh thực tế)
+        // Dữ liệu hình ảnh đã được fix bằng link công khai ổn định từ Wikimedia
         const itineraryData = [
             {
-                day: "Ngày 1 (Thứ 5, 23/4)",
+                date: "Ngày 1 (Thứ 5, 23/4)",
                 title: "Sài Gòn ✈️ Ninh Ba ✈️ Bắc Kinh",
                 tasks: [
                     { id: "d1-1", time: "03:35", desc: "Bay từ Tân Sơn Nhất. Quá cảnh 2 tiếng tại Ninh Ba.", cn: "宁波栎社国际机场", transport: "Hành lý check-through chuyển thẳng Bắc Kinh.", note: "Chuẩn bị sẵn bỉm sữa gọn nhẹ trên máy bay." },
-                    { id: "d1-2", time: "13:10", desc: "Đáp sân bay Đại Hưng. Về khách sạn Vương Phủ Tỉnh.", cn: "北京大兴国际机场 ➡️ 王府井", transport: "Gọi DiDi Premium hoặc Taxi sảnh sân bay. Bỏ qua tàu điện vì nhiều đồ.", note: "Bắc Kinh se lạnh về đêm, lấy sẵn chăn/áo khoác mỏng đắp xe đẩy cho Tùng Văn." },
-                    { id: "d1-3", time: "Tối", desc: "Tản bộ Vương Phủ Tỉnh, ăn Vịt quay Bắc Kinh.", cn: "王府井步行街 - 北京烤鸭 (全聚德)", transport: "Đẩy xe bộ hoặc xe nôi từ khách sạn.", note: "Cho bé ngủ bù sớm nạp năng lượng sau một ngày bay." }
+                    { id: "d1-2", time: "13:10", desc: "Đáp sân bay Đại Hưng. Về khách sạn.", cn: "北京大兴国际机场 ➡️ 王府井", transport: "Gọi DiDi Premium hoặc Taxi sảnh sân bay.", note: "Bắc Kinh se lạnh về đêm, lấy sẵn chăn mỏng đắp xe đẩy cho bé." },
+                    { id: "d1-3", time: "Tối", desc: "Tản bộ Vương Phủ Tỉnh, ăn Vịt quay Bắc Kinh.", cn: "王府井步行街 - 北京烤鸭 (全聚德)", transport: "Đẩy xe bộ từ khách sạn.", note: "Cho bé ngủ bù sớm nạp năng lượng." }
                 ]
             },
             {
-                day: "Ngày 2 (Thứ 6, 24/4)",
-                title: "Cố Cung rộng lớn & Tiệc Cung Đình",
+                date: "Ngày 2 (Thứ 6, 24/4)",
+                title: "Cố Cung & Tiệc Cung Đình",
                 tasks: [
-                    { id: "d2-1", time: "Sáng", desc: "Khám phá Tử Cấm Thành (Cố Cung).", img: "http://googleusercontent.com/image_collection/image_retrieval/18199761534387800794", cn: "故宫博物院", transport: "DiDi thả gần Ngọ Môn (午门). Đi ra bằng Thần Vũ Môn (神武门).", note: "Mang theo dù che nắng, kem chống nắng và bình thủy nước nóng pha sữa cữ trưa. VÉ PHẢI MUA TRƯỚC 7 NGÀY!" },
-                    { id: "d2-2", time: "Chiều", desc: "Quảng trường Thiên An Môn.", cn: "天安门广场", transport: "Đi bộ từ khu Cố Cung.", note: "Cổng an ninh qua nhanh vì đi trước lễ. Đường siêu phẳng, xe đẩy đi êm." },
-                    { id: "d2-3", time: "Tối", desc: "Tiệc Cung Yến tại nhà hàng Phỏng Thiện.", cn: "仿膳饭庄 (北海公园内)", transport: "DiDi từ khách sạn hoặc Thiên An Môn.", note: "Nhà hàng nằm trong Công viên Bắc Hải, thưởng thức ẩm thực của Từ Hy Thái Hậu." }
+                    { id: "d2-1", time: "Sáng", desc: "Khám phá Tử Cấm Thành (Cố Cung).", img: "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e7/The_Palace_Museum_in_Beijing.jpg/800px-The_Palace_Museum_in_Beijing.jpg", cn: "故宫博物院", transport: "DiDi thả gần Ngọ Môn (午门).", note: "Mang theo bình thủy nước nóng pha sữa cữ trưa. VÉ PHẢI MUA TRƯỚC 7 NGÀY!" },
+                    { id: "d2-2", time: "Chiều", desc: "Quảng trường Thiên An Môn.", cn: "天安门广场", transport: "Đi bộ từ khu Cố Cung.", note: "Đường siêu phẳng, xe đẩy đi êm." },
+                    { id: "d2-3", time: "Tối", desc: "Tiệc Cung Yến Phỏng Thiện.", cn: "仿膳饭庄 (北海公园内)", transport: "DiDi từ khách sạn.", note: "Nằm trong Công viên Bắc Hải, thưởng thức ẩm thực Từ Hy Thái Hậu." }
                 ]
             },
             {
-                day: "Ngày 3 (Thứ 7, 25/4)",
+                date: "Ngày 3 (Thứ 7, 25/4)",
                 title: "Vạn Lý Trường Thành (Mộ Điền Dục)",
                 tasks: [
-                    { id: "d3-1", time: "Sáng", desc: "Chinh phục Vạn Lý Trường Thành.", img: "http://googleusercontent.com/image_collection/image_retrieval/11707243371672160940", cn: "慕田峪长城", transport: "Bao xe riêng 7 chỗ (chờ cả ngày). Đi cáp treo lên thành.", note: "Gửi xe đẩy ở ga cáp treo hoặc trên ô tô. Dùng địu trợ lực cõng bé lên các bậc thang dốc." }
+                    { id: "d3-1", time: "Sáng", desc: "Chinh phục Vạn Lý Trường Thành.", img: "https://upload.wikimedia.org/wikipedia/commons/thumb/1/1b/Mutianyu_Great_Wall_11.JPG/800px-Mutianyu_Great_Wall_11.JPG", cn: "慕田峪长城", transport: "Bao xe riêng 7 chỗ. Đi cáp treo lên thành.", note: "Gửi xe đẩy ở ga cáp treo. Dùng địu trợ lực bế bé." }
                 ]
             },
             {
-                day: "Ngày 4 (CN, 26/4)",
+                date: "Ngày 4 (CN, 26/4)",
                 title: "Bắc Kinh 🚄 Thượng Hải",
                 tasks: [
-                    { id: "d4-1", time: "Trưa", desc: "Lên tàu cao tốc G-train đi Thượng Hải.", cn: "北京南站 ➡️ 上海虹桥站", transport: "DiDi ra Ga Nam Bắc Kinh. Cần đến trước 1 tiếng.", note: "Trên tàu có sẵn nước sôi 100 độ pha sữa, nhà vệ sinh có bàn thay tã thả tường tiện lợi." },
-                    { id: "d4-2", time: "Chiều/Tối", desc: "Nhận phòng Lục Gia Thủy. Ăn tối IFC Mall.", cn: "陆家嘴 - 上海国金中心商场", transport: "DiDi từ Ga Hồng Kiều về khách sạn.", note: "Ăn tối view Tháp Minh Châu Phương Đông. Tận dụng Nursery Room xịn xò ở Mall cho bé." },
-                    { id: "d4-3", time: "Tối muộn", desc: "Du thuyền sông Hoàng Phố.", img: "http://googleusercontent.com/image_collection/image_retrieval/17490839431124828535", cn: "黄浦江游船", transport: "Đi bộ ra bến tàu sát Bến Thượng Hải.", note: "Nên mua vé VIP/hạng thương gia từ trước để tránh xếp hàng." }
+                    { id: "d4-1", time: "Trưa", desc: "Tàu cao tốc G-train đi Thượng Hải.", cn: "北京南站 ➡️ 上海虹桥站", transport: "DiDi ra Ga Nam. Cần đến trước 1 tiếng.", note: "Trên tàu có sẵn nước sôi 100 độ pha sữa." },
+                    { id: "d4-2", time: "Chiều/Tối", desc: "Nhận phòng Lục Gia Thủy. Ăn tối IFC Mall.", cn: "陆家嘴 - 上海国金中心商场", transport: "DiDi từ Ga Hồng Kiều.", note: "Tận dụng Nursery Room xịn xò ở Mall cho bé." },
+                    { id: "d4-3", time: "Tối muộn", desc: "Du thuyền sông Hoàng Phố.", img: "https://upload.wikimedia.org/wikipedia/commons/thumb/8/87/Shanghai_skyline_2023.jpg/800px-Shanghai_skyline_2023.jpg", cn: "黄浦江游船", transport: "Đi bộ ra bến tàu sát Bến Thượng Hải.", note: "Nên mua vé VIP/hạng thương gia từ trước." }
                 ]
             },
             {
-                day: "Ngày 5 (Thứ 2, 27/4)",
+                date: "Ngày 5 (Thứ 2, 27/4)",
                 title: "Trọn vẹn Disneyland Thượng Hải",
                 tasks: [
-                    { id: "d5-1", time: "Cả ngày", desc: "Vui chơi Disneyland, xem pháo hoa Illuminations.", cn: "上海迪士尼乐园", transport: "DiDi chạy thẳng, đi bộ 10p từ bãi thả khách.", note: "Được mang sữa bột, xe đẩy cá nhân vào thoải mái. Mua sẵn gói Premier Access (Fast Pass) trên app Disney để được ưu tiên chơi nhanh." }
+                    { id: "d5-1", time: "Cả ngày", desc: "Disneyland, xem pháo hoa Illuminations.", cn: "上海迪士尼乐园", transport: "DiDi chạy thẳng.", note: "Mua sẵn gói Premier Access (Fast Pass) trên app Disney để không phải xếp hàng." }
                 ]
             },
             {
-                day: "Ngày 6 (Thứ 3, 28/4)",
+                date: "Ngày 6 (Thứ 3, 28/4)",
                 title: "Thượng Hải 🚄 Tô Châu",
                 tasks: [
-                    { id: "d6-1", time: "Sáng", desc: "Tàu cao tốc tới Tô Châu. Khám phá Chuyết Chính Viên.", cn: "苏州站 - 拙政园", transport: "Tàu cao tốc (30 phút). Đi DiDi nội ô Tô Châu.", note: "Khu phố cổ Tô Châu đường nhỏ hẹp, linh động đi Metro nếu DiDi kẹt xe, Metro đều có thang máy." },
-                    { id: "d6-2", time: "Đầu giờ chiều", desc: "Thuyền mộc chèo tay Phố cổ Bình Giang.", cn: "平江路", transport: "Đi bộ hoặc xe công nghệ chặng ngắn.", note: "Trải nghiệm bắt buộc: Bế bé lên thuyền chèo tay để ngắm thủy trấn nguyên bản nhất." },
-                    { id: "d6-3", time: "Chiều muộn", desc: "Ngắm lồng đèn Phố cổ Sơn Đường, ăn Cá tùng thử.", cn: "山塘街 - 松鼠桂鱼", transport: "Gọi xe sang Sơn Đường, sau đó ra Ga Tô Châu vù về Thượng Hải.", note: "Giữ em bé cẩn thận vì khu vực rất sầm uất lúc chập tối lên đèn." }
+                    { id: "d6-1", time: "Sáng", desc: "Tàu cao tốc tới Tô Châu. Đi Chuyết Chính Viên.", cn: "苏州站 - 拙政园", transport: "Tàu 30 phút. DiDi nội ô Tô Châu.", note: "Linh động đi Metro nếu DiDi kẹt xe." },
+                    { id: "d6-2", time: "Đầu giờ chiều", desc: "Thuyền mộc chèo tay Phố cổ Bình Giang.", cn: "平江路", transport: "Đi bộ hoặc xe công nghệ ngắn.", note: "Trải nghiệm bắt buộc để ngắm thủy trấn nguyên bản." },
+                    { id: "d6-3", time: "Chiều muộn", desc: "Phố cổ Sơn Đường, ăn Cá tùng thử.", cn: "山塘街 - 松鼠桂鱼", transport: "Gọi xe sang Sơn Đường, sau đó ra Ga về Thượng Hải.", note: "Giữ em bé cẩn thận vì rất sầm uất." }
                 ]
             },
             {
-                day: "Ngày 7 (Thứ 4, 29/4)",
+                date: "Ngày 7 (Thứ 4, 29/4)",
                 title: "Phim trường & Tô Giới Pháp",
                 tasks: [
-                    { id: "d7-1", time: "Sáng", desc: "Tham quan Phim trường Thượng Hải.", cn: "上海影视乐园 (松江区)", transport: "DiDi chạy thẳng ra ngoại ô (khoảng 150-200 RMB).", note: "Có những đoạn đường lát đá cuội giả cổ, đẩy xe Mios sẽ hơi rung." },
-                    { id: "d7-2", time: "Chiều", desc: "Tô Giới Pháp lãng mạn & đường Vũ Khang.", cn: "法租界 - 武康路", transport: "DiDi từ ngoại ô về trung tâm thành phố.", note: "Vỉa hè cực kỳ rộng rãi, hàng cây ngô đồng rợp bóng. Rất thích hợp để gia đình ngồi nhâm nhi trà chiều." },
-                    { id: "d7-3", time: "Tối", desc: "Ăn tối IAPM Mall.", cn: "环贸iapm商场", transport: "Đẩy xe tản bộ quanh khu vực Tô Giới.", note: "Trung tâm thương mại lớn, có phòng chăm sóc trẻ sơ sinh đầy đủ tiện nghi." }
+                    { id: "d7-1", time: "Sáng", desc: "Tham quan Phim trường Thượng Hải.", cn: "上海影视乐园", transport: "DiDi chạy ra ngoại ô.", note: "Đường lát đá cuội giả cổ, đẩy xe sẽ hơi rung." },
+                    { id: "d7-2", time: "Chiều", desc: "Tô Giới Pháp lãng mạn & đường Vũ Khang.", cn: "法租界 - 武康路", transport: "DiDi về trung tâm.", note: "Vỉa hè rộng rãi, ngô đồng rợp bóng. Tận hưởng trà chiều." }
                 ]
             },
             {
-                day: "Ngày 8 (Thứ 5, 30/4)",
+                date: "Ngày 8 (Thứ 5, 30/4)",
                 title: "Thượng Hải 🚗 Ô Trấn",
                 tasks: [
-                    { id: "d8-1", time: "Sáng/Chiều", desc: "Rời Thượng Hải đi Ô Trấn, nhận phòng Tây Sách.", img: "http://googleusercontent.com/image_collection/image_retrieval/15438089220625854511", cn: "乌镇 - 西栅", transport: "Bao xe 7 chỗ đón tại khách sạn chạy thẳng 2 tiếng.", note: "Khách sạn bên trong Tây Sách sẽ có nhân viên chuyển hành lý lớn bằng thuyền. Đợi khách đoàn rút bớt vào buổi chiều rồi bế bé đi dạo." }
+                    { id: "d8-1", time: "Sáng/Chiều", desc: "Rời Thượng Hải đi Ô Trấn, nhận phòng Tây Sách.", img: "https://upload.wikimedia.org/wikipedia/commons/thumb/7/7b/Wuzhen_water_town.jpg/800px-Wuzhen_water_town.jpg", cn: "乌镇 - 西栅", transport: "Bao xe 7 chỗ chạy thẳng 2 tiếng.", note: "Nhân viên khách sạn sẽ chuyển hành lý bằng thuyền. Đợi chiều bớt khách rồi đi dạo." }
                 ]
             },
             {
-                day: "Ngày 9 (Thứ 6, 1/5 - Lễ Lao Động)",
+                date: "Ngày 9 (Thứ 6, 1/5 - Lễ LĐ)",
                 title: "Ô Trấn 🚗 Hàng Châu",
                 tasks: [
-                    { id: "d9-1", time: "Trưa", desc: "Về Hàng Châu, nhận phòng khách sạn.", cn: "杭州", transport: "Bao xe riêng (chạy khoảng 1.5 tiếng).", note: "Trong khi mọi người đổ xô đi ngoại ô chơi lễ, nhà mình đi ngược vào thành phố để né đám đông." },
-                    { id: "d9-2", time: "Tối (19:30)", desc: "Xem Show ánh sáng Tiền Giang.", cn: "城市阳台 - 钱江新城灯光秀", transport: "Ăn tối tại Raffles City (来福士中心) đi bộ ra Ban công thành phố.", note: "Ngày lễ dân địa phương đổ ra xem rất đông, gia đình nhớ ra sớm trước 19h để xí chỗ sát lan can." }
+                    { id: "d9-1", time: "Trưa", desc: "Về Hàng Châu, nhận phòng.", cn: "杭州", transport: "Bao xe riêng (1.5 tiếng).", note: "Đi ngược vào thành phố để né đám đông nghỉ lễ." },
+                    { id: "d9-2", time: "Tối", desc: "Xem Show ánh sáng Tiền Giang.", cn: "钱江新城灯光秀", transport: "Ăn tối Raffles City đi bộ ra.", note: "Ra sớm trước 19h để xí chỗ sát lan can." }
                 ]
             },
             {
-                day: "Ngày 10 (Thứ 7, 2/5)",
-                title: "Trọn vẹn Tây Hồ tĩnh lặng",
+                date: "Ngày 10 (Thứ 7, 2/5)",
+                title: "Trọn vẹn Tây Hồ",
                 tasks: [
-                    { id: "d10-1", time: "Cả ngày", desc: "Tản bộ Tây Hồ (Tô Đê/Bạch Đê), Shopping mall in77.", img: "http://googleusercontent.com/image_collection/image_retrieval/14898104253304774198", cn: "西湖 - 湖滨银泰in77", transport: "DiDi nội ô, đường ven hồ cực đẹp.", note: "Thong thả cho mẹ Hà xem mẫu quần áo trẻ em hot trend, khảo sát thị trường bổ sung vào shop Uñ Uñ Baby." }
+                    { id: "d10-1", time: "Cả ngày", desc: "Tản bộ Tây Hồ, Shopping mall in77.", img: "https://upload.wikimedia.org/wikipedia/commons/thumb/7/70/West_Lake_-_Hangzhou_-_China_-_panoramio.jpg/800px-West_Lake_-_Hangzhou_-_China_-_panoramio.jpg", cn: "西湖 - 湖滨银泰in77", transport: "DiDi nội ô.", note: "Khảo sát thị trường, mua sắm đồ sơ sinh." }
                 ]
             },
             {
-                day: "Ngày 11 (CN, 3/5)",
+                date: "Ngày 11 (CN, 3/5)",
                 title: "Hàng Châu ✈️ Sài Gòn",
                 tasks: [
-                    { id: "d11-1", time: "Sáng", desc: "Gói ghém hành lý ra sân bay.", cn: "杭州萧山国际机场", transport: "DiDi Premium chạy ra sân bay quốc tế Tiêu Sơn.", note: "Nên xuất phát ra sân bay trước ít nhất 3.5 tiếng so với giờ cất cánh." }
+                    { id: "d11-1", time: "Sáng", desc: "Gói ghém hành lý ra sân bay.", cn: "杭州萧山国际机场", transport: "DiDi Premium ra sân bay.", note: "Có mặt trước 3.5 tiếng." }
                 ]
             }
         ];
@@ -182,7 +225,6 @@
         const searchInput = document.getElementById('searchInput');
         let totalTasks = 0;
 
-        // Render Data
         function renderItinerary(filterText = '') {
             container.innerHTML = '';
             totalTasks = 0;
@@ -192,7 +234,7 @@
                 const hasMatch = day.tasks.some(task => 
                     task.desc.toLowerCase().includes(filterText) || 
                     task.cn.toLowerCase().includes(filterText) ||
-                    day.day.toLowerCase().includes(filterText)
+                    day.title.toLowerCase().includes(filterText)
                 );
 
                 if (!hasMatch && filterText !== '') return;
@@ -206,15 +248,14 @@
                     const isChecked = localStorage.getItem(task.id) === 'true';
                     if(isChecked) currentTasks++;
 
-                    // Nếu có hình ảnh thì sinh ra thẻ img, nếu không thì để trống
                     const imageHTML = task.img ? `<img src="${task.img}" class="task-image" loading="lazy" alt="${task.desc}">` : '';
 
                     tasksHTML += `
                         <div class="task-item">
                             <div class="checkbox-wrapper">
-                                <input type="checkbox" id="${task.id}" ${isChecked ? 'checked' : ''} onchange="updateProgress(this)">
+                                <input type="checkbox" class="custom-checkbox" id="${task.id}" ${isChecked ? 'checked' : ''} onchange="updateProgress(this)">
                             </div>
-                            <div class="task-content">
+                            <div class="task-content ${isChecked ? 'completed' : ''}" id="content-${task.id}">
                                 <span class="task-time">${task.time}</span>
                                 <div class="task-desc">${task.desc}</div>
                                 
@@ -225,25 +266,39 @@
                                     <button class="btn-copy" onclick="copyText('${task.cn}')">Copy</button>
                                 </div>
                                 
-                                <div class="transport-box">🚗 <b>Đi lại:</b> ${task.transport}</div>
-                                <div class="note-box">💡 <b>Lưu ý:</b> ${task.note}</div>
+                                <div class="info-group">
+                                    <div class="badge badge-transport"><span class="icon">🚗</span> <span>${task.transport}</span></div>
+                                    <div class="badge badge-note"><span class="icon">💡</span> <span>${task.note}</span></div>
+                                </div>
                             </div>
                         </div>
                     `;
                 });
 
-                dayCard.innerHTML = `<div class="day-title">${day.day} - ${day.title}</div>${tasksHTML}`;
+                dayCard.innerHTML = `
+                    <div class="day-title">
+                        <span class="date">${day.date}</span>
+                        ${day.title}
+                    </div>
+                    ${tasksHTML}
+                `;
                 container.appendChild(dayCard);
             });
 
             updateProgressBar(currentTasks, totalTasks);
         }
 
-        // Logic Checkbox & Progress
         function updateProgress(checkbox) {
             localStorage.setItem(checkbox.id, checkbox.checked);
             
-            // Recalculate
+            // UI Update for text strikethrough
+            const contentDiv = document.getElementById(`content-${checkbox.id}`);
+            if(checkbox.checked) {
+                contentDiv.classList.add('completed');
+            } else {
+                contentDiv.classList.remove('completed');
+            }
+
             let currentTasks = 0;
             itineraryData.forEach(day => {
                 day.tasks.forEach(task => {
@@ -260,23 +315,21 @@
             document.getElementById('progressPercent').innerText = percent + '%';
         }
 
-        // Logic Copy Text
         window.copyText = function(text) {
             navigator.clipboard.writeText(text).then(() => {
                 const toast = document.getElementById("toast");
                 toast.className = "show";
                 setTimeout(() => { toast.className = toast.className.replace("show", ""); }, 2000);
             }).catch(err => {
-                console.error('Không thể copy: ', err);
+                console.error('Lỗi copy: ', err);
             });
         }
 
-        // Logic Search
         searchInput.addEventListener('input', (e) => {
             renderItinerary(e.target.value.toLowerCase());
         });
 
-        // Init
+        // Initialize
         renderItinerary();
     </script>
 </body>
