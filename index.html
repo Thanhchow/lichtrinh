@@ -8,110 +8,89 @@
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     <meta name="apple-mobile-web-app-title" content="Tùng Văn Trip">
-    
     <link rel="apple-touch-icon" href="https://via.placeholder.com/192x192.png?text=TV">
-    
     <link rel="manifest" href="./manifest.json">
-    
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     
     <style>
         :root {
-            --primary: #007AFF; /* iOS Blue */
+            --primary: #007AFF;
             --primary-light: #E5F1FF;
-            --bg: #F2F2F7; /* iOS Gray background */
+            --bg: #F2F2F7;
             --card-bg: #FFFFFF;
             --text-main: #1C1C1E;
             --text-muted: #8E8E93;
             --border: #E5E5EA;
-            --success: #34C759; /* iOS Green */
-            --warning: #FF9500;
+            --success: #34C759;
+            --danger: #FF3B30;
         }
         
-        * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif; -webkit-tap-highlight-color: transparent;}
+        * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Inter', sans-serif; -webkit-tap-highlight-color: transparent;}
         body { background-color: var(--bg); color: var(--text-main); padding-bottom: 50px; line-height: 1.5; }
         
-        /* Glassmorphism Header */
         header { 
-            background: rgba(255, 255, 255, 0.85); 
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
-            padding: env(safe-area-inset-top, 20px) 20px 15px; /* Hỗ trợ tai thỏ iPhone */
-            position: sticky; 
-            top: 0; 
-            z-index: 100; 
-            border-bottom: 1px solid rgba(0,0,0,0.05);
+            background: rgba(255, 255, 255, 0.85); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
+            padding: env(safe-area-inset-top, 20px) 20px 15px; position: sticky; top: 0; z-index: 100; border-bottom: 1px solid rgba(0,0,0,0.05);
         }
         h1 { font-size: 1.4rem; margin-bottom: 12px; font-weight: 700; letter-spacing: -0.5px; color: #000; text-align: center;}
         
         .search-container input { 
-            width: 100%; padding: 12px 16px; border: none; 
-            border-radius: 12px; font-size: 0.95rem; outline: none; 
-            background: #e3e3e8; color: var(--text-main);
-            transition: all 0.3s ease;
+            width: 100%; padding: 12px 16px; border: none; border-radius: 12px; font-size: 0.95rem; outline: none; 
+            background: #e3e3e8; color: var(--text-main); transition: all 0.3s ease;
         }
         .search-container input:focus { background: #d1d1d6; }
         
-        /* Progress Bar */
         .progress-container { padding: 20px 20px 10px; }
         .progress-text { display: flex; justify-content: space-between; font-size: 0.9rem; color: var(--text-muted); margin-bottom: 8px; font-weight: 600;}
         .progress-bar { width: 100%; height: 10px; background: #E5E5EA; border-radius: 10px; overflow: hidden; }
-        .progress-fill { height: 100%; background: var(--success); width: 0%; transition: width 0.5s cubic-bezier(0.4, 0, 0.2, 1); border-radius: 10px;}
+        .progress-fill { height: 100%; background: var(--success); width: 0%; transition: width 0.5s ease; border-radius: 10px;}
 
-        /* Timeline / Cards */
         .container { padding: 10px 20px; }
-        .day-card { 
-            background: var(--card-bg); border-radius: 20px; padding: 20px; 
-            margin-bottom: 20px; 
-            box-shadow: 0 4px 20px rgba(0,0,0,0.04);
-            border: 1px solid rgba(0,0,0,0.02);
-        }
+        .day-card { background: var(--card-bg); border-radius: 20px; padding: 20px; margin-bottom: 20px; box-shadow: 0 4px 20px rgba(0,0,0,0.04); border: 1px solid rgba(0,0,0,0.02); }
         .day-title { font-size: 1.15rem; font-weight: 700; color: var(--text-main); margin-bottom: 20px; display: flex; flex-direction: column;}
-        .day-title span.date { font-size: 0.85rem; color: var(--primary); text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 4px; font-weight: 600;}
+        .day-title span.date { font-size: 0.85rem; color: var(--primary); text-transform: uppercase; font-weight: 600; margin-bottom: 4px;}
         
         .task-item { display: flex; align-items: flex-start; margin-bottom: 25px; position: relative;}
         .task-item:last-child { margin-bottom: 0; }
         
-        /* Custom Modern Checkbox */
         .checkbox-wrapper { margin-right: 15px; margin-top: 2px; flex-shrink: 0;}
         .custom-checkbox {
-            appearance: none; -webkit-appearance: none;
-            width: 26px; height: 26px; border: 2px solid var(--border);
-            border-radius: 50%; outline: none; cursor: pointer;
-            transition: all 0.2s ease-in-out; position: relative;
-            background: white;
+            appearance: none; -webkit-appearance: none; width: 26px; height: 26px; border: 2px solid var(--border);
+            border-radius: 50%; outline: none; cursor: pointer; transition: all 0.2s ease; background: white;
         }
         .custom-checkbox:checked { background-color: var(--success); border-color: var(--success); }
         .custom-checkbox:checked::after {
-            content: ''; position: absolute; left: 8px; top: 5px;
-            width: 5px; height: 11px; border: solid white;
-            border-width: 0 2px 2px 0; transform: rotate(45deg);
+            content: ''; position: absolute; left: 8px; top: 5px; width: 5px; height: 11px; border: solid white; border-width: 0 2px 2px 0; transform: rotate(45deg);
         }
         
-        .task-content { flex: 1; transition: opacity 0.3s ease;}
+        .task-content { flex: 1; transition: opacity 0.3s ease; width: 100%; overflow: hidden;}
         .task-content.completed { opacity: 0.6; }
         .task-content.completed .task-desc { text-decoration: line-through; }
         
         .task-time { font-size: 0.8rem; font-weight: 700; color: var(--primary); margin-bottom: 8px; display: inline-block; background: var(--primary-light); padding: 5px 10px; border-radius: 8px;}
-        .task-desc { font-size: 1.05rem; font-weight: 600; margin-bottom: 12px; color: var(--text-main); transition: color 0.3s ease; line-height: 1.4;}
+        .task-desc { font-size: 1.05rem; font-weight: 600; margin-bottom: 12px; color: var(--text-main); line-height: 1.4;}
         
-        /* Modern Image */
-        .task-image { width: 100%; height: 180px; object-fit: cover; border-radius: 14px; margin-bottom: 12px; border: 1px solid rgba(0,0,0,0.05);}
+        /* Image Upload Styles (Clean for Backend) */
+        .image-container { position: relative; margin-bottom: 12px; display: none; }
+        .task-image { width: 100%; max-height: 300px; object-fit: contain; border-radius: 12px; border: 1px solid var(--border); display: block; background: #f8f8f8;}
+        .btn-delete-img { position: absolute; top: 8px; right: 8px; background: rgba(255, 59, 48, 0.9); color: white; border: none; width: 28px; height: 28px; border-radius: 50%; font-size: 14px; display: flex; align-items: center; justify-content: center; cursor: pointer; backdrop-filter: blur(4px);}
+        
+        .upload-wrapper { margin-bottom: 12px; }
+        .upload-input { display: none; }
+        .btn-upload { background: #F2F2F7; color: var(--primary); border: 1px dashed #A1C6EA; padding: 10px; width: 100%; text-align: center; border-radius: 12px; font-size: 0.9rem; font-weight: 600; cursor: pointer; display: flex; justify-content: center; align-items: center; gap: 8px;}
+        .btn-upload:active { background: #E5E5EA; }
 
-        /* Modern Chinese Copy Box */
         .cn-box { display: flex; align-items: center; justify-content: space-between; background: #F2F2F7; padding: 12px 14px; border-radius: 12px; margin-bottom: 12px; }
         .cn-text { font-size: 1.1rem; font-weight: 600; color: #1C1C1E; }
-        .btn-copy { background: #FFFFFF; border: none; padding: 6px 14px; border-radius: 8px; font-size: 0.85rem; color: var(--primary); cursor: pointer; font-weight: 600; box-shadow: 0 2px 5px rgba(0,0,0,0.05); transition: background 0.2s;}
-        .btn-copy:active { background: #E5E5EA; transform: scale(0.96); }
+        .btn-copy { background: #FFFFFF; border: none; padding: 6px 14px; border-radius: 8px; font-size: 0.85rem; color: var(--primary); cursor: pointer; font-weight: 600; box-shadow: 0 2px 5px rgba(0,0,0,0.05);}
+        .btn-copy:active { transform: scale(0.96); }
 
-        /* Notes & Transport Badges */
         .info-group { display: flex; flex-direction: column; gap: 8px; }
         .badge { display: flex; align-items: flex-start; padding: 10px 14px; border-radius: 12px; font-size: 0.9rem; font-weight: 500; line-height: 1.4;}
         .badge-transport { background: #E8F5E9; color: #2E7D32; }
         .badge-note { background: #FFF3E0; color: #E65100; }
         .badge span.icon { margin-right: 8px; font-size: 1.1rem; }
         
-        /* Toast Notification */
         #toast { visibility: hidden; min-width: 200px; background-color: rgba(0,0,0,0.8); color: #fff; text-align: center; border-radius: 24px; padding: 12px 20px; position: fixed; z-index: 1000; left: 50%; bottom: 40px; transform: translateX(-50%); font-size: 0.95rem; font-weight: 500; backdrop-filter: blur(5px); transition: visibility 0s, opacity 0.3s, bottom 0.3s; opacity: 0; }
         #toast.show { visibility: visible; opacity: 1; bottom: 50px;}
     </style>
@@ -119,9 +98,9 @@
 <body>
 
     <header>
-        <h1>Chuyến Đi Gia Đình Tùng Văn</h1>
+        <h1>Hành Trình Tùng Văn</h1>
         <div class="search-container">
-            <input type="text" id="searchInput" placeholder="Tìm kiếm địa điểm, ngày... (VD: Tô Châu)">
+            <input type="text" id="searchInput" placeholder="Tìm kiếm địa điểm, ngày...">
         </div>
     </header>
 
@@ -135,20 +114,18 @@
         </div>
     </div>
 
-    <div class="container" id="timelineContainer">
-        </div>
-
-    <div id="toast">Đã copy thành công!</div>
+    <div class="container" id="timelineContainer"></div>
+    <div id="toast">Thông báo</div>
 
     <script>
-        // Dữ liệu Lịch trình siêu chuẩn (Phương án đảo ngược an toàn cho bé)
+        // Dữ liệu Lịch trình đã Update (Đi thẳng Hàng Châu, tham quan Ô Trấn về trong ngày)
         const itineraryData = [
             {
                 date: "Ngày 1 (Thứ 5, 23/4)",
                 title: "Sài Gòn ✈️ Ninh Ba ✈️ Bắc Kinh",
                 tasks: [
-                    { id: "d1-1", time: "03:35", desc: "Bay từ Tân Sơn Nhất. Quá cảnh 2 tiếng tại Ninh Ba.", cn: "宁波栎社国际机场", transport: "Hành lý check-through chuyển thẳng Bắc Kinh.", note: "Chuẩn bị sẵn bỉm sữa gọn nhẹ trên máy bay." },
-                    { id: "d1-2", time: "13:10", desc: "Đáp sân bay Đại Hưng. Về khách sạn.", cn: "北京大兴国际机场 ➡️ 王府井", transport: "Gọi DiDi Premium hoặc Taxi sảnh sân bay.", note: "Bắc Kinh se lạnh về đêm, lấy sẵn chăn mỏng đắp xe đẩy cho bé." },
+                    { id: "d1-1", time: "03:35", desc: "Bay từ Tân Sơn Nhất. Quá cảnh 2 tiếng tại Ninh Ba.", cn: "宁波栎社国际机场", transport: "Hành lý check-through chuyển thẳng.", note: "Chuẩn bị sẵn bỉm sữa gọn nhẹ trên máy bay." },
+                    { id: "d1-2", time: "13:10", desc: "Đáp sân bay Đại Hưng. Về khách sạn.", cn: "北京大兴国际机场 ➡️ 王府井", transport: "Gọi DiDi Premium hoặc Taxi.", note: "Lấy sẵn chăn mỏng đắp xe đẩy cho bé." },
                     { id: "d1-3", time: "Tối", desc: "Tản bộ Vương Phủ Tỉnh, ăn Vịt quay Bắc Kinh.", cn: "王府井步行街 - 北京烤鸭 (全聚德)", transport: "Đẩy xe bộ từ khách sạn.", note: "Cho bé ngủ bù sớm nạp năng lượng." }
                 ]
             },
@@ -156,71 +133,72 @@
                 date: "Ngày 2 (Thứ 6, 24/4)",
                 title: "Cố Cung & Tiệc Cung Đình",
                 tasks: [
-                    { id: "d2-1", time: "Sáng", desc: "Khám phá Tử Cấm Thành (Cố Cung).", img: "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e7/The_Palace_Museum_in_Beijing.jpg/800px-The_Palace_Museum_in_Beijing.jpg", cn: "故宫博物院", transport: "DiDi thả gần Ngọ Môn (午门).", note: "Mang theo bình thủy nước nóng pha sữa cữ trưa. VÉ PHẢI MUA TRƯỚC 7 NGÀY!" },
+                    { id: "d2-1", time: "Sáng", desc: "Khám phá Tử Cấm Thành (Cố Cung).", cn: "故宫博物院", transport: "DiDi thả gần Ngọ Môn (午门).", note: "Mang theo bình thủy nước nóng pha sữa. VÉ MUA TRƯỚC 7 NGÀY!" },
                     { id: "d2-2", time: "Chiều", desc: "Quảng trường Thiên An Môn.", cn: "天安门广场", transport: "Đi bộ từ khu Cố Cung.", note: "Đường siêu phẳng, xe đẩy đi êm." },
-                    { id: "d2-3", time: "Tối", desc: "Tiệc Cung Yến Phỏng Thiện.", cn: "仿膳饭庄 (北海公园内)", transport: "DiDi từ khách sạn.", note: "Nằm trong Công viên Bắc Hải, thưởng thức ẩm thực Từ Hy Thái Hậu." }
+                    { id: "d2-3", time: "Tối", desc: "Tiệc Cung Yến Phỏng Thiện.", cn: "仿膳饭庄 (北海公园内)", transport: "DiDi từ khách sạn.", note: "Nằm trong Công viên Bắc Hải." }
                 ]
             },
             {
                 date: "Ngày 3 (Thứ 7, 25/4)",
                 title: "Vạn Lý Trường Thành (Mộ Điền Dục)",
                 tasks: [
-                    { id: "d3-1", time: "Sáng", desc: "Chinh phục Vạn Lý Trường Thành.", img: "https://upload.wikimedia.org/wikipedia/commons/thumb/1/1b/Mutianyu_Great_Wall_11.JPG/800px-Mutianyu_Great_Wall_11.JPG", cn: "慕田峪长城", transport: "Bao xe riêng 7 chỗ. Đi cáp treo lên thành.", note: "Gửi xe đẩy ở ga cáp treo. Mẹ Hà/Ba Thạnh dùng địu trợ lực bế bé." }
+                    { id: "d3-1", time: "Sáng", desc: "Chinh phục Vạn Lý Trường Thành.", cn: "慕田峪长城", transport: "Bao xe riêng 7 chỗ.", note: "Gửi xe đẩy ở ga cáp treo. Dùng địu trợ lực bế bé." }
                 ]
             },
             {
                 date: "Ngày 4 (CN, 26/4)",
                 title: "Bắc Kinh 🚄 Thượng Hải",
                 tasks: [
-                    { id: "d4-1", time: "Trưa", desc: "Tàu cao tốc G-train đi Thượng Hải.", cn: "北京南站 ➡️ 上海虹桥站", transport: "DiDi ra Ga Nam. Cần đến trước 1 tiếng.", note: "Trên tàu có sẵn nước sôi 100 độ pha sữa." },
-                    { id: "d4-2", time: "Chiều/Tối", desc: "Nhận phòng Lục Gia Thủy. Ăn tối IFC Mall.", cn: "陆家嘴 - 上海国金中心商场", transport: "DiDi từ Ga Hồng Kiều.", note: "Tận dụng Nursery Room xịn xò ở Mall cho bé." },
-                    { id: "d4-3", time: "Tối muộn", desc: "Du thuyền sông Hoàng Phố.", img: "https://upload.wikimedia.org/wikipedia/commons/thumb/8/87/Shanghai_skyline_2023.jpg/800px-Shanghai_skyline_2023.jpg", cn: "黄浦江游船", transport: "Đi bộ ra bến tàu sát Bến Thượng Hải.", note: "Nên mua vé VIP/hạng thương gia từ trước." }
+                    { id: "d4-1", time: "Trưa", desc: "Tàu cao tốc G-train đi Thượng Hải.", cn: "北京南站 ➡️ 上海虹桥站", transport: "DiDi ra Ga Nam. Đến trước 1 tiếng.", note: "Trên tàu có nước sôi 100 độ." },
+                    { id: "d4-2", time: "Chiều/Tối", desc: "Nhận phòng Lục Gia Thủy. Ăn tối IFC Mall.", cn: "陆家嘴 - 上海国金中心商场", transport: "DiDi từ Ga Hồng Kiều.", note: "Tận dụng Nursery Room ở Mall cho bé." },
+                    { id: "d4-3", time: "Tối muộn", desc: "Du thuyền sông Hoàng Phố.", cn: "黄浦江游船", transport: "Đi bộ ra bến tàu.", note: "Nên mua vé VIP từ trước." }
                 ]
             },
             {
                 date: "Ngày 5 (Thứ 2, 27/4)",
-                title: "Trọn vẹn Disneyland Thượng Hải",
+                title: "Trọn vẹn Disneyland",
                 tasks: [
-                    { id: "d5-1", time: "Cả ngày", desc: "Disneyland, xem pháo hoa Illuminations.", cn: "上海迪士尼乐园", transport: "DiDi chạy thẳng.", note: "Mua sẵn gói Premier Access (Fast Pass) trên app Disney để không phải xếp hàng." }
+                    { id: "d5-1", time: "Cả ngày", desc: "Disneyland, xem pháo hoa Illuminations.", cn: "上海迪士尼乐园", transport: "DiDi chạy thẳng.", note: "Mua sẵn gói Premier Access để không xếp hàng." }
                 ]
             },
             {
                 date: "Ngày 6 (Thứ 3, 28/4)",
                 title: "Thượng Hải 🚄 Tô Châu",
                 tasks: [
-                    { id: "d6-1", time: "Sáng", desc: "Tàu cao tốc tới Tô Châu. Đi Chuyết Chính Viên.", cn: "苏州站 - 拙政园", transport: "Tàu 30 phút. DiDi nội ô Tô Châu.", note: "Linh động đi Metro nếu DiDi kẹt xe." },
-                    { id: "d6-2", time: "Đầu giờ chiều", desc: "Thuyền mộc chèo tay Phố cổ Bình Giang.", cn: "平江路", transport: "Đi bộ hoặc xe công nghệ ngắn.", note: "Trải nghiệm bắt buộc để bé ngắm thủy trấn nguyên bản." },
-                    { id: "d6-3", time: "Chiều muộn", desc: "Phố cổ Sơn Đường, ăn Cá tùng thử.", cn: "山塘街 - 松鼠桂鱼", transport: "Gọi xe sang Sơn Đường, sau đó ra Ga về Thượng Hải.", note: "Giữ em bé cẩn thận vì lúc lên đèn rất sầm uất." }
+                    { id: "d6-1", time: "Sáng", desc: "Tàu cao tốc tới Tô Châu. Đi Chuyết Chính Viên.", cn: "苏州站 - 拙政园", transport: "Tàu 30 phút. DiDi nội ô.", note: "Linh động đi Metro nếu kẹt xe." },
+                    { id: "d6-2", time: "Đầu giờ chiều", desc: "Thuyền mộc chèo tay Phố cổ Bình Giang.", cn: "平江路", transport: "Đi bộ hoặc xe công nghệ ngắn.", note: "Ngắm thủy trấn nguyên bản." },
+                    { id: "d6-3", time: "Chiều muộn", desc: "Phố cổ Sơn Đường, ăn Cá tùng thử.", cn: "山塘街 - 松鼠桂鱼", transport: "Gọi xe sang Sơn Đường, sau đó ra Ga về Thượng Hải.", note: "Giữ bé cẩn thận vì rất đông." }
                 ]
             },
             {
                 date: "Ngày 7 (Thứ 4, 29/4)",
                 title: "Phim trường & Tô Giới Pháp",
                 tasks: [
-                    { id: "d7-1", time: "Sáng", desc: "Tham quan Phim trường Thượng Hải.", cn: "上海影视乐园", transport: "DiDi chạy ra ngoại ô.", note: "Đường lát đá cuội giả cổ, đẩy xe Mios sẽ hơi rung." },
-                    { id: "d7-2", time: "Chiều", desc: "Tô Giới Pháp lãng mạn & đường Vũ Khang.", cn: "法租界 - 武康路", transport: "DiDi về trung tâm.", note: "Vỉa hè cực rộng, ngô đồng rợp bóng. Rất hợp uống trà chiều." }
+                    { id: "d7-1", time: "Sáng", desc: "Tham quan Phim trường Thượng Hải.", cn: "上海影视乐园", transport: "DiDi chạy ra ngoại ô.", note: "Đường lát đá cuội, đẩy xe sẽ hơi rung." },
+                    { id: "d7-2", time: "Chiều", desc: "Tô Giới Pháp & đường Vũ Khang.", cn: "法租界 - 武康路", transport: "DiDi về trung tâm.", note: "Vỉa hè cực rộng. Rất hợp uống trà chiều." }
                 ]
             },
             {
                 date: "Ngày 8 (Thứ 5, 30/4)",
-                title: "Thượng Hải 🚗 Ô Trấn",
+                title: "Thượng Hải 🚄 Hàng Châu",
                 tasks: [
-                    { id: "d8-1", time: "Sáng/Chiều", desc: "Rời Thượng Hải đi Ô Trấn, nhận phòng Tây Sách.", img: "https://upload.wikimedia.org/wikipedia/commons/thumb/7/7b/Wuzhen_water_town.jpg/800px-Wuzhen_water_town.jpg", cn: "乌镇 - 西栅", transport: "Bao xe 7 chỗ chạy thẳng 2 tiếng.", note: "Nhân viên khách sạn sẽ chuyển hành lý bằng thuyền. Đợi chiều bớt khách rồi đi dạo." }
+                    { id: "d8-1", time: "Sáng/Trưa", desc: "Trả phòng, đi tàu cao tốc thẳng Hàng Châu.", cn: "上海虹桥站 ➡️ 杭州东站", transport: "Tàu cao tốc (khoảng 1 tiếng).", note: "Tiết kiệm sức lực chuyển hành lý." },
+                    { id: "d8-2", time: "Chiều", desc: "Nhận phòng, tản bộ nhẹ nhàng ven Tây Hồ.", cn: "西湖", transport: "DiDi từ Ga Hàng Châu Đông về khách sạn.", note: "Nghỉ ngơi lấy sức, ngắm hoàng hôn ven hồ." }
                 ]
             },
             {
                 date: "Ngày 9 (Thứ 6, 1/5 - Lễ LĐ)",
-                title: "Ô Trấn 🚗 Hàng Châu",
+                title: "Hàng Châu 🚗 Ô Trấn (Sáng đi chiều về)",
                 tasks: [
-                    { id: "d9-1", time: "Trưa", desc: "Về Hàng Châu, nhận phòng.", cn: "杭州", transport: "Bao xe riêng (1.5 tiếng).", note: "Tất cả mọi người đi ngoại ô, nhà mình đi ngược vào phố để né bão đám đông." },
-                    { id: "d9-2", time: "Tối", desc: "Xem Show ánh sáng Tiền Giang.", cn: "钱江新城灯光秀", transport: "Ăn tối Raffles City đi bộ ra.", note: "Ra sớm trước 19h để xí chỗ sát lan can cho thoáng." }
+                    { id: "d9-1", time: "Sáng/Chiều", desc: "Đi Ô Trấn ngắm thủy trấn, dạo cầu đá.", cn: "乌镇 - 西栅", transport: "Bao xe riêng đi về trong ngày (1.5h/chiều).", note: "Ngày lễ sẽ đông, đi xe riêng giúp bé ngủ ngon trên đường đi/về." },
+                    { id: "d9-2", time: "Tối", desc: "Xem Show ánh sáng Tiền Giang.", cn: "钱江新城灯光秀", transport: "Ăn tối Raffles City đi bộ ra Ban công thành phố.", note: "Ra sớm trước 19h để xí chỗ." }
                 ]
             },
             {
                 date: "Ngày 10 (Thứ 7, 2/5)",
-                title: "Trọn vẹn Tây Hồ",
+                title: "Trọn vẹn Tây Hồ & Mua sắm",
                 tasks: [
-                    { id: "d10-1", time: "Cả ngày", desc: "Tản bộ Tây Hồ, Shopping mall in77.", img: "https://upload.wikimedia.org/wikipedia/commons/thumb/7/70/West_Lake_-_Hangzhou_-_China_-_panoramio.jpg/800px-West_Lake_-_Hangzhou_-_China_-_panoramio.jpg", cn: "西湖 - 湖滨银泰in77", transport: "DiDi nội ô.", note: "Mẹ Hà tha hồ khảo sát thị trường, săn đồ sơ sinh hot trend cho Uñ Uñ Baby." }
+                    { id: "d10-1", time: "Cả ngày", desc: "Tản bộ Tây Hồ, Shopping mall in77.", cn: "湖滨银泰in77", transport: "DiDi nội ô.", note: "Tâm lý đi du lịch xả hơi, hai vợ chồng vừa dạo chơi vừa tham khảo mấy mẫu đồ sơ sinh hay hay cho Uñ Uñ Baby." }
                 ]
             },
             {
@@ -243,9 +221,7 @@
 
             itineraryData.forEach(day => {
                 const hasMatch = day.tasks.some(task => 
-                    task.desc.toLowerCase().includes(filterText) || 
-                    task.cn.toLowerCase().includes(filterText) ||
-                    day.title.toLowerCase().includes(filterText)
+                    task.desc.toLowerCase().includes(filterText) || task.cn.toLowerCase().includes(filterText) || day.title.toLowerCase().includes(filterText)
                 );
 
                 if (!hasMatch && filterText !== '') return;
@@ -259,7 +235,19 @@
                     const isChecked = localStorage.getItem(task.id) === 'true';
                     if(isChecked) currentTasks++;
 
-                    const imageHTML = task.img ? `<img src="${task.img}" class="task-image" loading="lazy" alt="${task.desc}">` : '';
+                    // Image Upload UI
+                    const imageSection = `
+                        <div class="upload-wrapper" id="upload-wrapper-${task.id}">
+                            <label class="btn-upload">
+                                <span>📸 Thêm ảnh tham khảo</span>
+                                <input type="file" accept="image/*" class="upload-input" onchange="handleImageUpload(event, '${task.id}')">
+                            </label>
+                        </div>
+                        <div class="image-container" id="img-container-${task.id}">
+                            <img src="" class="task-image" id="img-preview-${task.id}" alt="Reference">
+                            <button class="btn-delete-img" onclick="deleteImage('${task.id}')">✕</button>
+                        </div>
+                    `;
 
                     tasksHTML += `
                         <div class="task-item">
@@ -270,7 +258,7 @@
                                 <span class="task-time">${task.time}</span>
                                 <div class="task-desc">${task.desc}</div>
                                 
-                                ${imageHTML}
+                                ${imageSection}
                                 
                                 <div class="cn-box">
                                     <span class="cn-text">${task.cn}</span>
@@ -287,35 +275,65 @@
                 });
 
                 dayCard.innerHTML = `
-                    <div class="day-title">
-                        <span class="date">${day.date}</span>
-                        ${day.title}
-                    </div>
+                    <div class="day-title"><span class="date">${day.date}</span>${day.title}</div>
                     ${tasksHTML}
                 `;
                 container.appendChild(dayCard);
             });
 
             updateProgressBar(currentTasks, totalTasks);
+            
+            // Render saved state if you connect backend later
+            // (Currently blank since backend isn't hooked up yet)
+        }
+
+        // --- CORE FUNCTION CHO BACKEND CỦA ANH ---
+        function handleImageUpload(event, taskId) {
+            const file = event.target.files[0];
+            if (!file) return;
+
+            // 1. Hiển thị Preview ngay lập tức bằng ObjectURL (Không tốn LocalStorage)
+            const previewUrl = URL.createObjectURL(file);
+            document.getElementById(`img-preview-${taskId}`).src = previewUrl;
+            document.getElementById(`img-container-${taskId}`).style.display = 'block';
+            document.getElementById(`upload-wrapper-${taskId}`).style.display = 'none';
+
+            // 2. TODO: Gọi API Upload lên Hosting/Github của anh
+            /*
+            const formData = new FormData();
+            formData.append('image', file);
+            formData.append('taskId', taskId);
+
+            fetch('https://api.yourhosting.com/upload', {
+                method: 'POST',
+                body: formData
+            })
+            .then(res => res.json())
+            .then(data => {
+                showToast("Đã upload lên server!");
+                // Lưu data.url vào Database của anh
+            })
+            .catch(err => console.error("Lỗi upload:", err));
+            */
+        }
+
+        // Xóa ảnh (Chỉ xóa UI tạm thời, anh cần viết thêm API Delete nếu cần)
+        window.deleteImage = function(taskId) {
+            if(confirm("Xóa ảnh tham khảo này?")) {
+                document.getElementById(`img-preview-${taskId}`).src = '';
+                document.getElementById(`img-container-${taskId}`).style.display = 'none';
+                document.getElementById(`upload-wrapper-${taskId}`).style.display = 'block';
+                // TODO: Gọi API Delete trên server
+            }
         }
 
         function updateProgress(checkbox) {
             localStorage.setItem(checkbox.id, checkbox.checked);
-            
-            // Xử lý hiệu ứng gạch ngang chữ khi check
             const contentDiv = document.getElementById(`content-${checkbox.id}`);
-            if(checkbox.checked) {
-                contentDiv.classList.add('completed');
-            } else {
-                contentDiv.classList.remove('completed');
-            }
+            checkbox.checked ? contentDiv.classList.add('completed') : contentDiv.classList.remove('completed');
 
             let currentTasks = 0;
-            itineraryData.forEach(day => {
-                day.tasks.forEach(task => {
-                    if(localStorage.getItem(task.id) === 'true') currentTasks++;
-                });
-            });
+            itineraryData.forEach(day => day.tasks.forEach(task => { if(localStorage.getItem(task.id) === 'true') currentTasks++; }));
             updateProgressBar(currentTasks, totalTasks);
         }
 
@@ -326,32 +344,20 @@
             document.getElementById('progressPercent').innerText = percent + '%';
         }
 
+        function showToast(msg) {
+            const toast = document.getElementById("toast");
+            toast.innerText = msg;
+            toast.className = "show";
+            setTimeout(() => { toast.className = toast.className.replace("show", ""); }, 2000);
+        }
+
         window.copyText = function(text) {
-            navigator.clipboard.writeText(text).then(() => {
-                const toast = document.getElementById("toast");
-                toast.className = "show";
-                setTimeout(() => { toast.className = toast.className.replace("show", ""); }, 2000);
-            }).catch(err => {
-                console.error('Lỗi copy: ', err);
-            });
+            navigator.clipboard.writeText(text).then(() => { showToast("Đã copy thành công!"); }).catch(err => { console.error('Lỗi: ', err); });
         }
 
-        searchInput.addEventListener('input', (e) => {
-            renderItinerary(e.target.value.toLowerCase());
-        });
+        searchInput.addEventListener('input', (e) => { renderItinerary(e.target.value.toLowerCase()); });
 
-        // Khởi tạo giao diện
         renderItinerary();
-    </script>
-    
-    <script>
-        if ('serviceWorker' in navigator) {
-            window.addEventListener('load', () => {
-                navigator.serviceWorker.register('./sw.js')
-                    .then(reg => console.log('Service Worker đã đăng ký thành công!', reg))
-                    .catch(err => console.log('Lỗi đăng ký Service Worker: ', err));
-            });
-        }
     </script>
 </body>
 </html>
