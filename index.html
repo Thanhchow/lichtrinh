@@ -54,14 +54,9 @@
         .task-item:last-child { margin-bottom: 0; }
         
         .checkbox-wrapper { margin-right: 15px; margin-top: 2px; flex-shrink: 0;}
-        .custom-checkbox {
-            appearance: none; -webkit-appearance: none; width: 26px; height: 26px; border: 2px solid var(--border);
-            border-radius: 50%; outline: none; cursor: pointer; transition: all 0.2s ease; background: white;
-        }
+        .custom-checkbox { appearance: none; -webkit-appearance: none; width: 26px; height: 26px; border: 2px solid var(--border); border-radius: 50%; outline: none; cursor: pointer; transition: all 0.2s ease; background: white; }
         .custom-checkbox:checked { background-color: var(--success); border-color: var(--success); }
-        .custom-checkbox:checked::after {
-            content: ''; position: absolute; left: 8px; top: 5px; width: 5px; height: 11px; border: solid white; border-width: 0 2px 2px 0; transform: rotate(45deg);
-        }
+        .custom-checkbox:checked::after { content: ''; position: absolute; left: 8px; top: 5px; width: 5px; height: 11px; border: solid white; border-width: 0 2px 2px 0; transform: rotate(45deg); }
         
         .task-content { flex: 1; transition: opacity 0.3s ease; width: 100%; overflow: hidden;}
         .task-content.completed { opacity: 0.6; }
@@ -70,7 +65,6 @@
         .task-time { font-size: 0.8rem; font-weight: 700; color: var(--primary); margin-bottom: 8px; display: inline-block; background: var(--primary-light); padding: 5px 10px; border-radius: 8px;}
         .task-desc { font-size: 1.05rem; font-weight: 600; margin-bottom: 12px; color: var(--text-main); line-height: 1.4;}
         
-        /* Image Upload Styles (Clean for Backend) */
         .image-container { position: relative; margin-bottom: 12px; display: none; }
         .task-image { width: 100%; max-height: 300px; object-fit: contain; border-radius: 12px; border: 1px solid var(--border); display: block; background: #f8f8f8;}
         .btn-delete-img { position: absolute; top: 8px; right: 8px; background: rgba(255, 59, 48, 0.9); color: white; border: none; width: 28px; height: 28px; border-radius: 50%; font-size: 14px; display: flex; align-items: center; justify-content: center; cursor: pointer; backdrop-filter: blur(4px);}
@@ -80,12 +74,12 @@
         .btn-upload { background: #F2F2F7; color: var(--primary); border: 1px dashed #A1C6EA; padding: 10px; width: 100%; text-align: center; border-radius: 12px; font-size: 0.9rem; font-weight: 600; cursor: pointer; display: flex; justify-content: center; align-items: center; gap: 8px;}
         .btn-upload:active { background: #E5E5EA; }
 
-        .cn-box { display: flex; align-items: center; justify-content: space-between; background: #F2F2F7; padding: 12px 14px; border-radius: 12px; margin-bottom: 12px; }
-        .cn-text { font-size: 1.1rem; font-weight: 600; color: #1C1C1E; }
-        .cn-actions { display: flex; gap: 8px; }
-        .btn-copy { background: #FFFFFF; border: none; padding: 6px 14px; border-radius: 8px; font-size: 0.85rem; color: var(--primary); cursor: pointer; font-weight: 600; box-shadow: 0 2px 5px rgba(0,0,0,0.05);}
+        .cn-box { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; background: #F2F2F7; padding: 12px 14px; border-radius: 12px; margin-bottom: 12px; gap: 8px;}
+        .cn-text { font-size: 1.1rem; font-weight: 600; color: #1C1C1E; width: 100%; margin-bottom: 4px;}
+        .cn-actions { display: flex; gap: 6px; flex-wrap: wrap; width: 100%;}
+        .btn-copy { background: #FFFFFF; border: none; padding: 6px 14px; border-radius: 8px; font-size: 0.85rem; color: var(--text-main); cursor: pointer; font-weight: 600; box-shadow: 0 2px 5px rgba(0,0,0,0.05);}
         .btn-copy:active { transform: scale(0.96); }
-        .btn-navi { background: #007AFF; color: #fff; text-decoration: none; padding: 6px 12px; border-radius: 8px; font-size: 0.85rem; font-weight: 600; box-shadow: 0 2px 5px rgba(0,122,255,0.2); transition: all 0.2s; display: flex; align-items: center; gap: 4px; }
+        .btn-navi { color: #fff; text-decoration: none; padding: 6px 12px; border-radius: 8px; font-size: 0.85rem; font-weight: 600; box-shadow: 0 2px 5px rgba(0,0,0,0.1); transition: all 0.2s; display: flex; align-items: center; gap: 4px; }
         .btn-navi:active { transform: scale(0.96); }
 
         .info-group { display: flex; flex-direction: column; gap: 8px; }
@@ -94,25 +88,12 @@
         .badge-note { background: #FFF3E0; color: #E65100; }
         .badge span.icon { margin-right: 8px; font-size: 1.1rem; }
         
-        /* Collapsible Details Styles */
         .task-details { margin-top: 14px; position: relative; }
-        .details-summary {
-            display: flex; align-items: center; justify-content: space-between;
-            background: #E8F0FE; color: var(--primary); padding: 12px 16px;
-            border-radius: 12px; font-weight: 600; font-size: 0.95rem;
-            cursor: pointer; user-select: none; transition: background 0.2s;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.02);
-        }
+        .details-summary { display: flex; align-items: center; justify-content: space-between; background: #E8F0FE; color: var(--primary); padding: 12px 16px; border-radius: 12px; font-weight: 600; font-size: 0.95rem; cursor: pointer; user-select: none; transition: background 0.2s; box-shadow: 0 2px 5px rgba(0,0,0,0.02); }
         .details-summary:active { background: #d2e3fc; }
         .details-summary .icon-expand { transition: transform 0.3s ease; font-size: 1.1rem; }
         .task-details.open .details-summary .icon-expand { transform: rotate(180deg); }
-        .details-content {
-            background: #FAFAFC; padding: 16px; border-radius: 0 0 12px 12px;
-            margin-top: -5px; font-size: 0.95rem; color: #3C4043;
-            display: none; border: 1px solid var(--border); border-top: none;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.02);
-            padding-top: 20px; /* bù lại margin âm */
-        }
+        .details-content { background: #FAFAFC; padding: 16px; border-radius: 0 0 12px 12px; margin-top: -5px; font-size: 0.95rem; color: #3C4043; display: none; border: 1px solid var(--border); border-top: none; box-shadow: 0 4px 6px rgba(0,0,0,0.02); padding-top: 20px; }
         .task-details.open .details-content { display: block; animation: fadeIn 0.3s ease; }
         .details-section { margin-bottom: 14px; line-height: 1.5; }
         .details-section:last-child { margin-bottom: 0; }
@@ -120,34 +101,23 @@
         .dt-trivia .details-section-title { color: #8E24AA; }
         .dt-guide .details-section-title { color: #0288D1; }
         .dt-warning .details-section-title { color: #D32F2F; }
+        .details-content ul { padding-left: 20px; margin-top: 6px; list-style-type: disc;}
+        .details-content li { margin-bottom: 8px; font-size: 0.95rem; line-height: 1.5; text-align: justify;}
         @keyframes fadeIn { from { opacity: 0; transform: translateY(-10px); } to { opacity: 1; transform: translateY(0); } }
 
         #toast { visibility: hidden; min-width: 200px; background-color: rgba(0,0,0,0.8); color: #fff; text-align: center; border-radius: 24px; padding: 12px 20px; position: fixed; z-index: 1000; left: 50%; bottom: 40px; transform: translateX(-50%); font-size: 0.95rem; font-weight: 500; backdrop-filter: blur(5px); transition: visibility 0s, opacity 0.3s, bottom 0.3s; opacity: 0; }
         #toast.show { visibility: visible; opacity: 1; bottom: 50px;}
 
-        /* Tab Navigation */
-        .tab-menu {
-            display: flex; background: rgba(118, 118, 128, 0.12); border-radius: 9px; padding: 2px; margin: 10px 0 15px; position: relative;
-        }
-        .tab-btn {
-            flex: 1; text-align: center; padding: 8px 0; font-size: 0.9rem; font-weight: 600; color: #3C3C43; cursor: pointer; border-radius: 7px;
-            transition: all 0.3s ease; z-index: 2; position: relative;
-        }
+        .tab-menu { display: flex; background: rgba(118, 118, 128, 0.12); border-radius: 9px; padding: 2px; margin: 10px 0 15px; position: relative; }
+        .tab-btn { flex: 1; text-align: center; padding: 8px 0; font-size: 0.9rem; font-weight: 600; color: #3C3C43; cursor: pointer; border-radius: 7px; transition: all 0.3s ease; z-index: 2; position: relative; }
         .tab-btn.active { color: #000; }
-        .tab-slider {
-            position: absolute; top: 2px; bottom: 2px; left: 2px; width: calc(50% - 2px); background: #FFFFFF; border-radius: 7px;
-            box-shadow: 0 3px 8px rgba(0,0,0,0.12), 0 3px 1px rgba(0,0,0,0.04); transition: transform 0.3s cubic-bezier(0.25, 0.8, 0.25, 1); z-index: 1;
-        }
+        .tab-slider { position: absolute; top: 2px; bottom: 2px; left: 2px; width: calc(33.33% - 2px); background: #FFFFFF; border-radius: 7px; box-shadow: 0 3px 8px rgba(0,0,0,0.12), 0 3px 1px rgba(0,0,0,0.04); transition: transform 0.3s cubic-bezier(0.25, 0.8, 0.25, 1); z-index: 1; }
 
-        /* Flight Pass Styles */
-        #flightContainer { display: none; padding: 10px 20px; padding-bottom: 50px;}
-        .flight-card {
-            background: #fff; border-radius: 20px; margin-bottom: 25px; box-shadow: 0 8px 30px rgba(0,0,0,0.08); overflow: hidden; position: relative; border: 1px solid rgba(0,0,0,0.05);
-        }
-        .flight-header {
-            background: linear-gradient(135deg, #0288D1 0%, #01579B 100%); color: white; padding: 25px 20px 40px; position: relative;
-        }
-        .flight-header.china-airlines { background: linear-gradient(135deg, #D32F2F 0%, #B71C1C 100%); }
+        #flightContainer, #hotelContainer { display: none; padding: 10px 20px; padding-bottom: 50px;}
+        
+        .flight-card { background: #fff; border-radius: 20px; margin-bottom: 25px; box-shadow: 0 8px 30px rgba(0,0,0,0.08); overflow: hidden; position: relative; border: 1px solid rgba(0,0,0,0.05); }
+        .flight-header { background: linear-gradient(135deg, #FF3B30 0%, #D32F2F 100%); color: white; padding: 25px 20px 40px; position: relative; }
+        .flight-header.china-airlines { background: linear-gradient(135deg, #0288D1 0%, #01579B 100%); }
         .flight-logo { font-size: 1.15rem; font-weight: 700; margin-bottom: 25px; display: flex; align-items: center; justify-content: space-between;}
         .flight-cities { display: flex; align-items: center; justify-content: space-between; position: relative; z-index: 2;}
         .city-block { flex: 1; }
@@ -155,21 +125,26 @@
         .city-name { font-size: 0.9rem; opacity: 0.95; margin-top: 5px; font-weight: 500;}
         .flight-icon { font-size: 2rem; transform: rotate(45deg); opacity: 0.9; margin: 0 10px;}
         .flight-curve { position: absolute; bottom: -1px; left: 0; right: 0; width: 100%; height: 25px; fill: #fff; z-index: 1;}
-        
         .flight-body { background: #fff; padding: 15px 20px 30px; position: relative; }
         .info-row { display: flex; justify-content: space-between; margin-bottom: 20px; }
         .info-block { display: flex; flex-direction: column; }
         .info-label { font-size: 0.75rem; color: #8E8E93; text-transform: uppercase; font-weight: 700; letter-spacing: 0.5px; margin-bottom: 4px; }
         .info-value { font-size: 1.05rem; color: #1C1C1E; font-weight: 600; }
         .value-red { color: #D32F2F; font-size: 1.15rem;}
-        .pnr-block { text-align: center; margin-top: 10px; padding-top: 25px; border-top: 2px dashed #E5E5EA; position: relative; }
-        .pnr-block::before, .pnr-block::after {
-            content: ""; position: absolute; top: -12px; width: 24px; height: 24px; background: var(--bg); border-radius: 50%;
-        }
-        .pnr-block::before { left: -32px; box-shadow: inset -2px 0 3px rgba(0,0,0,0.03); }
-        .pnr-block::after { right: -32px; box-shadow: inset 2px 0 3px rgba(0,0,0,0.03); }
-        .pnr-code { font-size: 2.8rem; font-weight: 800; letter-spacing: 6px; color: #1C1C1E; margin-bottom: 5px; }
-        .qr-placeholder { background: repeating-linear-gradient(45deg, #f0f0f0, #f0f0f0 10px, #e0e0e0 10px, #e0e0e0 20px); height: 80px; width: 80px; margin: 15px auto 0; border-radius: 12px; display: flex; align-items: center; justify-content: center; color: #000; font-size: 2rem;}
+
+        /* Hotel Styles */
+        .hotel-card { background: #fff; border-radius: 20px; margin-bottom: 25px; box-shadow: 0 8px 30px rgba(0,0,0,0.08); overflow: hidden; border: 1px solid rgba(0,0,0,0.05); }
+        .hotel-header { background: linear-gradient(135deg, #FF9500 0%, #FF5E3A 100%); color: white; padding: 15px 20px; font-weight: 700; font-size: 1.1rem; display: flex; justify-content: space-between; align-items: center;}
+        .hotel-header span.dates { font-size: 0.85rem; background: rgba(255,255,255,0.2); padding: 4px 10px; border-radius: 12px; font-weight: 600;}
+        .hotel-body { padding: 20px; }
+        .hotel-name-cn { font-size: 1.3rem; font-weight: 800; color: #1C1C1E; margin-bottom: 4px; line-height: 1.3;}
+        .hotel-name-en { font-size: 0.95rem; color: #8E8E93; margin-bottom: 15px; font-weight: 500;}
+        .hotel-address { background: #F2F2F7; padding: 12px 15px; border-radius: 12px; margin-bottom: 15px; display: flex; align-items: center; justify-content: space-between; }
+        .hotel-address .addr-text { font-weight: 600; color: #1C1C1E; font-size: 1.05rem; }
+        .hotel-guide { font-size: 0.95rem; color: #3C3C43; line-height: 1.5; background: #E8F0FE; padding: 15px; border-radius: 12px; border-left: 4px solid #007AFF;}
+        .passenger-info { font-size: 0.85rem; color: #8E8E93; margin-top: 15px; border-top: 1px dashed #E5E5EA; padding-top: 15px;}
+        .passenger-info strong { color: #1C1C1E;}
+        
     </style>
 </head>
 <body>
@@ -179,7 +154,8 @@
         <div class="tab-menu" id="mainTabs">
             <div class="tab-slider" id="tabSlider"></div>
             <div class="tab-btn active" onclick="switchTab('itinerary', 0)">Lịch trình</div>
-            <div class="tab-btn" onclick="switchTab('flight', 1)">Chuyến bay</div>
+            <div class="tab-btn" onclick="switchTab('hotel', 1)">Khách sạn</div>
+            <div class="tab-btn" onclick="switchTab('flight', 2)">Chuyến bay</div>
         </div>
         <div class="search-container" id="searchBox">
             <input type="text" id="searchInput" placeholder="Tìm kiếm địa điểm, ngày...">
@@ -198,13 +174,74 @@
 
     <div class="container" id="timelineContainer"></div>
     
+    <div id="hotelContainer">
+        <div class="hotel-card">
+            <div class="hotel-header">
+                <span>📍 Bắc Kinh</span>
+                <span class="dates">26/4 - 29/4 (3 đêm)</span>
+            </div>
+            <div class="hotel-body">
+                <div class="hotel-name-cn">7天优品酒店 (北京东直门机场快轨站店)</div>
+                <div class="hotel-name-en">7 Days Premium Hotel (Beijing Dongzhimen Airport Express Station)</div>
+                <div class="hotel-address">
+                    <span class="addr-text">北京市东城区东直门外大街</span>
+                    <button class="btn-copy" onclick="copyText('北京市东城区东直门外大街 7天优品酒店')">Copy</button>
+                </div>
+                <div class="hotel-guide">
+                    <strong>🚖 Hướng dẫn di chuyển:</strong><br>
+                    Do chuyến bay hạ cánh xuống sân bay Đại Hưng (PKX) lúc 00:05 đêm, hệ thống tàu điện (Metro) đã ngừng hoạt động. Cách duy nhất là gia đình đi theo biển báo "Official Taxi" bắt taxi chính hãng thẳng về khách sạn. Thời gian di chuyển khoảng 1h15p, chi phí dự kiến 200 - 250 RMB. Hãy đưa tên tiếng Trung và địa chỉ phía trên cho tài xế xem.
+                </div>
+                <div class="passenger-info">Hạng phòng: <strong>Boutique Queen Room</strong><br>Người đặt: <strong>CHAU THI THANH HA</strong></div>
+            </div>
+        </div>
+
+        <div class="hotel-card">
+            <div class="hotel-header">
+                <span>📍 Thượng Hải</span>
+                <span class="dates">29/4 - 04/5 (5 đêm)</span>
+            </div>
+            <div class="hotel-body">
+                <div class="hotel-name-cn">鱼的客栈 (上海外滩店)</div>
+                <div class="hotel-name-en">Fish Inn (The Bund Shanghai)</div>
+                <div class="hotel-address">
+                    <span class="addr-text">上海市黄浦区 (近外滩/南京东路)</span>
+                    <button class="btn-copy" onclick="copyText('上海市黄浦区 鱼的客栈(外滩店)')">Copy</button>
+                </div>
+                <div class="hotel-guide">
+                    <strong>🚖 Hướng dẫn di chuyển:</strong><br>
+                    Từ ga tàu cao tốc Bắc Kinh Nam, gia đình sẽ đến ga Hồng Kiều Thượng Hải (Shanghai Hongqiao). Từ ga Hồng Kiều, hãy bắt tàu điện ngầm <strong>Metro Line 2</strong> (hoặc Line 10) đi thẳng khoảng 40 phút tới bến <strong>East Nanjing Road</strong>. Từ đây kéo vali đi bộ một đoạn ngắn là tới khách sạn.
+                </div>
+                <div class="passenger-info">Hạng phòng: <strong>Phòng Giường King Tiêu Chuẩn</strong><br>Người đặt: <strong>CHAU THI THANH HA</strong></div>
+            </div>
+        </div>
+
+        <div class="hotel-card">
+            <div class="hotel-header">
+                <span>📍 Hàng Châu</span>
+                <span class="dates">04/5 - 06/5 (2 đêm)</span>
+            </div>
+            <div class="hotel-body">
+                <div class="hotel-name-cn">杭州雅栖酒店 (西湖湖滨店)</div>
+                <div class="hotel-name-en">Ashy Hotel (Xihu Lakeside Branch)</div>
+                <div class="hotel-address">
+                    <span class="addr-text">杭州市上城区西湖湖滨商圈</span>
+                    <button class="btn-copy" onclick="copyText('杭州市上城区 雅栖酒店(西湖湖滨店)')">Copy</button>
+                </div>
+                <div class="hotel-guide">
+                    <strong>🚖 Hướng dẫn di chuyển:</strong><br>
+                    Từ ga Hàng Châu Đông (Hangzhou East), cả nhà đi tàu điện ngầm <strong>Metro Line 1</strong>, đi thẳng vài bến là tới ga <strong>Longxiangqiao</strong> hoặc <strong>Ding'an Road</strong> (Khu trung tâm Hồ Tây). Tới nơi đẩy xe đi bộ khoảng 5-10 phút là vào tới sảnh khách sạn.
+                </div>
+                <div class="passenger-info">Hạng phòng: <strong>Lakeside Selected Double Bed Room</strong><br>Người đặt: <strong>CHAU THI THANH HA</strong></div>
+            </div>
+        </div>
+    </div>
+
     <div id="flightContainer">
-        <!-- Flight 1: Go -->
         <div class="flight-card">
             <div class="flight-header">
                 <div class="flight-logo">
-                    <span>✈️ Vietnam Airlines</span>
-                    <span style="font-size: 0.85rem; font-weight: 500; opacity: 0.9">Hạng Phổ Thông</span>
+                    <span>✈️ VietJet Air (VJ3948)</span>
+                    <span style="font-size: 0.85rem; font-weight: 500; opacity: 0.9">SGN ➡️ PKX</span>
                 </div>
                 <div class="flight-cities">
                     <div class="city-block" style="text-align: left;">
@@ -213,49 +250,29 @@
                     </div>
                     <div class="flight-icon">✈</div>
                     <div class="city-block" style="text-align: right;">
-                        <div class="city-code">PEK</div>
-                        <div class="city-name">Bắc Kinh</div>
+                        <div class="city-code">PKX</div>
+                        <div class="city-name">Bắc Kinh (Đại Hưng)</div>
                     </div>
                 </div>
-                <svg class="flight-curve" viewBox="0 0 1440 320" preserveAspectRatio="none">
-                    <path d="M0,160L48,170.7C96,181,192,203,288,197.3C384,192,480,160,576,160C672,160,768,192,864,213.3C960,235,1056,245,1152,229.3C1248,213,1344,171,1392,149.3L1440,128L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path>
-                </svg>
+                <svg class="flight-curve" viewBox="0 0 1440 320" preserveAspectRatio="none"><path d="M0,160L48,170.7C96,181,192,203,288,197.3C384,192,480,160,576,160C672,160,768,192,864,213.3C960,235,1056,245,1152,229.3C1248,213,1344,171,1392,149.3L1440,128L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path></svg>
             </div>
             <div class="flight-body">
                 <div class="info-row">
-                    <div class="info-block">
-                        <span class="info-label">Chuyến bay</span>
-                        <span class="info-value">VN 512</span>
-                    </div>
-                    <div class="info-block" style="text-align: right;">
-                        <span class="info-label">Ngày bay</span>
-                        <span class="info-value value-red">23 Apr 2026</span>
-                    </div>
+                    <div class="info-block"><span class="info-label">Khởi hành</span><span class="info-value">18:05</span></div>
+                    <div class="info-block" style="text-align: right;"><span class="info-label">Ngày bay</span><span class="info-value value-red">26 Apr 2026</span></div>
                 </div>
                 <div class="info-row">
-                    <div class="info-block">
-                        <span class="info-label">Sảnh (Terminal)</span>
-                        <span class="info-value">T2 (Đi) ➡️ T2 (Đến)</span>
-                    </div>
-                    <div class="info-block" style="text-align: right;">
-                        <span class="info-label">Hành lý Bỉm sữa</span>
-                        <span class="info-value">23kg Gửi + 7kg Tay</span>
-                    </div>
-                </div>
-                <div class="pnr-block">
-                    <div class="info-label">MÃ ĐẶT CHỖ (PNR)</div>
-                    <div class="pnr-code" style="color: #0288D1;">BABYVIP</div>
-                    <div class="qr-placeholder">🔲</div>
+                    <div class="info-block"><span class="info-label">Đến nơi</span><span class="info-value">00:05 (+1 ngày)</span></div>
+                    <div class="info-block" style="text-align: right;"><span class="info-label">Hành khách</span><span class="info-value">CHU CHI THANH + 2</span></div>
                 </div>
             </div>
         </div>
 
-        <!-- Flight 2: Return -->
         <div class="flight-card">
             <div class="flight-header china-airlines">
                 <div class="flight-logo">
-                    <span>✈️ China Eastern</span>
-                    <span style="font-size: 0.85rem; font-weight: 500; opacity: 0.9">Hạng Phổ Thông</span>
+                    <span>✈️ China Southern</span>
+                    <span style="font-size: 0.85rem; font-weight: 500; opacity: 0.9">Nối chuyến Vũ Hán</span>
                 </div>
                 <div class="flight-cities">
                     <div class="city-block" style="text-align: left;">
@@ -268,35 +285,21 @@
                         <div class="city-name">Hồ Chí Minh</div>
                     </div>
                 </div>
-                <svg class="flight-curve" viewBox="0 0 1440 320" preserveAspectRatio="none">
-                    <path d="M0,160L48,170.7C96,181,192,203,288,197.3C384,192,480,160,576,160C672,160,768,192,864,213.3C960,235,1056,245,1152,229.3C1248,213,1344,171,1392,149.3L1440,128L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path>
-                </svg>
+                <svg class="flight-curve" viewBox="0 0 1440 320" preserveAspectRatio="none"><path d="M0,160L48,170.7C96,181,192,203,288,197.3C384,192,480,160,576,160C672,160,768,192,864,213.3C960,235,1056,245,1152,229.3C1248,213,1344,171,1392,149.3L1440,128L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path></svg>
             </div>
             <div class="flight-body">
-                <div class="info-row">
-                    <div class="info-block">
-                        <span class="info-label">Chuyến bay</span>
-                        <span class="info-value">MU 214</span>
-                    </div>
-                    <div class="info-block" style="text-align: right;">
-                        <span class="info-label">Ngày bay</span>
-                        <span class="info-value value-red">03 May 2026</span>
-                    </div>
+                <div style="background: #F2F2F7; padding: 10px 15px; border-radius: 8px; margin-bottom: 15px; font-size: 0.9rem;">
+                    <strong>Chặng 1:</strong> HGH ➡️ WUH (Vũ Hán)<br>
+                    Giờ bay: 16:45 ➡️ 18:15 (CZ8660)
                 </div>
-                <div class="info-row">
-                    <div class="info-block">
-                        <span class="info-label">Sảnh (Terminal)</span>
-                        <span class="info-value">T4 (Đi) ➡️ T2 (Đến)</span>
-                    </div>
-                    <div class="info-block" style="text-align: right;">
-                        <span class="info-label">Hành lý Thỏa thích</span>
-                        <span class="info-value">23kg Gửi + 7kg Tay</span>
-                    </div>
+                <div style="background: #E8F0FE; padding: 10px 15px; border-radius: 8px; margin-bottom: 20px; font-size: 0.9rem;">
+                    <strong>Chặng 2:</strong> WUH ➡️ SGN (Hồ Chí Minh)<br>
+                    Giờ bay: 22:10 ➡️ 01:05 (CZ8317)
                 </div>
-                <div class="pnr-block">
-                    <div class="info-label">MÃ ĐẶT CHỖ (PNR)</div>
-                    <div class="pnr-code" style="color: #D32F2F;">FLYUNUN</div>
-                    <div class="qr-placeholder">🔲</div>
+
+                <div class="info-row">
+                    <div class="info-block"><span class="info-label">Ngày khởi hành</span><span class="info-value value-red">06 May 2026</span></div>
+                    <div class="info-block" style="text-align: right;"><span class="info-label">Hành khách</span><span class="info-value">CHU CHI THANH + 2</span></div>
                 </div>
             </div>
         </div>
@@ -307,275 +310,589 @@
     <script>
         const itineraryData = [
             {
-                date: "Ngày 1 (Thứ năm, 23/4)",
-                title: "Bắc Kinh | Tiệc Cung Đình",
+                date: "Khởi Hành (CN, 26/4)",
+                title: "Xuất phát & Nhập cảnh Bắc Kinh",
                 tasks: [
                     { 
-                        id: "d1-1", time: "Sáng/Trưa", desc: "Đáp sân bay Bắc Kinh, taxi về khách sạn nhận phòng, cho bé nghỉ ngơi.", cn: "北京首都国际机场", transport: "Taxi di chuyển thẳng về khách sạn.", note: "Chuẩn bị sẵn bỉm sữa gọn nhẹ trên máy bay.",
+                        id: "d0-1", time: "18:05 - 02:30 (+1)", desc: "Bay VietJet Air (SGN) đi PKX. Nhập cảnh, lấy hành lý và đi taxi về Khách sạn 7 Days.", cn: "北京大兴国际机场", transport: "Taxi di chuyển thẳng về khách sạn.", note: "Pha sẵn bình sữa dỗ bé ngủ trên máy bay.",
                         details: {
-                            trivia: "Sân bay có kiến trúc khổng lồ hình rồng (Terminal 3) được thiết kế cho Olympic 2008.",
-                            tips: "Hãy đi theo biển chỉ dẫn 'Official Taxi' xếp hàng. Đưa địa chỉ tiếng Trung (khách sạn) cho tài xế xem trên điện thoại.",
-                            warnings: "Tuyệt đối không đi theo những người chèo kéo 'Taxi' ở sảnh chờ (Black Taxi) vì sẽ bị chặt chém giá gấp 3-4 lần."
-                        }
-                    },
-                    { 
-                        id: "d1-2", time: "Chiều", desc: "Thong thả dạo chơi Phố cổ Hutong (Hồ Đồng).", cn: "北京胡同", transport: "Đẩy xe bộ hoặc gọi DiDi.", note: "Cảnh sắc bình yên rất hợp ngắm phố phường.",
-                        details: {
-                            trivia: "Hutong là những con hẻm cổ tồn tại từ triều Nguyên (hơn 700 năm), nơi lưu giữ lối sống truyền thống của người Bắc Kinh.",
-                            tips: "Khu Nanluoguxiang thường rất đông đúc. Nếu muốn vắng hơn để dễ đẩy xe, hãy đi các hẻm xung quanh tháp Chuông Trống (Bell/Drum Tower).",
-                            warnings: "Đường hẻm lát đá gồ ghề và hẹp, có xe đạp/xe máy lách qua. Hãy giữ xe đẩy cẩn thận và đi sát vào lề."
-                        }
-                    },
-                    { 
-                        id: "d1-3", time: "Tối", desc: "Trải nghiệm Tiệc Cung Yến tại nhà hàng Phỏng Thiện.", cn: "仿膳饭庄", transport: "DiDi từ khách sạn.", note: "Thưởng thức các món ăn xưa của Từ Hy Thái Hậu.",
-                        details: {
-                            trivia: "Phỏng Thiện ban đầu do các ngự trù trong Tử Cấm Thành ra mở, chuyên phục vụ món ăn theo đúng công thức cung đình thanh triều.",
-                            tips: "Hãy thử món 'Bánh đậu đỏ Hoàng gia' mềm tan trong miệng, rất hợp để dỗ em bé ăn.",
-                            warnings: "Giá khá cao và cần xếp hàng/đặt bàn trước. Nhà hàng trải thảm nên đẩy xe nôi vào trong có thể hơi nặng."
+                            trivia: `<ul>
+                                <li>Sân bay Quốc tế Đại Hưng Bắc Kinh (PKX) có hình dáng như một con sao biển khổng lồ rực rỡ, nhìn từ trên cao cực kỳ viễn tưởng.</li>
+                                <li>Đây là một trong những thiết kế cuối cùng của nữ kiến trúc sư huyền thoại Zaha Hadid trước khi bà qua đời.</li>
+                                <li>Dù là nhà ga đơn lập lớn nhất thế giới, nhưng thiết kế "sao biển" giúp hành khách đi bộ từ trung tâm kiểm tra an ninh tới cửa máy bay xa nhất cũng chỉ mất chưa tới 8 phút.</li>
+                                <li>Mái vòm sân bay sử dụng 8,000 ô kính hoàn toàn khác nhau để lấy ánh sáng tự nhiên một cách hoàn hảo nhất.</li>
+                                <li>Sân bay được trang bị robot tự động tuần tra và hệ thống nhận diện khuôn mặt 5G ở mọi ngóc ngách.</li>
+                                <li>Nằm trên trục ranh giới giữa Bắc Kinh và Hà Bắc, sân bay này nhằm giảm tải cho sân bay Thủ Đô (PEK) đã quá chật chội.</li>
+                                <li>Dưới lòng đất của sân bay là trạm trung chuyển khổng lồ của cả tàu điện ngầm và tàu cao tốc liên tỉnh.</li>
+                            </ul>`,
+                            tips: `<ul>
+                                <li><strong>Canh giờ ngủ cho bé:</strong> Chuyến bay buổi tối (18:05) rất trùng với cữ ngủ của Tùng Văn. Mẹ Hà hãy pha sẵn bình sữa ấm lúc máy bay lăn bánh, bé bú no và sẽ ngủ thẳng giấc.</li>
+                                <li><strong>Chống ù tai:</strong> Trong lúc cất/hạ cánh, áp suất buồng lái thay đổi, bắt buộc cho bé ngậm ti giả hoặc nhấp nước liên tục để cân bằng áp suất, tránh việc bé khóc ré lên vì đau tai.</li>
+                                <li><strong>Gate-check xe nôi:</strong> Bạn được đẩy xe đẩy của Ủn đến tận sát cửa máy bay, sau đó nhân viên sẽ thu lại. Khi hạ cánh, nhớ hỏi tiếp viên xem nhận lại xe nôi ở cửa máy bay hay ở băng chuyền hành lý (Baggage Claim).</li>
+                                <li><strong>Giao tiếp tài xế:</strong> Mở sẵn app, chụp màn hình địa chỉ khách sạn 7 Days Premium (北京东直门) bằng tiếng Trung cỡ chữ lớn để dí vào mặt tài xế taxi ngay khi lên xe. Đừng cố phát âm tiếng Anh vì họ sẽ không hiểu.</li>
+                                <li><strong>Cài đặt Alipay:</strong> Đảm bảo Alipay đã liên kết thành công thẻ tín dụng Visa/Mastercard từ Việt Nam và có 3G/4G (mua esim trước). Đêm khuya tài xế không bao giờ có tiền thối nếu bạn đưa tờ 100 tệ.</li>
+                                <li><strong>Luồng hải quan gia đình:</strong> Khi nhập cảnh, hãy chủ động quan sát hoặc hỏi nhân viên chỉ tay tìm lane "Special Lane / Family" (Luồng ưu tiên) dành riêng cho người già và trẻ em dưới 2 tuổi để không phải rồng rắn xếp hàng lúc 1h sáng.</li>
+                                <li><strong>Vệ sinh cho bé:</strong> Ngay khi ra khỏi máy bay, hãy vào phòng Family Room ở sân bay thay tã mới ngay cho Ủn, đảm bảo mông bé khô ráo trước chuyến đi taxi 1 tiếng về trung tâm.</li>
+                            </ul>`,
+                            warnings: `<ul>
+                                <li><strong>Cảnh báo lừa đảo Taxi (Black Taxi):</strong> Hạ cánh lúc nửa đêm, bạn sẽ bị bủa vây bởi "cò mồi" chèo kéo "Taxi? Cheap taxi?". TUYỆT ĐỐI KHÔNG ĐI THEO. Lắc đầu và kéo hành lý bám sát theo biển chỉ dẫn "Official Taxi / Taxis" để ra khu vực xếp hàng điều phối xe chính hãng. Đi xe dù sẽ bị chặt chém vài triệu đồng.</li>
+                                <li><strong>Sốc nhiệt rạng sáng:</strong> Nhiệt độ Bắc Kinh lúc 00:05 có thể xuống dưới 10 độ C và rất hanh khô. Mẹ Hà phải luôn để sẵn áo khoác phao hoặc chăn ủ ấm trong balo xách tay, trùm kín đầu và cổ cho bé trước khi bước ra khỏi cửa kính sân bay.</li>
+                                <li><strong>Tuyệt đối không uống nước lã:</strong> Nước vòi ở Trung Quốc không thể uống trực tiếp (dù là ở khách sạn). Muốn pha sữa cho bé, phải đun sôi nước đóng chai hoặc dùng nước từ bình nóng lạnh của khách sạn.</li>
+                                <li><strong>Cửa hàng tiện lợi đóng cửa:</strong> Sau 12h đêm khu vực quanh khách sạn có thể không còn hàng quán. Hãy bỏ vào vali vài gói bánh quy hoặc xúc xích từ VN để ba mẹ lót dạ giữa đêm nếu đói.</li>
+                            </ul>`
                         }
                     }
                 ]
             },
             {
-                date: "Ngày 2 (Thứ sáu, 24/4)",
-                title: "Tử Cấm Thành & Thiên An Môn",
+                date: "Ngày 1 (Thứ Hai, 27/4)",
+                title: "TRẠM 1: BẮC KINH OAI HÙNG",
                 tasks: [
                     { 
-                        id: "d2-1", time: "Sáng", desc: "Dành nửa ngày khám phá Cố Cung (Tử Cấm Thành).", cn: "故宫博物院", transport: "DiDi thả gần Ngọ Môn (午门).", note: "Mang theo bình thủy nước nóng pha sữa. VÉ MUA TRƯỚC 7 NGÀY!",
+                        id: "d1-1", time: "08:30 - 13:00", desc: "Chinh phục Vạn Lý Trường Thành (khu Mộ Điền Dục).", cn: "慕田峪长城", transport: "Bao xe riêng 7 chỗ (1.5 tiếng).", note: "Ba dùng địu bế bé, xe đẩy gửi lại dưới chân núi.",
                         details: {
-                            trivia: "Tử Cấm Thành có đúng 9,999.5 căn phòng vì người xưa quan niệm chỉ có Ngọc Hoàng mới được sở hữu 10,000 phòng.",
-                            tips: "Chỉ có thể đi vào từ cửa phía Nam (Ngọ Môn) và đi ra ở cửa phía Bắc (Thần Vũ Môn). Luôn mang theo Hộ chiếu để quét khi qua cổng.",
-                            warnings: "QUAN TRỌNG: Gần như không có bóng râm ở các quảng trường lớn và quãng đường đi bộ cực kỳ xa (hơn 2km). Đảm bảo xe đẩy có mái che nắng tốt và có quạt mini cho bé."
+                            trivia: `<ul>
+                                <li>Đoạn Trường Thành Mộ Điền Dục (Mutianyu) được khởi xây từ thời Bắc Tề, sau đó danh tướng Thích Kế Quang triều Minh đích thân giám sát gia cố bằng đá granite kiên cố.</li>
+                                <li>Đây là đoạn có cấu trúc phòng thủ tinh vi nhất với 23 tháp canh nằm san sát nhau, tạo nên mạng lưới hỏa lực chéo không có điểm mù.</li>
+                                <li>Khác với các đoạn khác, Mộ Điền Dục có tường chắn răng cưa (lỗ châu mai) ở CẢ HAI BÊN bờ tường, giúp binh lính có thể nã tên về cả hai phía.</li>
+                                <li>Cựu tổng thống Mỹ Bill Clinton và cựu thủ tướng Anh John Major đều từng bỏ qua đoạn Bát Đạt Lĩnh đông đúc để chọn tham quan đoạn Mộ Điền Dục này.</li>
+                                <li>Tỷ lệ che phủ rừng xung quanh đoạn thành này lên tới 90%, khiến nó đổi màu rõ rệt theo 4 mùa: hoa nở mùa xuân, lá xanh mùa hè, lá đỏ mùa thu và tuyết trắng mùa đông.</li>
+                                <li>Hệ thống cáp treo đưa khách lên đỉnh núi được nhập khẩu và lắp đặt bởi tập đoàn Doppelmayr danh tiếng của Áo.</li>
+                                <li>Tên gọi Mộ Điền Dục mang ý nghĩa thơ mộng là "Thung lũng ngưỡng mộ".</li>
+                                <li>Hiện tại, có khoảng 5.4km chiều dài tường thành ở khu vực này được khôi phục hoàn hảo và mở cửa cho khách du lịch vãng lai.</li>
+                                <li>Tại Tháp canh số 14, bạn có thể nhìn thấy một bức tường đá có khắc chữ "Trung thành với chủ tịch Mao" khổng lồ từ thời Cách mạng Văn hóa.</li>
+                            </ul>`,
+                            tips: `<ul>
+                                <li><strong>Bao xe VIP:</strong> Nên chốt giá bao một chiếc xe 7 chỗ rộng rãi có kèm "Baby Car Seat" (Ghế an toàn trẻ em). Tùng Văn có thể ngủ thẳng giấc 1.5 tiếng trên ô tô từ trung tâm ra ngoại ô mà mẹ không phải bế rã rời.</li>
+                                <li><strong>Chiến thuật leo thành:</strong> Gửi lại toàn bộ xe đẩy ở trung tâm du khách dưới chân núi. Ba Thạnh (người hay tập CrossFit) hãy mang đai địu trợ lực (Hip-seat) bế bé trước ngực.</li>
+                                <li><strong>Luôn chọn Cáp treo khép kín:</strong> Mua vé "Enclosed Cable Car" để lồng kính che gió hoàn toàn cho em bé.</li>
+                                <li><strong>Nhiếp ảnh chân dung:</strong> Ánh sáng buổi sáng trên thành rất gắt và trong trẻo. Ba Thạnh hãy gắn sẵn lens 23mm F1.4 lên máy Fujifilm X-T3, mở khẩu lớn, canh góc lấy hàng rào làm đường dẫn để chụp cho mẹ Hà những bức ảnh xóa phông điện ảnh.</li>
+                                <li><strong>Tiếp sức giữa chừng:</strong> Chuẩn bị sẵn một bình thủy nhỏ chứa nước sôi từ khách sạn. Khi lên đến tháp canh (nơi có bóng râm và gió mát), cả nhà dừng lại nghỉ ngơi, pha cữ sữa trưa và đút cho bé uống.</li>
+                                <li><strong>Nguyên tắc Củ Hành (Onion Layering):</strong> Thời tiết Bắc Kinh buổi sáng rất lạnh nhưng khi leo núi sẽ đổ mồ hôi ướt đẫm. Hãy mặc cho bé nhiều lớp mỏng: Dễ dàng cởi bớt áo khi bé nóng và lập tức mặc áo khoác cản gió khi bé ra mồ hôi ngấm ngược.</li>
+                                <li><strong>Cung đường đẹp nhất:</strong> Khi lên tới nơi (thường ở tháp số 14), hãy rẽ đi bộ về hướng tháp số 20. Đây là đoạn có độ dốc gắt tạo hiệu ứng dốc ngược lên trời, lên ảnh cực kỳ hùng vĩ.</li>
+                                <li><strong>Túi rác cá nhân:</strong> Trên Trường Thành rất hiếm thùng rác. Mang theo túi nilon nhỏ ziplock để bỏ bỉm dơ hoặc khăn giấy của Ủn rồi đem xuống núi vứt.</li>
+                            </ul>`,
+                            warnings: `<ul>
+                                <li><strong>KHÔNG DÙNG XE MÁNG TRƯỢT (Toboggan):</strong> Dù xe máng trượt ống sắt trượt xuống núi là đặc sản của khu này, nhưng độ rung lắc cực mạnh và tốc độ lao dốc CÓ THỂ GÂY TỔN THƯƠNG CỘT SỐNG CỔ CỦA TRẺ 8 THÁNG TUỔI. Bắt buộc cả nhà phải dùng cáp treo xuống núi!</li>
+                                <li><strong>Gió lùa ác liệt:</strong> Tường thành nằm vắt vẻo trên sườn núi không có cây che chắn. Gió giật theo từng cơn rất buốt. Mẹ Hà phải liên tục kiểm tra xem tai và thóp của bé Ủn có bị lạnh không, nhớ đội mũ trùm che kín thóp.</li>
+                                <li><strong>Bậc thang sát thủ:</strong> Các bậc đá trên thành được xây cho lính chứ không phải du khách: Bậc thì cao đến đầu gối, bậc thì hẹp, bề mặt mòn nhẵn thín. Ba Thạnh khi địu con tuyệt đối KHÔNG vừa đi vừa nhìn máy ảnh. Một tay luôn bám lan can, bước đi chéo bàn chân để tránh trượt ngã.</li>
+                                <li><strong>Chen lấn ga cáp treo:</strong> Khu vực lên xuống cáp treo thường xảy ra chen lấn, xô đẩy từ các đoàn khách tour. Hãy lấy thân mình che chắn bảo vệ cho em bé.</li>
+                                <li><strong>Tránh sốc độ cao nhẹ:</strong> Tuy không quá cao nhưng không khí rất loãng và khô, bé dễ bị khô niêm mạc mũi gây chảy máu cam. Dùng xịt nước muối biển sinh lý xịt mũi cho bé trước khi leo.</li>
+                                <li><strong>Nước uống đắt đỏ:</strong> Nước suối bán trên các chòi nghỉ giá đắt gấp 5-10 lần bình thường (15-20 tệ/chai). Hãy vác theo 2-3 chai nước lớn từ dưới thành phố lên để ba mẹ bù nước.</li>
+                                <li><strong>Sóng điện thoại chập chờn:</strong> Ở khu vực các tháp xa trung tâm sóng 4G rất yếu. Tránh tách lẻ nhau ra đi dạo vì rất khó gọi điện thoại tìm nhau.</li>
+                            </ul>`
                         }
                     },
                     { 
-                        id: "d2-2", time: "Chiều", desc: "Tham quan Quảng trường Thiên An Môn, sau đó về khách sạn nghỉ ngơi.", cn: "天安门广场", transport: "Đi bộ từ khu Cố Cung.", note: "Đường rộng, xe đẩy đi rất êm.",
+                        id: "d1-2", time: "14:30 - 17:30", desc: "Tham quan Thiên Đàn (Đàn Tế Trời).", cn: "天坛", transport: "Bao xe chở về khu trung tâm.", note: "Lấy xe đẩy ra dùng, đường đi rộng rợp bóng mát.",
                         details: {
-                            trivia: "Đây là quảng trường thành phố lớn nhất thế giới, có thể chứa được 1 triệu người.",
-                            tips: "Nếu muốn xem lễ hạ cờ, hãy canh giờ hoàng hôn. Có các hầm chui dưới đường để di chuyển an toàn.",
-                            warnings: "Kiểm tra an ninh vô cùng gắt gao. Chuẩn bị tinh thần phải xếp hàng kiểm tra túi xách, cởi áo khoác. Nhớ mang theo Hộ chiếu."
+                            trivia: `<ul>
+                                <li>Thiên Đàn (Đền thờ Trời) có diện tích lớn gấp 4 lần Tử Cấm Thành, là nơi các Hoàng đế nhà Minh và Thanh lập đàn tế cáo trời đất, cầu mong mưa thuận gió hòa.</li>
+                                <li>Cấu trúc thiết kế phản ánh sâu sắc tư tưởng vũ trụ quan cổ đại "Trời tròn, Đất vuông" (Thiên viên Địa phương): Các đền đài phía Bắc đều có mái hình nón tròn, còn khuôn viên phía Nam xây theo hình vuông góc cạnh.</li>
+                                <li>Tuyệt tác Kỳ Niên Điện (Tòa nhà cầu mùa) hoàn toàn không sử dụng bất kỳ một chiếc đinh sắt nào, chỉ dùng hệ thống mộng gỗ ngoàm rường cột vào nhau cực kỳ đỉnh cao.</li>
+                                <li>Bên trong điện có 28 cây cột gỗ khổng lồ: 4 cột trong cùng tượng trưng cho 4 mùa, 12 cột giữa tượng trưng cho 12 tháng, 12 cột ngoài cùng là 12 canh giờ.</li>
+                                <li>Khu vực Viên Khâu Đàn (Altar of Heaven) có một viên đá tâm linh ở giữa. Nếu bạn đứng trên viên đá này và nói chuyện nhỏ nhẹ, âm thanh sẽ dội lại to và vang rền một cách kỳ bí.</li>
+                                <li>Khuôn viên có một dải tường rào uốn lượn được gọi là Tường Âm Thanh (Echo Wall). Áp tai vào một đầu tường có thể nghe rõ người ở đầu kia nói năng dù cách xa hàng chục mét.</li>
+                                <li>Xung quanh Thiên Đàn là rừng cây bách cổ thụ ngàn năm tuổi, có những cây được phong tước hiệu riêng vì tuổi đời từ thời nhà Kim (khoảng 800 năm trước).</li>
+                            </ul>`,
+                            tips: `<ul>
+                                <li><strong>Thiên đường của xe nôi:</strong> Khuôn viên Thiên Đàn có hệ thống đường đi lát gạch siêu phẳng, cực kỳ rộng rãi. Đây là lúc ba Thạnh bung xe đẩy lót đệm êm để bé Ủn ngủ trưa, giải phóng đôi vai sau buổi sáng phải địu con leo núi mệt nhọc.</li>
+                                <li><strong>Hướng di chuyển tối ưu:</strong> Nên đi vào từ Cổng Đông (East Gate) hoặc Cổng Nam (South Gate) và di chuyển theo trục thẳng dọc lên phía Bắc để đi qua các công trình theo đúng thứ tự logic lịch sử (từ Viên Khâu Đàn lên Kỳ Niên Điện).</li>
+                                <li><strong>Tránh nắng và Picnic:</strong> Dọc đường đi là các bãi cỏ rộng rợp bóng cây cổ thụ. Mẹ Hà có thể trải một tấm thảm picnic nhỏ trên thảm cỏ, thong thả cho bé ăn dặm bữa xế, ba mẹ uống nước giải khát.</li>
+                                <li><strong>Góc chụp nghệ thuật:</strong> Lối dẫn lên Kỳ Niên Điện thường có hàng trăm người bu kín chụp ảnh ở bậc thang giữa. Hãy đi vòng ra bệ đá cẩm thạch phía sau lưng tòa điện, ánh sáng hoàng hôn ngược hắt lên mái ngói lưu ly xanh chụp cực kỳ "sạch" rác người.</li>
+                                <li><strong>Mua vé trọn gói:</strong> Khi mua vé ở cổng, nhớ mua loại "Through Ticket" (Vé liên tuyến) để được vào tham quan bên trong cấu trúc của các đền đài phụ, nếu chỉ mua vé Gate Ticket thì chỉ được đi bộ trong công viên bên ngoài.</li>
+                            </ul>`,
+                            warnings: `<ul>
+                                <li><strong>Quãng đường đi bộ cực kỳ tàn khốc:</strong> Cảnh quan ở đây mênh mông bạt ngàn đến mức bạn có thể vô tình lội bộ tới 5-7km mà không nhận ra. Ba mẹ cần chia nhau luân phiên đẩy xe để dưỡng sức, nếu thấy đau chân phải nghỉ ngay.</li>
+                                <li><strong>Thiếu trầm trọng khu vực ăn uống:</strong> Bên trong Thiên Đàn hầu như không có nhà hàng lớn hay trạm bán đồ ăn nóng, chỉ có vài quầy Kiosk bán nước và kem với giá cắt cổ. Nhớ nạp đủ năng lượng hoặc mang theo snack dự phòng từ trước.</li>
+                                <li><strong>Nguy hiểm bậc đá cẩm thạch:</strong> Các bệ tế lễ được nâng lên cao bởi ba tầng đá cẩm thạch trắng. Các bậc thềm này dốc, hẹp và KHÔNG CÓ LAN CAN bảo vệ mép. Tuyệt đối không đẩy xe nôi lên các bệ đá này, hãy để một người đứng dưới trông xe đẩy, người kia đi lên xem.</li>
+                                <li><strong>Giờ đóng cửa sớm:</strong> Các đền đài bên trong Thiên Đàn đóng cửa khá sớm (khoảng 17:00 - 17:30), dù công viên bên ngoài mở tới tối. Hãy căn giờ vào tham quan các điện chính trước.</li>
+                            </ul>`
+                        }
+                    },
+                    { 
+                        id: "d1-3", time: "18:30 - 21:00", desc: "Vương Phủ Tỉnh & Ăn tối Vịt quay Bắc Kinh.", cn: "王府井步行街", transport: "DiDi hoặc xe riêng thả đầu phố.", note: "Thong thả dạo phố đi bộ an toàn.",
+                        details: {
+                            trivia: `<ul>
+                                <li>Cái tên "Vương Phủ Tỉnh" (Wangfujing) có nghĩa đen là "Giếng nước của Vương phủ", xuất phát từ một chiếc giếng nước ngọt hiếm hoi phục vụ cho các dinh thự của vương gia triều Minh. Chiếc giếng cổ này hiện được bọc kính bảo tồn ngay giữa phố.</li>
+                                <li>Đây là đại lộ thương mại sầm uất và biểu tượng nhất Bắc Kinh, được mệnh danh là "Đại lộ Champs-Élysées của Trung Quốc".</li>
+                                <li>Khu phố tự hào sở hữu nhiều "Lão Tự Hiệu" (các thương hiệu gia truyền hàng trăm năm) như tiệm thuốc bắc Đồng Nhân Đường, xưởng giày nội địa TQ hay các trà lầu lâu đời.</li>
+                                <li>Nhà thờ Đông Đường (Vương Phủ Tỉnh Thiên Chúa Đường) theo kiến trúc Romanesque nằm ngay trên tuyến phố là một trong 4 nhà thờ Công giáo lớn nhất Bắc Kinh.</li>
+                            </ul>`,
+                            tips: `<ul>
+                                <li><strong>Nghệ thuật ăn Vịt Quay:</strong> Bạn hãy vào nhà hàng Toàn Tụ Đức (Quanjude) hoặc Tứ Quý Dân Phúc (Siji Minfu). Đầu bếp sẽ đẩy xe ra thái thịt vịt trực tiếp tận bàn. Hãy lấy miếng da vịt giòn rụm chấm thẳng vào đường trắng tinh luyện tan trong miệng - đây là cách ăn chuẩn quý tộc xưa.</li>
+                                <li><strong>Thực đơn dặm cho bé:</strong> Vịt quay khá mỡ không hợp với trẻ sơ sinh. Ba mẹ hãy gọi thêm món súp vịt hầm đậu hũ non hoặc cháo trắng nấu nhừ. Nó cực kỳ mềm, thanh ngọt, rất lý tưởng đút cho Tùng Văn ăn tối.</li>
+                                <li><strong>Trạm dừng chân 5 sao (Nursery):</strong> Nếu bé cần thay tã hoặc khóc gắt, hãy đẩy ngay xe nôi vào TTTM APM Mall (Bắc Kinh APM) giữa phố đi bộ. Hệ thống phòng chăm sóc em bé ở đây cực kỳ sạch sẽ, đủ nước ấm, sofa nệm bọc da để mẹ cho bé bú và rửa ráy bình sữa thoải mái.</li>
+                                <li><strong>Phố đi bộ thân thiện:</strong> Toàn bộ trục đường chính là phố đi bộ cấm 100% xe cộ. Gia đình có thể thả lỏng cảnh giác, tà tà đẩy xe nôi ngắm ánh đèn neon lóa mắt và không khí nhộn nhịp.</li>
+                            </ul>`,
+                            warnings: `<ul>
+                                <li><strong>TRÁNH XA CẠM BẪY ẨM THỰC NGÕ HẺM:</strong> Hãy BỎ QUA hoàn toàn con hẻm nhỏ chuyên bán đồ nướng côn trùng (bọ cạp, nhện, rết xiên que). Đây là khu vực nặng mùi khói than dầu mỡ, vệ sinh an toàn thực phẩm cực kém, chủ yếu làm trò để du khách phương Tây quay video sống ảo. Đưa em bé vào đây sẽ khiến bé bị cay mắt và ho sặc sụa.</li>
+                                <li><strong>Nhiệt độ giảm mạnh về đêm:</strong> Tháng 4 ở Bắc Kinh ban đêm nhiệt độ hạ rất nhanh, gió thổi buốt. Nhớ lấy chăn len mỏng đắp trùm kín từ cổ xuống chân xe đẩy cho Tùng Văn khi dạo phố sau bữa ăn.</li>
+                                <li><strong>Chú ý xe điện mini dọn vệ sinh:</strong> Dù cấm xe ô tô nhưng thỉnh thoảng vẫn có các xe điện tuần tra nhỏ của cảnh sát hoặc xe quét rác chạy lướt qua rất êm không có tiếng động, ba mẹ phải thỉnh thoảng liếc nhìn phía sau.</li>
+                            </ul>`
                         }
                     }
                 ]
             },
             {
-                date: "Ngày 3 (Thứ bảy, 25/4)",
-                title: "Vạn Lý Trường Thành & Mua sắm",
+                date: "Ngày 2 (Thứ Ba, 28/4)",
+                title: "Tử Cấm Thành & Cung Vương Phủ",
                 tasks: [
                     { 
-                        id: "d3-1", time: "Sáng", desc: "Thuê xe đi Vạn Lý Trường Thành (khu Mộ Điền Dục).", cn: "慕田峪长城", transport: "Bao xe riêng 7 chỗ.", note: "Lên thành bằng cáp treo. Dùng địu bế bé.",
+                        id: "d2-1", time: "08:30 - 13:30", desc: "Khám phá Cố Cung (Tử Cấm Thành).", cn: "故宫博物院", transport: "DiDi thả gần Ngọ Môn (午门).", note: "Bắt buộc đặt vé online trước 7 ngày! Mang ô che nắng.",
                         details: {
-                            trivia: "Mộ Điền Dục ít khách du lịch hơn Badaling, thân thiện với gia đình hơn vì có cáp treo khép kín đưa lên tận đỉnh.",
-                            tips: "Nên thuê bao xe có sẵn ghế trẻ em (baby car seat). Xuất phát sớm (7:30 sáng) để tránh kẹt xe.",
-                            warnings: "KHÔNG NÊN dùng xe máng trượt (Toboggan) khi có em bé vì rất rung lắc. Hãy mua vé cáp treo cả chiều lên và chiều xuống."
+                            trivia: `<ul>
+                                <li>Tử Cấm Thành là tổ hợp cung điện bằng gỗ lớn nhất thế giới, được ròng rã xây dựng trong 14 năm với sự tham gia của 10 vạn thợ mộc tài hoa và 1 triệu nhân công.</li>
+                                <li>Quần thể này sở hữu chính xác 9,999.5 căn phòng. Người xưa tin rằng Ngọc Hoàng trên trời có 10,000 phòng, nên Hoàng đế hạ phàm chỉ được dùng ít hơn nửa phòng để thể hiện sự khiêm nhường.</li>
+                                <li>Toàn bộ ngói lợp trên các mái điện đều mang màu vàng - màu độc tôn của Hoàng gia. Duy nhất mái của Tàng Thư Lâu (Thư viện) được lợp ngói màu đen tượng trưng cho hành Thủy (nước) nhằm mục đích phong thủy khắc chế hỏa hoạn.</li>
+                                <li>Sân chầu khổng lồ ở khu vực Tiền Triều hoàn toàn không được trồng bất kỳ một bóng cây nào. Điều này nhằm ngăn chặn triệt để việc thích khách đu bám cành cây ám sát Hoàng đế, đồng thời tạo cảm giác uy nghiêm ngột ngạt dập tắt ý chí làm phản của bá quan văn võ.</li>
+                                <li>Sàn gạch của cung điện được lát bằng loại "Gạch Vàng" (Kim Chuyên) tốn nhiều tháng để nung bằng gỗ tùng, khi gõ vào phát ra tiếng vang thanh thúy như gõ kim loại.</li>
+                                <li>Các núm đồng trên cửa cung đều có 81 núm (9 hàng dọc, 9 hàng ngang) - số 9 là con số cực dương tượng trưng cho quyền lực tối thượng của Vua.</li>
+                                <li>Bên trong Tử Cấm Thành có một bộ sưu tập đồng hồ cơ học phương Tây vô giá do các vua châu Âu tiến cống cho Khang Hy, Càn Long.</li>
+                            </ul>`,
+                            tips: `<ul>
+                                <li><strong>Thủ tục vé sống còn:</strong> Bắt buộc phải MUA VÉ TRƯỚC ONLINE ĐÚNG 7 NGÀY vì Cố Cung luôn bán sạch vé mỗi ngày (họ giới hạn 8 vạn khách/ngày). Luôn mang theo Hộ Chiếu gốc trên tay để quét mã vạch thẳng qua cổng an ninh điện tử.</li>
+                                <li><strong>Luật di chuyển bất thành văn:</strong> Bạn chỉ có thể đi vào từ cửa phía Nam (Ngọ Môn - Wu Men) và đi ra theo một chiều duy nhất ở cửa phía Bắc (Thần Vũ Môn - Shenwu Men). HOÀN TOÀN KHÔNG CÓ ĐƯỜNG QUAY LẠI, đi thẳng một lèo!</li>
+                                <li><strong>Chiến thuật đẩy xe nôi:</strong> Trục đường giữa (Ngự đạo) rải đầy các bậc đá chạm rồng. Tuy nhiên, hai bên hông các cầu thang luôn có đường dốc thoải bằng đá hoặc lối đi ván gỗ dành cho xe lăn/xe đẩy trẻ em. Hãy chú ý các biển báo "Wheelchair Accessible" để lướt xe nôi đi rất nhẹ nhàng.</li>
+                                <li><strong>Thuê Audio Guide:</strong> Ngay sau khi qua Ngọ Môn, hãy bỏ vài chục tệ thuê một máy hướng dẫn viên tự động (có tai nghe tiếng Việt). Tới điện nào máy tự động định vị GPS và phát giọng đọc thuyết minh cung thâm bí sử về điện đó cực kỳ lôi cuốn.</li>
+                                <li><strong>Góc nghỉ ngơi (Dưỡng Tâm Điện):</strong> Khi đi sâu vào khu Nội Đình (khu sinh hoạt của phi tần), bạn sẽ thấy các hành lang bóng râm và các khoảng sân nhỏ có ghế đá. Đây là nơi duy nhất để dừng lại cho bé bú sữa và thay tã, vì khu Tiền Triều hoàn toàn trống lốc.</li>
+                                <li><strong>Bù nước liên tục:</strong> Chuẩn bị bình thủy nhỏ nước ấm và bình nước lọc to. Trẻ nhỏ và người lớn cực kỳ nhanh mất nước và khô họng ở đây do bức xạ nhiệt từ nền gạch hắt lên.</li>
+                            </ul>`,
+                            warnings: `<ul>
+                                <li><strong>BÁO ĐỘNG ĐỎ VỀ SAY NẮNG VÀ SỐC NHIỆT:</strong> Ba quảng trường Thái Hòa, Trung Hòa, Bảo Hòa rộng như biển và TRỐNG TRƠI KHÔNG MỘT BÓNG RÂM. Gió thổi lùa bụi và cát khô. Xe đẩy của Tùng Văn bắt buộc phải có rèm mái che cản tia UV trùm thật sâu. Mẹ nhớ kẹp quạt mini chạy pin thổi thoang thoảng vào trong xe và bôi kem chống nắng cho bé.</li>
+                                <li><strong>Kiểm tra an ninh gắt hơn sân bay:</strong> Trước khi tiếp cận được Ngọ Môn, bạn phải xếp hàng qua 2-3 chốt kiểm tra quanh khu Thiên An Môn. Họ sẽ bắt tháo áo khoác, quét túi xách, cấm chất lỏng dễ cháy, cấm dao/vật sắc nhọn. Hãy đến sớm ít nhất 1 tiếng so với giờ dự kiến.</li>
+                                <li><strong>Biển người xô đẩy:</strong> Ở khu vực các chấn song cửa sổ để nhìn vào ngai vàng bên trong điện, các đoàn tour nội địa sẽ chen lấn xô đẩy cùi chỏ cực kỳ thô bạo. Ba Thạnh tuyệt đối không bế con chen vào đám đông này để chụp ảnh. Đứng lùi xa ra xem từ xa là đủ.</li>
+                                <li><strong>Toilet tàng hình:</strong> Nhà vệ sinh nằm lẩn khuất ở các dãy hành lang phụ xa trục chính và phải xếp hàng cực dài (đặc biệt là toilet nữ). Đừng đợi đến lúc buồn đi mới tìm, thấy vắng là phải vào giải quyết ngay.</li>
+                            </ul>`
                         }
                     },
                     { 
-                        id: "d3-2", time: "Chiều", desc: "Về lại trung tâm, mua sắm tại Vương Phủ Tỉnh.", cn: "王府井步行街", transport: "DiDi hoặc xe riêng thả tại trung tâm.", note: "Có thể ăn Vịt Quay Bắc Kinh tại đây.",
+                        id: "d2-2", time: "15:00 - 18:00", desc: "Khám phá Cung Vương Phủ (Hòa Thân).", cn: "恭王府", transport: "DiDi chuyển trạm.", note: "Nhiều bậc thềm nhỏ, vất vả khi đẩy xe nôi.",
                         details: {
-                            trivia: "Cái tên 'Vương Phủ Tỉnh' có nghĩa là 'Giếng nước của Vương phủ', chiếc giếng cổ này vẫn còn được bảo tồn trên phố.",
-                            tips: "Ghé trung tâm thương mại APM hoặc Oriental Plaza để nghỉ ngơi, đi vệ sinh, vào phòng Nursery pha sữa.",
-                            warnings: "Khu vực bán côn trùng nướng trong hẻm chủ yếu để 'vặt tiền' du khách, vệ sinh kém, bỏ qua."
+                            trivia: `<ul>
+                                <li>Đây nguyên là tư dinh của Hòa Thân - vị đại thần sủng ái nhất của Càn Long và cũng là đệ nhất tham quan giàu nhất thế giới trong lịch sử Trung Hoa thế kỷ 18.</li>
+                                <li>Quy mô và mức độ xa hoa của vương phủ này từng được ví là "chỉ kém hoàng đế một bậc", với các cột nhà làm bằng gỗ Kim Tơ Nam Mộc cực kỳ quý hiếm, tỏa mùi thơm ngát, một cây gỗ giá trị bằng cả tòa thành.</li>
+                                <li>Nổi tiếng nhất trong phủ là tấm bia chữ "Phúc" (福) do chính tay Hoàng đế Khang Hy ngự bút viết tặng Thái hậu, được Hòa Thân dùng thủ đoạn ăn cắp và giấu kín trong một hang đá giả sơn. Chữ Phúc này mang hàm ý phong thủy vô song: "Đa tử, đa điền, đa tài, đa thọ".</li>
+                                <li>Cấu trúc phủ gồm phủ đệ (khu ở, tiếp khách) hoành tráng phía trước và hoa viên quy mô rộng lớn, tinh xảo phía sau với rạp hát trong nhà khép kín thiết kế chống tiếng ồn vọng ra ngoài.</li>
+                                <li>Tương truyền, tổng tài sản tịch thu từ nhà Hòa Thân tương đương với 15 năm tổng thu ngân sách của toàn bộ đế quốc triều Thanh.</li>
+                            </ul>`,
+                            tips: `<ul>
+                                <li><strong>Tránh nắng và chill:</strong> Trái ngược hoàn toàn với Tử Cấm Thành trống trải và nắng rát, Cung Vương Phủ được che phủ bởi những tán cây cổ thụ, hành lang dích dắc và hồ nước róc rách. Đây là nơi lý tưởng để cả nhà thả lỏng gân cốt, đi dạo dưới bóng râm tránh cái nắng chiều.</li>
+                                <li><strong>Thủ tục Xin Lộc:</strong> Nhớ xếp hàng chui vào động đá sâu phía sau hoa viên để sờ tay lên mặt kính bảo vệ tấm bia chữ "Phúc" thần thánh. Việc này được người Hoa tin rằng sẽ cầu được bình an, sức khỏe và tài lộc dồi dào cho gia đình kinh doanh.</li>
+                                <li><strong>Studio Cổ trang:</strong> Khung cảnh hành lang lầu các, hồ sen ở đây rất hợp để chụp ảnh phong cách cổ trang. Ba Thạnh có thể chụp cho mẹ Hà vài tấm ảnh cực nghệ thuật bằng camera Xiaomi 14 Ultra (sử dụng giả lập màu Leica Classic đen trắng hoặc Leica Vibrant rực rỡ).</li>
+                                <li><strong>Lắng nghe thuyết minh:</strong> Mua một chiếc vé có kèm dịch vụ nghe kể chuyện (hoặc đi theo cọp tai các đoàn tour). Nghe kể về các "ánh trăng lừa dối", những mánh lới giấu vàng vào cột nhà của Hòa Thân rất bánh cuốn.</li>
+                            </ul>`,
+                            warnings: `<ul>
+                                <li><strong>SÁT THỦ XE ĐẨY - NGẠCH CỬA GỖ:</strong> Các hành lang, cửa phòng trong vương phủ thiết kế theo phong cách Tứ Hợp Viện cổ, có RẤT NHIỀU ngạch cửa (bậu cửa) bằng gỗ nhô lên cao hàng chục phân. Xe nôi sẽ bị vấp liên tục, bánh xe kẹt cứng. Hai vợ chồng cần hợp sức luân phiên nhấc bổng đuôi xe đẩy lướt qua ngạch cửa để bé Ủn không bị giật mình tung người lên lúc đang ngủ.</li>
+                                <li><strong>Mê cung hoa viên:</strong> Khu vườn phía sau thiết kế theo bát quái trận đồ để chống trộm, lối đi ngoằn ngoèo y chang nhau. Hãy nhìn kỹ bản đồ hoặc đi theo biển chỉ dẫn Exit để không bị đi loanh quanh kiệt sức.</li>
+                                <li><strong>Đoàn tour ồn ào:</strong> Nơi đây thường xuyên chật cứng các đoàn tour hưu trí cầm cờ loa phát thanh ồn ào. Hãy chủ động đi chậm lại hoặc lách nhanh qua các hoa viên phụ hai bên hông phủ để lấy không gian yên tĩnh cho em bé nghỉ ngơi.</li>
+                            </ul>`
                         }
                     }
                 ]
             },
             {
-                date: "Ngày 4 (Chủ Nhật, 26/4)",
-                title: "Bắc Kinh 🚄 Thượng Hải",
+                date: "Ngày 3 (Thứ Tư, 29/4)",
+                title: "Di Hòa Viên & Chuyển Trạm Thượng Hải",
                 tasks: [
                     { 
-                        id: "d4-1", time: "Sáng/Trưa", desc: "Đi tàu cao tốc thẳng đến Thượng Hải (Ga Hồng Kiều).", cn: "北京南站 ➡️ 上海虹桥站", transport: "Tàu cao tốc G-train (4.5 tiếng).", note: "Tàu xịn, nhiều chỗ cho bé chơi.",
+                        id: "d3-1", time: "08:30 - 12:30", desc: "Dạo chơi Cung điện Mùa Hè (Di Hòa Viên).", cn: "颐和园", transport: "DiDi thả cổng Đông Cung.", note: "Cảnh quan hồ nước Côn Minh lộng gió.",
                         details: {
-                            trivia: "Tàu Fuxing chạy với vận tốc 350km/h êm đến mức có thể dựng đứng một đồng xu.",
-                            tips: "Khoang hạng Nhất có không gian siêu rộng. Nước sôi luôn có sẵn ở cuối mỗi toa xe để thay bỉm pha sữa.",
-                            warnings: "Ga Hồng Kiều Thượng Hải cực kỳ đông đúc (Big Hub). Đi lách xa khỏi dòng người, dùng thang máy dọc (Elevator) thay vì thang cuốn cho xe đẩy."
+                            trivia: `<ul>
+                                <li>Di Hòa Viên là hoàng gia lâm uyển (vườn ngự uyển) quy mô lớn nhất thế giới còn nguyên vẹn, bảo tồn hoàn hảo kiệt tác thiết kế sân vườn Trung Hoa kết hợp non nước.</li>
+                                <li>Khuôn viên này từng bị liên quân 8 nước phá hủy, sau đó Từ Hy Thái Hậu đã ngang nhiên rút hàng triệu lượng bạc (quỹ xây dựng hiện đại hóa hải quân) để đại tu làm nơi dưỡng lão, xem kịch và tổ chức tiệc tùng.</li>
+                                <li>Đặc trưng nhất là Hồ Côn Minh (mênh mông như biển dù là hồ đào nhân tạo bằng tay) và Vạn Thọ Sơn (quả núi được đắp từ chính đất moi lên khi đào hồ).</li>
+                                <li>Trường Lang (Hành lang dài) men theo mép hồ dài tới 728m, được ghi kỷ lục Guinness với hơn 14.000 bức tranh đa dạng vẽ tay tinh xảo trên các thanh xà ngang, không bức nào trùng lặp bức nào.</li>
+                                <li>Thanh Yến Phường (Thuyền Đá) là một con thuyền tạc nguyên khối bằng đá cẩm thạch khổng lồ neo vĩnh viễn ven hồ, mang hàm ý châm biếm ngạo mạn của Thái Hậu: "Thuyền của hoàng gia vững như bàn thạch, không bao giờ lật dù có sóng to gió lớn".</li>
+                                <li>Cây cầu Thập Thất Khổng Kiều (cầu 17 vòm) bắc qua hồ, vào những ngày đông chí, ánh mặt trời lúc xế tà sẽ chiếu xuyên qua hắt sáng vàng rực cả 17 vòm cầu cực kỳ ma thuật.</li>
+                            </ul>`,
+                            tips: `<ul>
+                                <li><strong>Tuyến đường êm ái cho xe đẩy:</strong> Hãy yêu cầu tài xế thả ở Cổng Đông Cung (East Palace Gate). Từ đây đi thẳng vào trục chính dọc bờ hồ Côn Minh đường được lát gạch siêu phẳng và rộng rãi, đẩy xe nôi cho Tùng Văn cực kỳ thong thả, vừa đi vừa ngắm rặng liễu rủ.</li>
+                                <li><strong>Trải nghiệm Thuê thuyền mộc:</strong> Thay vì lội bộ vã mồ hôi chen chúc dọc hành lang, hãy thuê một chiếc thuyền điện tự lái có mái che tại bến. Cả nhà thong dong tự điều khiển thuyền lênh đênh trên mặt hồ Côn Minh rộng lớn. Gió mát lồng lộng sẽ làm em bé cười khoái chí và là cách trốn đám đông tuyệt vời nhất.</li>
+                                <li><strong>Chụp ảnh nàng thơ:</strong> Mẹ Hà hãy chọn một bộ váy lụa trắng hoặc xanh ngọc, kết hợp với quạt giấy. Background hồ nước xanh ngắt và các vòm cổng mặt trăng (Moon gate) bằng gạch xám sẽ cho ra những bức ảnh thần tiên thoát tục.</li>
+                                <li><strong>Nghỉ ngơi Picnic nhẹ:</strong> Tìm một băng ghế đá dưới tán cây liễu rủ ven hồ, trải khăn, lấy bánh ngọt và sữa ra để cả nhà cùng tận hưởng khoảnh khắc picnic bình yên hiếm hoi, ngắm các cụ già Bắc Kinh viết thư pháp bằng nước lã trên sân gạch.</li>
+                            </ul>`,
+                            warnings: `<ul>
+                                <li><strong>CẢNH BÁO BỎ QUA VẠN THỌ SƠN:</strong> Tuyệt đối KHÔNG ĐẨY XE NÔI leo lên khu vực các ngôi chùa Tháp Hương Các nằm trên đồi Vạn Thọ Sơn. Đường dốc thẳng đứng, vô số bậc đá lởm chởm. Vác xe đẩy và bế em bé lên đỉnh đồi này là một sự hành xác tàn khốc gây kiệt sức. Chỉ nên đi dạo vòng quanh mép hồ phẳng lặng!</li>
+                                <li><strong>Gió lộng nguy hiểm:</strong> Cảnh quan chủ yếu là hồ nước mênh mông bọc rặng núi, do đó gió lùa vào mặt rất mạnh và mang theo hơi lạnh. Hãy kéo kín rèm che phủ thùng xe nôi để tránh bụi bay vào mắt và bảo vệ phổi của trẻ sơ sinh khỏi nhiễm lạnh.</li>
+                                <li><strong>Cẩn thận khi lên xuống thuyền:</strong> Bến thuyền dập dềnh sóng, hãy để ba Thạnh bước xuống thuyền giữ thăng bằng trước, sau đó mẹ Hà mới bế em bé bước cẩn thận truyền tay sang. Khóa bánh xe đẩy gửi lại trên bờ hoặc gấp gọn hoàn toàn nếu mang xuống thuyền.</li>
+                            </ul>`
                         }
                     },
                     { 
-                        id: "d4-2", time: "Chiều", desc: "Nhận phòng khách sạn, dạo bộ Tô Giới Pháp, đường Vũ Khang.", cn: "法租界 - 武康路", transport: "DiDi nội ô.", note: "Khu phố cổ phong cách châu Âu siêu râm mát.",
+                        id: "d3-2", time: "14:00 - 19:00", desc: "Tàu cao tốc 350km/h tiến về Thượng Hải. Check-in Fish Inn.", cn: "北京南站 ➡️ 上海虹桥站", transport: "Tàu cao tốc G-train (Fuxing).", note: "Chặng dài 5 tiếng, tàu xịn êm ru.",
                         details: {
-                            trivia: "Tòa nhà Ngô Đồng (Wukang Mansion) xây hình như chiếc tàu thủy, siêu kinh điển do kiến trúc sư Hungary thiết kế.",
-                            tips: "Vỉa hè lát gạch êm ru, 2 bên đường rợp bóng cây cổ thụ lớn, xe đẩy cho bé đi thoải mái, rất hợp sống ảo uống cafe.",
-                            warnings: "Luôn nhường đường và chú ý xe đạp công cộng leo lên lề đường giành chỗ."
-                        }
-                    },
-                    { 
-                        id: "d4-3", time: "Tối", desc: "Ăn tối sang trọng và dạo TTTM IAPM Mall lấy sức.", cn: "IAPM Mall", transport: "Đi bộ / DiDi gần.", note: "IAPM có nursery room cao cấp.",
-                        details: {
-                            trivia: "IAPM chuyên trị các thương hiệu siêu xa xỉ, mở cửa cực trễ (đến 11h đêm), mô hình hiếm thấy trên thế giới.",
-                            tips: "Dọc theo đường Huaihai bên ngoài Mall lên đèn rất lộng lẫy vào ban đêm.",
-                            warnings: "Ăn uống ở đây giá khá cao, nhưng bù lại sạch sẽ vô trùng, lý tưởng cho bé ngày vừa đặt chân xuống tàu mệt mỏi."
+                            trivia: `<ul>
+                                <li>Chặng đường sắt huyết mạch Bắc Kinh - Thượng Hải dài hơn 1.300 km (tương đương chặng Hà Nội - Sài Gòn) nhưng nhờ công nghệ đỉnh cao, chỉ mất chưa đầy 4.5 đến 5 tiếng di chuyển.</li>
+                                <li>Tàu Fuxing (Phục Hưng) là thế hệ tàu viên đạn nội địa tự hào nhất của TQ, đạt vận tốc khai thác tối đa lên tới 350km/h.</li>
+                                <li>Đỉnh cao của sự cân bằng: Tàu chạy êm và chống rung lắc chấn động tốt đến mức bạn có thể dựng đứng một đồng xu hoặc một cây bút sát mép bậu cửa sổ mà không bị đổ trong suốt hành trình hàng trăm km.</li>
+                                <li>Công nghệ phanh an toàn cho phép đoàn tàu nặng hàng ngàn tấn đang lao với tốc độ máy bay có thể dừng lại an toàn và êm ái trong cự ly cực ngắn.</li>
+                            </ul>`,
+                            tips: `<ul>
+                                <li><strong>Trải nghiệm Hạng Nhất (First Class):</strong> Vì chặng đi khá dài và có con mọn, nếu ngân sách cho phép, hãy bấm bụng mua vé hạng Nhất (chỉ có 4 ghế mỗi hàng). Chỗ để chân cực rộng, mẹ Hà có thể bế em bé đứng lên đi lại thoải mái, ghế ngả sâu như khoang máy bay giúp ba mẹ ngủ ngon.</li>
+                                <li><strong>Pha sữa vô cùng tiện lợi:</strong> Ở điểm nối giữa mỗi toa tàu (Carriage) luôn trang bị một máy đun nước sôi (Boiler) tự động miễn phí 24/24 và bồn rửa. Mẹ Hà có thể dễ dàng vệ sinh bình và pha sữa bột nước ấm cho Tùng Văn bất cứ lúc nào bé khóc đòi ăn.</li>
+                                <li><strong>Khu vực vệ sinh VIP cho bé:</strong> Nhà vệ sinh dành cho người khuyết tật (Accessible Toilet) thường nằm ở toa số 5 hoặc giữa tàu, không gian vô cùng rộng rãi. Bên trong có trang bị bàn thay tã (Diaper changing board) gập trên tường rất sạch sẽ, an toàn để thay bỉm cho bé.</li>
+                                <li><strong>Dỗ bé bằng khay ăn:</strong> Kéo khay ăn trên lưng ghế xuống để làm bàn chơi đồ chơi, bày sách vải hoặc để iPad chiếu hoạt hình dỗ dành em bé trên chặng đường dài mà không phải bế trên tay mãi.</li>
+                                <li><strong>Mua đồ ăn vặt:</strong> Xe đẩy bán hàng rong của tiếp viên tàu thường xuyên đi qua. Bạn có thể mua cơm hộp bento nóng, hoa quả gọt sẵn hoặc trà sữa ngay trên tàu (Thanh toán quét mã WeChat/Alipay).</li>
+                            </ul>`,
+                            warnings: `<ul>
+                                <li><strong>Biển người ở ga Hồng Kiều (Hongqiao):</strong> Khi bước xuống ga Thượng Hải, bạn sẽ bị choáng ngợp bởi lượng người khổng lồ, gấp 10 lần sân bay Tân Sơn Nhất. Cực kỳ hỗn loạn. Hãy bế sát em bé vào lòng hoặc thắt chặt đai an toàn 5 điểm trên xe đẩy. Hai vợ chồng phải đi sát cạnh nhau, không rời mắt khỏi nhau.</li>
+                                <li><strong>Sử dụng thang máy trục dọc (Elevator/Lift):</strong> TUYỆT ĐỐI KHÔNG đẩy xe nôi đang có em bé ngồi bên trong lao lên Thang Cuốn (Escalator). Thang cuốn ở TQ rất dốc và chạy tốc độ nhanh. Hãy chịu khó đi dạo vòng tìm thang máy hộp (Lift) có biểu tượng xe lăn để di chuyển đống hành lý và xe nôi an toàn xuống sảnh.</li>
+                                <li><strong>Quy định hành lý lỏng lẻo:</strong> Không có người xếp hành lý hộ. Hãy đến ga Bắc Kinh sớm, tranh thủ lên tàu sớm để nhét 2 vali to của bạn vào giá để hành lý chung ở đầu/cuối toa xe. Lên muộn sẽ hết chỗ để.</li>
+                            </ul>`
                         }
                     }
                 ]
             },
             {
-                date: "Ngày 5 (Thứ Hai, 27/4)",
-                title: "Trọn vẹn Thượng Hải Disneyland",
+                date: "Ngày 4 (Thứ Năm, 30/4)",
+                title: "TRẠM 2: THƯỢNG HẢI RỰC RỠ - Trọn vẹn Disneyland",
                 tasks: [
                     { 
-                        id: "d5-1", time: "Sáng/Chiều", desc: "Tham quan và chơi khu vui chơi Zootopia ở Disneyland.", cn: "上海迪士尼乐园", transport: "Taxi/DiDi đến tận nơi.", note: "Nhất định Mua Premier Access để khỏi đợi.",
+                        id: "d4-1", time: "09:00 - 20:00", desc: "Quẩy tung Thượng Hải Disneyland (Khu Zootopia).", cn: "上海迪士尼乐园", transport: "Taxi/DiDi đến tận cổng (45p).", note: "Bắt buộc mua gói nhảy cóc (Premier Access).",
                         details: {
-                            trivia: "Shanghai Disneyland sở hữu Lâu đài To nhất thế giới và khu vực thành phố động vật Zootopia hoàn toàn mới.",
-                            tips: "Tải app Shanghai Disney Resort để xem thời gian chờ. Em bé dưới 1 tuổi tập đi rất hạp trò thuyền mộc.",
-                            warnings: "Các xe đẩy (Stroller) CẤM ĐEM VÀO MÁY CHƠI, phải đậu thành cụm ngoài bãi. Tuyệt đối không để Hộ Chiếu/Tiền ở xe đẩy lúc bỏ đi chơi!"
+                            trivia: `<ul>
+                                <li>Shanghai Disneyland tự hào sở hữu "Enchanted Storybook Castle" - tòa lâu đài Disney to nhất, cao nhất và phức hợp nhất trên toàn cầu, tụ hội biểu tượng của tất cả các nàng công chúa chứ không chỉ riêng 1 người.</li>
+                                <li>Đây là công viên đầu tiên và duy nhất trên thế giới ra mắt khu phố động vật "Zootopia" siêu thực, với các nhân vật cử động bằng công nghệ animatronics (robot biểu cảm) tinh xảo đỉnh cao.</li>
+                                <li>Tàu lượn siêu tốc Tron Lightcycle Power Run là trò chơi có tốc độ chạy nhanh nhất trong lịch sử các công viên Disney toàn thế giới, ngồi trên xe motor phân khối lớn mô phỏng neon tương lai.</li>
+                                <li>Hệ thống mô phỏng trận chiến Cướp Biển Vùng Caribbean (Battle for the Sunken Treasure) ở Thượng Hải áp dụng màn hình LED vòm khổng lồ dưới nước tiên tiến nhất, đánh bật mọi phiên bản Disney khác.</li>
+                                <li>Đại lộ Mickey Avenue thay thế cho Main Street USA truyền thống để phù hợp văn hóa hơn, ẩn chứa hàng trăm 'Hidden Mickey' (hình đầu chuột Mickey giấu kín) trong các chi tiết hoa văn tường gạch.</li>
+                                <li>Khuôn viên công viên rộng đến mức họ thiết kế riêng một trạm ga tàu điện ngầm khổng lồ và hồ nước sinh thái rộng 11 mẫu Anh bao quanh lâu đài.</li>
+                            </ul>`,
+                            tips: `<ul>
+                                <li><strong>Tải App Thần Thánh:</strong> Bắt buộc phải tải ứng dụng "Shanghai Disney Resort" từ nhà để liên kết vé. Bạn dùng app này xem bản đồ thời gian thực, canh thời gian xếp hàng của từng trò chơi và định vị nhanh nhà vệ sinh/phòng chăm sóc em bé gần nhất.</li>
+                                <li><strong>Quyền năng Premier Access:</strong> Đừng bao giờ tiếc tiền! Hãy mua thẻ Disney Premier Access (Thẻ ưu tiên) trên App cho các trò chơi hot như Zootopia Hot Pursuit hay Pirates of the Caribbean. Việc vung tiền mua thời gian thay vì bắt em bé khóc lóc xếp hàng 2 tiếng đồng hồ là quyết định sáng suốt nhất.</li>
+                                <li><strong>Thiên đường Baby Care Center:</strong> Nằm ngay bên cạnh trạm sơ cứu First Aid gần cổng chính. Trung tâm chăm sóc trẻ sơ sinh này chuẩn 6 sao với nước nóng lạnh, phòng vắt sữa kéo rèm riêng tư, nôi cũi êm ái, bỉm/kem chống hăm miễn phí. Đây là trạm sạc năng lượng lý tưởng cho mẹ và bé lúc giữa trưa.</li>
+                                <li><strong>Thuê xe đẩy chính hãng:</strong> Nếu xe nôi của bạn quá cồng kềnh, hãy gấp cất đi. Bạn có thể thuê xe đẩy màu đỏ có mái che của chính Disney ngay cửa ra vào (khoảng 90 RMB/ngày), vừa xịn vừa có bảng tên gia đình, di chuyển cực mượt trong công viên.</li>
+                                <li><strong>Chiến thuật Rider Switch (Đổi lượt):</strong> Áp dụng cho các trò cảm giác mạnh Ba Thạnh muốn chơi (Tron, Roaring Rapids). Cả hai vợ chồng đến cửa xếp hàng, thông báo dùng "Rider Switch". Ba Thạnh vào chơi trước (đi lane ưu tiên), mẹ Hà ở ngoài ôm con. Sau khi ba ra, mẹ Hà lập tức được vào chơi luôn bằng lane ưu tiên không cần xếp hàng lại, ba cầm con.</li>
+                                <li><strong>Trò chơi thân thiện với Ủn:</strong> Các trò như Peter Pan's Flight (ngồi tàu cướp biển bay), vòng xoay ngựa gỗ (Carousel), Voyage to the Crystal Grotto (Đi thuyền ngắm đài phun nước) là những trò di chuyển rất chậm, mẹ có thể ôm Tùng Văn vào lòng cùng trải nghiệm an toàn.</li>
+                                <li><strong>Xem diễu hành (Parade):</strong> Chọn đứng ở khúc cua gần khu Toy Story Land lúc 3:15 chiều, đó là góc rộng nhất để các diễn viên múa vẫy tay giao lưu trực tiếp với bé Tùng Văn.</li>
+                            </ul>`,
+                            warnings: `<ul>
+                                <li><strong>VẤN NẠN CẦM NHẦM TẠI BÃI ĐỖ XE ĐẨY:</strong> Disney CẤM MANG XE ĐẨY VÀO khu vực xếp hàng hoặc trong nhà hàng. Bạn bắt buộc phải đậu xe nôi ở "Stroller Parking". TÌNH TRẠNG LỤC LỘI HOẶC ĐẨY NHẦM XE NÔI THƯỜNG XUYÊN XẢY RA. Tuyệt đối không để Hộ chiếu, túi xách hàng hiệu, máy ảnh hay ví tiền dắt trên xe đẩy khi bỏ đi. Chỉ để lại bỉm, giấy ướt, bình nước rẻ tiền.</li>
+                                <li><strong>Vật dụng Cấm cửa:</strong> Disney soi balo cổng an ninh cực gắt. CẤM mang Gậy tự sướng (Selfie stick), chân máy ảnh (Tripod lớn hơn 60cm), đồ ăn có mùi nồng (mì hộp, sầu riêng), và các loại ghế đẩu gấp gọn. Nếu mang sẽ bị tịch thu bỏ sọt rác.</li>
+                                <li><strong>Biển người khổng lồ:</strong> Vào giờ cao điểm (11h - 14h), khu vực Zootopia đông nghẹt thở. Nếu phải chen lấn, ba Thạnh hãy bế bé lên cao ngang vai để bé không bị ngộp thở ở tầng thấp, mẹ Hà ráng gập xe đẩy xách tay qua đoạn đông.</li>
+                                <li><strong>Mua đồ giả mạo:</strong> Đừng mua băng đô cài tóc tai chuột Mickey của những người bán hàng rong lảng vảng trước cổng Metro. Hàng giả kém chất lượng có gọng sắt cứng đâm vào đầu em bé. Hãy mua đồ xịn (Genuine) trong cửa hàng World of Disney.</li>
+                                <li><strong>Chống thất lạc:</strong> Gắn Airtag vào balo hoặc gấu bông của bé. Chụp một bức ảnh toàn thân của Tùng Văn vào buổi sáng để lỡ lạc có hình ảnh quần áo mới nhất đưa cho bảo vệ bủa lưới tìm kiếm.</li>
+                            </ul>`
                         }
                     },
                     { 
-                        id: "d5-2", time: "Tối", desc: "Xem pháo hoa Illuminations hoành tráng", cn: "迪士尼烟火秀", transport: "DiDi gọi sớm về khách sạn.", note: "Khá lạnh về đêm.",
+                        id: "d4-2", time: "20:00 - 21:30", desc: "Xem siêu show Pháo hoa Illuminations hoành tráng.", cn: "迪士尼烟火秀", transport: "DiDi gọi sẵn để về Fish Inn.", note: "Hiệu ứng ánh sáng bùng nổ, có thể làm bé giật mình.",
                         details: {
-                            trivia: "ILLUMINATE show dùng map 3D lên lâu đài kèm lửa đốt thực tế rất đã mắt và hoành tráng.",
-                            tips: "Giữ chỗ ngồi ở hồ trước cung điện từ 6:30 chiều. Trải thớt nhựa nhỏ ra ngồi cho tiện thay vì đứng 1 tiếng.",
-                            warnings: "Pháo hoa nổ lớn gắt, có thể làm bé sơ sinh thót tim. Mẹ nhớ mang nút bịt tai (earmuffs) mềm cho bé đỡ hoảng."
+                            trivia: `<ul>
+                                <li>Show diễn "ILLUMINATE! A Nighttime Celebration" sử dụng công nghệ projection mapping (trình chiếu 3D) phủ kín, biến hình toàn bộ bề mặt tòa lâu đài khổng lồ thành các khung cảnh phim hoạt hình.</li>
+                                <li>Kết hợp hoàn hảo đồng bộ giữa laser cường độ cao, đài phun nước múa ballet, súng phun lửa và pháo hoa rực rỡ bắn thẳng lên không trung từ nóc lâu đài.</li>
+                                <li>Bản nhạc nền hoành tráng được thu âm thực tế bởi một dàn nhạc giao hưởng 100 thành viên và dàn hợp xướng hùng hậu từ khắp nơi trên thế giới.</li>
+                            </ul>`,
+                            tips: `<ul>
+                                <li><strong>Giành chỗ ngồi hoàng kim:</strong> Đừng đợi đến sát giờ. Hãy mua sẵn hot dog/đùi gà tây lót dạ và đến khu vực hồ nước trung tâm trước lâu đài từ lúc 18:30 chiều. Trải một tấm áo khoác hoặc thảm nhựa nhỏ xí chỗ ngồi bệt ở khu vực sát rào chắn hàng đầu để có view trực diện đỉnh cao không bị che bởi đầu người phía trước.</li>
+                                <li><strong>Sẵn sàng máy móc:</strong> Ba Thạnh hãy chuyển camera Xiaomi 14 Ultra sang chế độ quay Video 4K 60fps góc rộng, chống rung quang học. Cảnh lâu đài nổ tung trong ánh sáng pháo hoa chắc chắn sẽ là video nghìn view trên Tiktok/Reels.</li>
+                                <li><strong>Giữ ấm cho bé:</strong> Lúc chờ show bắt đầu ở quảng trường trống trải, gió lùa rất lạnh. Mẹ Hà hãy mặc thêm một chiếc áo len mỏng và trùm mũ lông cho bé Tùng Văn để tránh bé trúng gió.</li>
+                            </ul>`,
+                            warnings: `<ul>
+                                <li><strong>Ô NHIỄM TIẾNG ỒN CHÁT CHÚA:</strong> Tiếng pháo hoa nổ đùng đùng rất gắt, súng phun lửa kêu khè khè cộng thêm hệ thống loa nhạc rền vang có thể khiến em bé 8 tháng tuổi thót tim và gào khóc hoảng loạn. Mẹ BẮT BUỘC phải chuẩn bị Nút bịt tai chống ồn chuyên dụng (Baby Earmuffs) hoặc ôm chặt bé úp mặt vào ngực, dùng hai bàn tay mẹ bịt tai bé suốt 20 phút show diễn.</li>
+                                <li><strong>Cơn lốc tan tầm (Stampede risk):</strong> Khi quả pháo hoa cuối cùng vừa nổ dứt, lập tức 5 vạn con người sẽ quay gót đồng loạt đổ xô chạy ào ạt ra cổng chính để tranh giành taxi và tàu điện ngầm. CỰC KỲ NGUY HIỂM. TUYỆT ĐỐI KHÔNG CHEN LẤN THEO. Hãy bình tĩnh nán lại mua sắm ở tiệm lưu niệm hoặc chụp ảnh thêm 30 phút để dòng người vơi đi, rồi mới ung dung đẩy xe tản bộ ra cổng gọi xe VIP về khách sạn.</li>
+                            </ul>`
                         }
                     }
                 ]
             },
             {
-                date: "Ngày 6 (Thứ Ba, 28/4)",
-                title: "Dự Viên, Bến Thượng Hải & Du thuyền",
+                date: "Ngày 5 (Thứ Sáu, 1/5)",
+                title: "Phim trường Tùng Giang & Đêm Lục Gia Thủy",
                 tasks: [
                     { 
-                        id: "d6-1", time: "Sáng", desc: "Khám phá Dự Viên (Yu Garden) & ngõ Miếu Thành Hoàng.", cn: "豫园 - 城隍庙", transport: "DiDi thả gần khu đi bộ.", note: "Phố cổ ăn vặt Giang Nam.",
+                        id: "d5-1", time: "10:00 - 12:00", desc: "Dậy muộn, giãn cơ, ăn uống thong thả.", cn: "上海市区", transport: "Đi bộ quanh KS Fish Inn.", note: "Hồi phục sau ngày cày ải Disneyland.",
                         details: {
-                            trivia: "Dự Viên được một viên quan triều Minh xây dựng ròng rã 18 năm để báo hiếu phụ mẫu an hưởng tuổi già.",
-                            tips: "Mua và hút Tiểu Long Bao bằng ống hút. Tranh thủ đi lúc sáng sớm vì trưa là đặc nghẹt.",
-                            warnings: "Khu cầu 9 Khúc trứ danh TẮC ĐƯỜNG do khách chụp selfie. Tuyệt đối BẾ BÉ qua thay vì đẩy xe cố chen lấn."
+                            tips: `<ul>
+                                <li>Trải qua hơn 25,000 bước chân vắt kiệt sức ở Disneyland hôm qua, sáng nay gia đình KHÔNG CẦN đặt báo thức. Hãy đóng rèm cản sáng, tắt điện thoại để cả nhà ngủ nướng thật say giấc đến 9h30 sáng bù đắp lại thể lực.</li>
+                                <li>Ba Thạnh có thể xuống phố đi bộ dọc Bến Thượng Hải mua đồ ăn sáng: vài lồng tiểu long bao (xiao long bao) nóng hổi, xôi cuộn mặn (ci fan tuan) và sữa đậu nành mang về tận giường cho mẹ Hà và dỗ bé ăn dặm.</li>
+                                <li>Đây là thời gian "logistics" vàng: Mẹ Hà rảnh tay giặt phơi quần áo dơ của Tùng Văn, ba Thạnh gom sạc lại toàn bộ pin máy ảnh, pin dự phòng, chép file thẻ nhớ, và sắp xếp lại vali đồ đạc cho gọn gàng.</li>
+                            </ul>`
                         }
                     },
                     { 
-                        id: "d6-2", time: "Chiều", desc: "Ngắm tháp Đông Phương qua Bến Thượng Hải (The Bund).", cn: "外滩 (The Bund)", transport: "DiDi nội ô.", note: "Chụp ảnh hoàng hôn tuyệt đỉnh.",
+                        id: "d5-2", time: "12:30 - 17:00", desc: "Phim trường Thượng Hải (Xem show 13h30).", cn: "上海影视乐园", transport: "DiDi (mất khoảng 45 phút - Ngoại ô).", note: "Hoài niệm khung cảnh Tân Dòng Sông Ly Biệt.",
                         details: {
-                            trivia: "Mệnh danh là 'Bảo tàng kiến trúc vạn quốc', Bến Thượng Hải gìn giữ trọn vẹn các tòa nhà tài chính Âu Châu thập niên 1920s.",
-                            tips: "Đi dạo men theo bờ sông là trải nghiệm miễn phí đỉnh nhất. Đường rộng, xe đẩy mượt mà.",
-                            warnings: "Sức gió ở Bến Thượng Hải luôn giật RẤT MẠNH từ sông vào. Nhớ mặc áo phao gió, che trùm kĩ cho bé."
+                            trivia: `<ul>
+                                <li>Shanghai Film Park (Phim trường Chedun - Xa Đôn) là đại bản doanh quay bối cảnh thực tế của vô số bộ phim dân quốc kinh điển gối đầu giường thế hệ 8x-9x: Tân Dòng Sông Ly Biệt (Triệu Vy), Sắc Giới (Lương Triều Vỹ), Cẩm Tú Duyên, Tuyệt Đỉnh Kungfu.</li>
+                                <li>Nơi đây tái hiện hoàn hảo tỷ lệ 1:1 con đường Nam Kinh (Nanjing Road) phồn hoa của Thượng Hải thập niên 1930 với những biển hiệu đèn neon chữ phồn thể rực rỡ, xe kéo tay và dãy nhà cửa kiến trúc Âu Châu Art Deco.</li>
+                                <li>Phim trường sở hữu một cây cầu sắt (Ngoại Bạch Độ) phiên bản copy để quay các cảnh hành động đụng xe, nhảy cầu lãng mạn.</li>
+                                <li>Bên trong xưởng phim có cả nhà kho chứa hàng ngàn đạo cụ đồ cổ thật gom góp lại: từ xe hơi Ford cổ, máy chữ, tủ gỗ khắc, đến máy hát đĩa quay tay.</li>
+                            </ul>`,
+                            tips: `<ul>
+                                <li><strong>Bắt buộc canh giờ xem show:</strong> Dù dạo phố chụp ảnh có vui đến đâu, bắt buộc phải canh có mặt đúng 13:30 tại khán đài để xem màn trình diễn đóng thế hành động (Stunt Show). Xem diễn viên bắn súng, rượt đuổi bằng xe hơi và đu dây điện rơi từ lầu cao mang đậm phong cách anh hùng bến Thượng Hải cực kỳ mãn nhãn và khét lẹt mùi thuốc súng.</li>
+                                <li><strong>Trải nghiệm Tàu điện leng keng:</strong> Tranh thủ lên ngồi chuyến xe điện cổ có đường ray (Tram) màu xanh rêu chạy dọc phố Nam Kinh giả lập. Tùng Văn chắc chắn sẽ mở to mắt tò mò nhìn cảnh vật bảng hiệu lướt qua khung cửa sổ gỗ.</li>
+                                <li><strong>Studio nhiếp ảnh vô cực:</strong> Đây là sàn diễn tuyệt vời nhất để chụp ảnh concept dân quốc. Mẹ Hà có thể thuê một bộ sườn xám lụa (Qipao) hoặc âu phục cổ ngay tại cổng. Ba Thạnh dùng máy Fuji với lens khẩu lớn đánh mờ phông nền phố xá, tạo ra những shot hình hoài cổ mang phong cách Vương Gia Vệ.</li>
+                            </ul>`,
+                            warnings: `<ul>
+                                <li><strong>Khoảng cách đi lại xa:</strong> Phim trường nằm tít ở ngoại ô quận Tùng Giang (Songjiang), cách khá xa trung tâm (hơn 40km). Cả chiều đi và về hãy gọi xe DiDi Premium để có không gian rộng rãi, em bé có thể nằm ngửa không bị say xe.</li>
+                                <li><strong>Cảnh báo mặt đường rải sỏi:</strong> Một số khu vực quay bối cảnh ngoại ô/nông thôn tại đây được rải đá dăm/sỏi cục lồi lõm chân voi. Xe nôi bánh nhỏ đẩy vào đây sẽ bị kẹt bánh không tiến lên nổi. Gặp đoạn này, ba mẹ hãy bế bé lên tay và chịu khó vác xe đẩy vượt qua.</li>
+                                <li><strong>Bụi mù mịt và thiếu bóng râm:</strong> Quảng trường chính quay phim rất trống trải, nắng gắt và đôi khi có xe đạo cụ chạy hất tung cát bụi mịt mù. Nhớ che rèm xe đẩy, đội mũ rộng vành và bôi kem chống nắng kỹ cho bé Ủn.</li>
+                            </ul>`
                         }
                     },
                     { 
-                        id: "d6-3", time: "Tối", desc: "Ăn tối và Du thuyền ngắm đêm sông Hoàng Phố.", cn: "黄浦江游船", transport: "Đi bộ từ Bến.", note: "Nhớ mua vé du thuyền trên app trước.",
+                        id: "d5-3", time: "18:00 - 21:00", desc: "Ăn tối IFC Mall/Bến Thượng Hải ngắm Tháp Đông Phương.", cn: "陆家嘴 - IFC国金中心", transport: "DiDi về lại trung tâm.", note: "Thiên đường Nursery Room cho em bé.",
                         details: {
-                            trivia: "Cảnh ban đêm thắp đèn LED rực rỡ khiến Thượng Hải có biệt danh là 'Ma Đô' (thành bang phép thuật ảo diệu).",
-                            tips: "Nếu chưa tới giờ lên thuyền hãy trú tạm ở IFC Mall cực gần đó, có phòng vắt sữa thay tã VIP.",
-                            warnings: "Boong tàu hở trơn trượt lúc khách nhao nhao chụp ảnh, giữ bé ngồi bọc bên trong khoang kính để an toàn."
+                            trivia: `<ul>
+                                <li>Khu Lục Gia Thủy (Lujiazui) ở quận Phố Đông chỉ 30 năm trước còn là những đầm lầy vắng lặng và ruộng rau nghèo nàn, nay đã lột xác thành trung tâm tài chính ngoạn mục bậc nhất thế giới mang hình hài của bộ phim viễn tưởng Cyberpunk.</li>
+                                <li>Tháp truyền hình Minh Châu Phương Đông (Oriental Pearl) nổi bật với 11 quả cầu thép titan sơn hồng lấp lánh đan xen, thiết kế lấy cảm hứng từ câu thơ cổ tuyệt đẹp "Hạt châu lớn, hạt châu nhỏ rớt trên mâm ngọc".</li>
+                                <li>Thượng Hải Tower đứng sừng sững bên cạnh là tòa nhà cao thứ 2 trên toàn thế giới (632m) với thiết kế xoắn ốc tinh tế làm chệch hướng sức gió bão độc đáo.</li>
+                                <li>IFC Mall - nơi gia đình ăn tối - là một trong những trung tâm thương mại bán lẻ hàng xa xỉ phẩm có doanh thu và tỷ suất lợi nhuận cao nhất toàn lãnh thổ Trung Quốc Đại lục.</li>
+                            </ul>`,
+                            tips: `<ul>
+                                <li><strong>Chốt bàn nhà hàng view đỉnh:</strong> Hãy bấm thang máy lên tầng cao của IFC Mall hoặc Super Brand Mall, bước vào nhà hàng và dặn lễ tân xếp "Window Seat" (Ghế sát lồng kính). Gia đình có thể vừa thái bít tết hoặc thưởng thức món ăn fusion, vừa nhìn bao quát dòng sông Hoàng Phố lấp lánh tàu thuyền và các tòa tháp lên đèn ma thuật cực kỳ sang chảnh.</li>
+                                <li><strong>Dịch vụ chăm sóc bé 6 sao:</strong> TTTM IFC Mall trang bị hệ thống phòng vệ sinh, thay bỉm (Nursery/Mother's Room) chuẩn thượng lưu VIP. Tại đây có máy lọc nước ấm chuẩn nhiệt độ pha sữa, ghế bành nhung bọc nỉ êm ái cho mẹ ngồi cho bú riêng tư, máy hâm sữa và xà phòng hữu cơ dịu nhẹ an toàn cho em bé. Hãy tận dụng dọn rửa sạch sẽ cho Ủn tại đây.</li>
+                                <li><strong>Bí kíp Chụp ảnh đêm:</strong> Đừng dùng máy ảnh to dễ bị rung tay. Ba Thạnh hãy rút điện thoại Xiaomi 14 Ultra bật chế độ "Night Mode", dùng ống kính góc siêu rộng (Ultra-wide) gập người hắt từ dưới lên trên. Chỉ góc này mới lấy trọn vẹn sự đồ sộ khổng lồ của cả cụm ba tòa tháp cao nhất Thượng Hải đứng cắm thẳng vào trời đêm.</li>
+                            </ul>`,
+                            warnings: `<ul>
+                                <li><strong>Nguy cơ tai nạn giao thông đi bộ:</strong> Đường xá ở Lục Gia Thủy cực kỳ khổng lồ, các vòng xuyến giao thông to bằng cả một cái sân vận động ô tô chạy vun vút. TUYỆT ĐỐI không liều mạng đẩy xe nôi băng qua đường vạch kẻ ngang. Bắt buộc phải sử dụng hệ thống Cầu vượt đi bộ trên cao hình tròn (Ring walkway) được thiết kế đặc biệt có thang máy (Elevator) để đẩy xe nôi qua đường an toàn và ngắm cảnh từ trên cao.</li>
+                                <li><strong>Cháy bàn giờ vàng ăn tối:</strong> Các nhà hàng có lồng kính view đẹp thường rơi vào trạng thái "kín bàn" (Fully booked) vào giờ ăn tối cuối tuần. Hãy nhờ nhân viên lễ tân của khách sạn Fish Inn gọi điện thoại tiếng Trung đặt chỗ (Reservation) giúp từ sáng hôm trước để tránh cảnh bồng bế con đến nơi đứng xếp hàng 1 tiếng ngoài cửa.</li>
+                            </ul>`
                         }
                     }
                 ]
             },
             {
-                date: "Ngày 7 (Thứ Tư, 29/4)",
-                title: "Thượng Hải 🚄 Tô Châu (Về trong ngày)",
+                date: "Ngày 6 (Thứ Bảy, 2/5)",
+                title: "Tiệc Cung Yến & Lãng mạn Tô Giới Pháp",
                 tasks: [
                     { 
-                        id: "d7-1", time: "Sáng", desc: "Tàu cao tốc tới Tô Châu. Xem Bảo tàng Tô Châu & Chuyết Chính Viên.", cn: "苏州站 - 拙政园/苏州博物馆", transport: "Tàu cao tốc (30p) & DiDi.", note: "Chuyết Chính vương là viên ngọc Giang Nam.",
+                        id: "d6-1", time: "11:30 - 14:00", desc: "Thưởng thức Tiệc Cung Yến Thượng Lưu.", cn: "高级宫廷宴", transport: "DiDi.", note: "Thưởng thức ẩm thực tiến Vua.",
                         details: {
-                            trivia: "Bảo tàng Tô Châu là di sản kiệt tác cuối đời của KTS đại tài I.M.Pei (chủ nhân Kim tự tháp kính bảo tàng Louvre).",
-                            tips: "Góc sân vườn hồ nước cắt hình đỉnh núi hòn non bộ là góc check-in nổi nhất TQ.",
-                            warnings: "BẢO TÀNG bắt buộc phải đặt giờ trên Mini-app WeChat trước 7 ngày, KHÔNG CÓ vé bán trực tiếp tại cổng!"
+                            trivia: `<ul>
+                                <li>Ẩm thực cung đình được dày công phục dựng dựa trên các cuộn giấy thực đơn bí truyền của Ngự Thiện Phòng triều Thanh, đặc trưng bởi sự thanh đạm, tỉ mỉ nhặt cặn và sử dụng nguyên liệu cực kỳ đắt đỏ quý hiếm.</li>
+                                <li>Nhiều món ăn có tên gọi hoa mỹ mang ý nghĩa trường thọ, cát tường (ví dụ: Phật nhảy tường, Bát trân nghênh phúc, Đậu phụ vạn thọ).</li>
+                                <li>Sự xa xỉ thể hiện qua bộ bát đĩa phục vụ: Thường là đồ gốm sứ Cảnh Đức Trấn làm thủ công, viền vàng hoặc men ngọc bích mỏng tang, nắp đậy mô phỏng hình dạng nụ hoa sen rực rỡ.</li>
+                                <li>Trải nghiệm thường đi kèm với việc nhân viên phục vụ nữ mặc trang phục cung đình (áo cờ đuôi nhạn, đi giày móng ngựa) hoặc thái giám thời xưa cung kính đứng châm rượu phục thị từng bàn.</li>
+                            </ul>`,
+                            tips: `<ul>
+                                <li><strong>Thực đơn ăn dặm thượng hạng cho bé:</strong> Đặc thù các món ăn cung đình đa phần được ninh hầm nhừ nhuyễn tơi tả (như canh gà ác tiềm đông trùng hạ thảo, tổ yến sào, cá chưng tương xì). Đây là nguồn dinh dưỡng tuyệt hảo, cực kỳ mềm, nóng ấm, mẹ Hà có thể nghiền nát đút cho bé Tùng Văn ăn dặm cùng ba mẹ mà không sợ bị hóc.</li>
+                                <li><strong>Thưởng ngoạn không gian phòng riêng:</strong> Không gian nhà hàng cung yến thường trải thảm nhung đỏ, treo đèn lồng lụa và có nhạc công gảy đàn tranh tỳ bà. Hãy lịch sự yêu cầu đặt một phòng riêng (Baojian / Private Room) để gia đình có không gian riêng tư. Nếu bé Ủn có khóc ré hoặc thay bỉm khẩn cấp cũng không làm phiền, ngượng ngùng với các thực khách sang trọng khác ở sảnh ngoài.</li>
+                            </ul>`,
+                            warnings: `<ul>
+                                <li><strong>Khói hương liệu kích ứng:</strong> Một số nhà hàng cung đình rất chuộng đốt trầm hương nguyên chất hoặc nhang trầm trong phòng để tăng tính cổ kính, phong thủy. Làn khói này có thể xộc thẳng vào mũi gây hắt hơi, đỏ mắt hoặc kích ứng hệ hô hấp non nớt của trẻ nhỏ. Nhớ dặn bồi bàn dập tắt hết lư hương trong phòng trước khi bế em bé bước vào.</li>
+                            </ul>`
                         }
                     },
                     { 
-                        id: "d7-2", time: "Trưa/Chiều", desc: "Phố cổ Bình Giang, đi thuyền mộc chèo tay qua cầu đá.", cn: "平江路", transport: "Đi bộ từ Chuyết Chính Viên sang.", note: "Bóng liễu rủ rất đẹp hai bên cầu.",
+                        id: "d6-2", time: "15:00 - 18:00", desc: "Thư giãn lãng mạn tại Tô Giới Pháp (Đường Vũ Khang).", cn: "法租界 - 武康路", transport: "DiDi thả đầu phố.", note: "Uống cafe, đẩy xe nôi dưới tán cây Ngô Đồng.",
                         details: {
-                            trivia: "Bình Giang Lộ là nguyên mẫu cổ trang chuẩn chỉ bậc nhất Tô Châu với cảnh 'Cây cầu nhỏ, Dưới dòng nước, Quanh nếp nhà'.",
-                            tips: "Book 1 chuyến đò gỗ có người chèo tay ngân nga bài hát Côn Khúc, gió thu hồ thổi mát rượi giúp bé ngủ ngoan.",
-                            warnings: "Tuyệt đối không để em bé đứng lên trong đò. Dọc bờ kênh cũng KHÔNG CÓ RÀO CHẮN an toàn."
-                        }
-                    },
-                    { 
-                        id: "d7-3", time: "Tối", desc: "Sơn Đường phố ăn Cá, bắt tàu cao tốc về lại Thượng Hải.", cn: "山塘街 - 晚列车回上海", transport: "DiDi sang ga. Tàu về.", note: "Trấn Sơn Đường thắp đèn cực ảo.",
-                        details: {
-                            trivia: "Bạch Cư Dị đã khơi thông dòng sông cổ và cho xây dựng khu phố lụa sầm uất kéo dài 7 dặm này.",
-                            tips: "Đặc sản 'Cá Tùng Thử' (Cá nêm chua ngọt chẻ cánh bông), chua chua ngọt ngọt không xương dễ cho bé ăn.",
-                            warnings: "Khi lên đèn lồng phố kẹt đặc người không nhúc nhích nổi. Giải pháp bỉm sữa 5 sao: Ăn xong lúc 6:30 tối và gọi taxi ra Ga ngay lập tức!"
+                            trivia: `<ul>
+                                <li>Tô Giới Pháp (French Concession) từng là vùng đất nhượng địa do chính phủ thực dân Pháp độc quyền quản lý suốt hàng chục năm, để lại một di sản kiến trúc dinh thự châu Âu đặc quánh giữa lòng Thượng Hải phồn hoa.</li>
+                                <li>Tòa nhà Wukang Mansion (Vũ Khang Đại Lâu) nằm ở ngã tư là biểu tượng nhiếp ảnh số 1 tại đây. Nó mang hình dáng mũi một con tàu thủy khổng lồ đang rẽ sóng lướt đi, do kiến trúc sư thiên tài người Hungary Laszlo Hudec thiết kế năm 1924.</li>
+                                <li>Hàng cây cổ thụ khổng lồ rợp bóng đan xen vào nhau hai bên đường được gọi là cây Ngô Đồng Pháp (Plane Trees). Giống cây này được mang từ châu Âu sang trồng từ thế kỷ 19, biến con đường thành một mái vòm hầm lá xanh mướt mát rượi vào mùa hè.</li>
+                                <li>Khu vực này không có nhà cao tầng, hiện là tổ hợp phong cách sống (Lifestyle) sầm uất nhất với các quán cà phê Specialty (đặc sản), tiệm bánh ngọt Pháp Artisan, và các boutique thời trang độc bản Vintage.</li>
+                            </ul>`,
+                            tips: `<ul>
+                                <li><strong>Thời điểm vàng thả bộ:</strong> Buổi chiều tà lúc 4-5h, ánh nắng xiên rọi lấp lánh qua từng kẽ lá Ngô Đồng rớt xuống đường là lúc khung cảnh lãng mạn nhất. Vỉa hè khu vực này được lát gạch phẳng lì êm ru, vô cùng lý tưởng để đẩy xe nôi ru bé ngủ.</li>
+                                <li><strong>Trú ẩn thư giãn ở quán Cafe:</strong> Ba mẹ hãy tấp vào chọn một quán cà phê có khoảng sân vườn ngoài trời cực "chill" (như % Arabica chi nhánh Vũ Khang hay RAC Bar). Gọi hai ly Latte nóng hổi và một chiếc bánh Croissant bơ thơm lừng, thong thả ngồi trò chuyện, lướt web trong khi Tùng Văn đang say giấc trên xe nôi đỗ bên cạnh trong bóng râm mát.</li>
+                                <li><strong>Tác nghiệp Street Style:</strong> Khu vực này có vibe "rất Tây" như đang ở Paris. Ba Thạnh hãy lùi ra xa, dùng ống kính tele (zoom quang học) chụp lén (candid) bắt lấy những khoảnh khắc tự nhiên hai mẹ con đang dạo bước trên phố mang đậm chất tạp chí thời trang (Street style).</li>
+                            </ul>`,
+                            warnings: `<ul>
+                                <li><strong>SÁT THỦ ĐƯỜNG PHỐ - XE ĐIỆN "NINJA":</strong> Xe máy điện giao hàng (Waimai) và xe đạp công cộng ở Thượng Hải di chuyển với tốc độ bàn thờ nhưng hoàn toàn KHÔNG PHÁT RA TIẾNG ĐỘNG ĐỘNG CƠ. Rất nhiều xe thường xuyên lạng lách leo thẳng lên vỉa hè người đi bộ để giành đường. Ba mẹ phải cực kỳ cảnh giác thần kinh, luôn ngoái nhìn phía sau và hai bên trước khi muốn rẽ hướng lách xe đẩy sang ngang. Đi sát mép tường nhất có thể.</li>
+                                <li><strong>Hiểm họa tại ngã tư chụp ảnh:</strong> Tại ngã tư mũi tàu tòa nhà Wukang, luôn có hàng trăm du khách tràn hẳn xuống lòng đường xe đang chạy để tìm góc chụp hình sống ảo với tòa nhà. Tình trạng giao thông chỗ này cực kỳ kẹt cứng và hỗn loạn. Tuyệt đối giữ chặt xe đẩy trên vỉa hè và không hùa theo đám đông đứng ngớ ngẩn giữa đường gây nguy hiểm tính mạng cho cả nhà.</li>
+                            </ul>`
                         }
                     }
                 ]
             },
             {
-                date: "Ngày 8 (Thứ Năm, 30/4)",
-                title: "Thượng Hải 🚄 Hàng Châu",
+                date: "Ngày 7 (Chủ Nhật, 3/5)",
+                title: "Tuyết Trắng & Du Thuyền Xuyên Đêm",
                 tasks: [
                     { 
-                        id: "d8-1", time: "Sáng", desc: "Lên tháp truyền hình Đông Phương Minh Châu.", cn: "东方明珠", transport: "DiDi nội ô.", note: "Đài quan sát tháp kính.",
+                        id: "d7-1", time: "09:00 - 14:00", desc: "Yaoxue Snow World (Trượt tuyết trong nhà).", cn: "耀雪冰雪世界", transport: "DiDi ra quận Lâm Cảng (Lin-gang).", note: "Lạnh âm độ, chuẩn bị áo phao bọc xe nôi.",
                         details: {
-                            trivia: "Tháp có cấu trúc 11 quả cầu thép theo thiết kế hạt minh châu rớt trên bàn ngọc lấy từ thơ cổ.",
-                            tips: "Đài quan sát bằng sàn kính trong suốt lơ lửng trên không rất dọa tim. Chơi sớm trước khi đi trả phòng khách sạn.",
-                            warnings: "Trẻ nếu hoảng sợ độ cao mẹ nên dặn bé nhìn thẳng về phía trước thay vì nhìn xuyên sàn kính."
+                            trivia: `<ul>
+                                <li>Yaoxue Snow World (Thế giới băng tuyết Diệu Tuyết) vừa khánh thành và ngay lập tức xô đổ kỷ lục của Ski Dubai để trở thành khu trượt tuyết trong nhà lớn nhất thế giới, rộng tới hơn 90,000 mét vuông.</li>
+                                <li>Nơi đây sở hữu 3 dốc trượt khổng lồ độ khó khác nhau (dốc cao nhất rơi thẳng đứng rất ngoạn mục), cùng hệ thống cáp treo đưa người chơi lên đỉnh dốc y hệt như đang ở một khu resort núi tuyết Alps ngoài trời.</li>
+                                <li>Hệ thống làm lạnh đỉnh cao tạo ra hàng tấn tuyết tươi xốp mịn phun mỗi ngày, mô phỏng hoàn hảo môi trường tự nhiên, không bị vón cục đóng băng cứng ngắc như các sân trượt băng truyền thống cũ.</li>
+                                <li>Bên cạnh khu trượt chuyên nghiệp (Ski/Snowboard) là nguyên một công viên chủ đề tuyết (Snow Play) riêng biệt với lâu đài băng nghệ thuật, tàu hỏa chạy trên tuyết, và đường ống trượt phao khổng lồ giải trí cho gia đình.</li>
+                            </ul>`,
+                            tips: `<ul>
+                                <li><strong>Phân công vui chơi triệt để:</strong> Ba Thạnh (dân thể thao/tập CrossFit cơ bắp dồi dào) hãy bỏ em bé lại cho mẹ, thuê riêng một tấm ván trượt (Snowboard) và thử sức leo lên dốc trượt chuyên nghiệp thoả đam mê mạo hiểm vỡ òa adrenaline.</li>
+                                <li><strong>Góc trú ẩn an toàn của mẹ và bé:</strong> Trẻ nhỏ không được tham gia trượt dốc rủi ro cao. Mẹ Hà và Ủn hãy mua vé ở khu "Snow Play" (Vui chơi trên tuyết) để nghịch tuyết đắp người tuyết. Khi quá lạnh, hai mẹ con lùi về khu vực nhà hàng dịch vụ có vách lồng kính sưởi ấm, uống một ly chocolate nóng hổi, cầm điện thoại quay video cảnh ba Thạnh lao dốc biểu diễn qua lớp cửa kính.</li>
+                                <li><strong>Thuê trang phục toàn tập:</strong> Đừng nhồi nhét mang vali đồ đông nặng nề từ Việt Nam sang làm gì cho khổ. Ở đây bao trọn gói dịch vụ cho thuê sạch sẽ từ A-Z: quần áo trượt tuyết dày cộp, găng tay giữ nhiệt, kính bọc mắt, ván trượt và mũ bảo hiểm đủ mọi size.</li>
+                            </ul>`,
+                            warnings: `<ul>
+                                <li><strong>Khoảng cách địa lý cản trở:</strong> Quần thể băng tuyết này nằm tuốt ở khu đô thị vệ tinh mới Lâm Cảng (Lin-gang) sát biển, cách trung tâm Thượng Hải tới hơn 1.5 đến 2 tiếng đi xe taxi rã rời. Hãy khởi hành thật sớm và dự trù trước thời gian di chuyển kẹt xe để không lỡ các lịch trình buổi chiều.</li>
+                                <li><strong>CẢNH BÁO SỐC NHIỆT VIÊM PHỔI CHO TRẺ:</strong> Từ mùa xuân đang ấm áp trên 20 độ ngoài trời bước đột ngột vào môi trường âm độ (-5 độ C) bên trong, cơ thể em bé 8 tháng tuổi rất dễ bị sốc nhiệt ngưng thở, viêm phổi cấp. Bắt buộc trước khi bước qua cửa từ, mẹ phải mặc đồ cho bé theo nguyên tắc "Củ Hành" (Onion layering): nhiều lớp áo cotton mỏng giữ nhiệt bên trong, ngoài cùng bọc một chiếc áo phao gió trùm kín đầu chống ngấm nước.</li>
+                                <li><strong>Tổn thương võng mạc (Snow Blindness):</strong> Tuyết trắng diện tích lớn bên trong phản chiếu hắt lại ánh sáng đèn mổ LED trên trần rất mạnh và chói lóa. Hãy chuẩn bị từ nhà một chiếc kính râm dẻo nhỏ nhắn xinh xắn ôm sát mặt dành riêng cho em bé sơ sinh để bảo vệ võng mạc bé không bị tổn thương.</li>
+                            </ul>`
                         }
                     },
                     { 
-                        id: "d8-2", time: "Chiều", desc: "Tàu cao tốc chạy thẳng xuống Hàng Châu. Nhận phòng Ks Hàng Châu.", cn: "上海虹桥站 ➡️ 杭州东站", transport: "Tàu cao tốc ngắn 1 tiếng.", note: "Bé dễ dàng ngủ trên ghế.",
+                        id: "d7-2", time: "15:30 - 18:00", desc: "Mua sắm Phố đi bộ Nam Kinh (Nanjing Road).", cn: "南京东路", transport: "DiDi từ Lâm Cảng về.", note: "Đại lộ mua sắm sầm uất nhất Thượng Hải.",
                         details: {
-                            trivia: "Thượng Hải và Hàng Châu giáp ranh kết nối bằng vùng kinh tế Giang Nam rất khăng khít.",
-                            tips: "Chuyển cứ điểm base đi tàu chặng cực ngắn rất nhàn hạ. Hãy chỉ xách sẵn 1 tui bỉm sữa nhẹ bên mình.",
-                            warnings: "Khi chuyển Base hành lý sẽ cồng kềnh gấp đôi, bắt DiDi Premium loại 6 chỗ có khoang gầm bự nhét xe đẩy bé cho tiện."
+                            trivia: `<ul>
+                                <li>Đường Đông Nam Kinh là đại lộ mua sắm danh giá, lâu đời và nhộn nhịp bậc nhất Trung Quốc, có lưu lượng khách bộ hành khổng lồ, thường được ví như "Quảng trường Thời Đại (Times Square) của phương Đông".</li>
+                                <li>Tuyến phố đi bộ trải dài 5.5 km từ trung tâm ra tận mép bờ sông Hoàng Phố, quy tụ hai bên đường là hơn 600 cửa hàng, từ các thương hiệu thời trang bình dân "fast-fashion" đến các đại lộ siêu xa xỉ phẩm.</li>
+                                <li>Nơi đây tự hào sở hữu những cửa hàng định dạng khổng lồ (Flagship store) lớn nhất châu Á như: Cửa hàng Apple Store bằng khối kính trụ lấp lánh khổng lồ, Starbucks Reserve Roastery đẳng cấp, và chuỗi cửa hàng kẹo M&M's World 2 tầng cực kỳ sặc sỡ mùi socola thơm lừng.</li>
+                            </ul>`,
+                            tips: `<ul>
+                                <li><strong>Giải tỏa đôi chân bằng Tàu hỏa:</strong> Nếu chân ba mẹ đã rã rời nhức mỏi sau nửa ngày chơi tuyết, hãy bỏ ra vài tệ mua vé nhảy lên chiếc Xe điện leng keng (Mini Sightseeing Train) mui trần chở khách chạy tà tà dọc suốt chiều dài con phố. Em bé Ủn sẽ rất khoái chí thích thú ngồi ngắm cảnh vì xe có phát âm thanh và trang trí sặc sỡ rực rỡ.</li>
+                                <li><strong>Gom Đặc sản làm quà:</strong> Ghé vào các cửa hàng bách hóa thực phẩm Thượng Hải truyền thống bằng gỗ (Thái Khang, Đệ Nhất Thực Phẩm) để mua hạt dẻ nướng nóng hổi, thịt sấy khô, và bánh kẹo hạt đóng gói trong bao bì nhung lụa đậm chất Trung Hoa rất đẹp mắt về biếu gia đình ở nhà.</li>
+                                <li><strong>Thời trang trẻ em ngoại cỡ:</strong> Dạo qua các flagship store nhiều tầng của Zara, H&M, Uniqlo tại đại lộ này. Khu vực quần áo trẻ sơ sinh (Baby collection) thường rất rộng, đầy đủ mẫu mã mùa đông/mùa hè đa dạng mà thị trường Việt Nam không bao giờ nhập về. Đừng bỏ lỡ cơ hội mua quần áo đẹp cho Tùng Văn.</li>
+                            </ul>`,
+                            warnings: `<ul>
+                                <li><strong>Mật độ dòng người cuồn cuộn:</strong> Lượng người qua lại dạo chơi ở phố Nam Kinh là ĐẶC NGHẸT NHƯ CHẢY HỘI, đặc biệt vào giờ tan tầm chập tối lên đèn. Tuyệt đối không thả em bé xuống để tự chập chững bước đi trên đường vì dễ bị người khác vô tình đá trúng.</li>
+                                <li><strong>Luôn khóa phanh xe đẩy:</strong> Đường rất đông và thỉnh thoảng có xe điện tuần tra lách qua. Bắt buộc phải khóa cứng bánh xe đẩy (bật chốt phanh) mỗi khi ba mẹ dừng lại ngắm đồ trong tủ kính để xe không bị trôi do dốc lề đường hoặc do người vội vã quẹt trúng.</li>
+                                <li><strong>Nạn móc túi tinh vi:</strong> Khu vực đông nghẹt lộn xộn xen lẫn khách du lịch thập phương và dân địa phương là thiên đường của kẻ gian. Ba mẹ nhớ nhắc nhau đeo balo xách tay chéo hoặc ôm chặt túi xách ra phía trước ngực để phòng chống móc túi lấy mất hộ chiếu/ví tiền.</li>
+                            </ul>`
                         }
                     },
                     { 
-                        id: "d8-3", time: "Tối", desc: "Xem trình diễn tòa nhà ánh sáng khu Tiền Giang Mới.", cn: "钱江新城灯光秀", transport: "DiDi tới Raffles City.", note: "Khu đô thị văn minh, sạch sẽ.",
+                        id: "d7-3", time: "19:00 - 21:00", desc: "Lên Du thuyền ngắm cảnh sông Hoàng Phố.", cn: "黄浦江游船", transport: "Đi bộ từ cuối phố Nam Kinh ra bến tàu.", note: "Gió sông lồng lộng, nhớ mặc áo ấm.",
                         details: {
-                            trivia: "Được xây chuẩn siêu thực G20, hàng dãy các cao ốc phát sáng đồng loạt hắt bóng xuống sông Tiền Đường cuồn cuộn.",
-                            tips: "Khu vực 'Ban công thành phố' rộng như Sân bóng đá, tha hồ thả bé xuống tập đi và gió siêu lộng mát rượi.",
-                            warnings: "Hãy nhờ lễ tân KS gọi điện hỏi trước xem Tối nay có chiếu đèn hay không phòng bị cúp điện tiết kiệm ngân sách."
+                            trivia: `<ul>
+                                <li>Sông Hoàng Phố uốn lượn chính là ranh giới tự nhiên chia cắt Thượng Hải thành hai mảng đối lập: Phố Tây (Puxi - khu Bến Thượng Hải giữ gìn kiến trúc châu Âu cổ) và Phố Đông (Pudong - khu Lục Gia Thủy rừng chọc trời hiện đại).</li>
+                                <li>Chuyến du thuyền đêm sẽ mang lại góc nhìn Panorama ngoạn mục ôm trọn cả quá khứ và tương lai: Một bên là các dinh thự ngân hàng đá hoa cương trầm mặc soi bóng lịch sử, một bên là Rừng tháp kính chớp nháy đèn LED viễn tưởng phô trương sức mạnh.</li>
+                                <li>Vào ban đêm, quy định nghiêm ngặt của chính quyền thành phố yêu cầu mọi tòa nhà hai bên bờ sông phải đồng loạt bật hệ thống thắp sáng từ 7h tối, biến Thượng Hải thành một kinh đô ánh sáng hào nhoáng đúng nghĩa (được người Hoa ví von là Ma Đô - thành phố ma thuật).</li>
+                            </ul>`,
+                            tips: `<ul>
+                                <li><strong>Thủ thuật Mua vé trước không xếp hàng:</strong> Tuyệt đối không đến bến mới mua vé giấy. Hãy Mua vé mã QR trên ứng dụng WeChat/Trip.com/Klook từ trước và đến bến tàu sớm 30 phút. Quét mã QR đi thẳng qua cổng soát vé để tránh thảm cảnh rồng rắn xếp hàng 1 tiếng ngoài gió rét chỉ để đợi in vé giấy.</li>
+                                <li><strong>Góc máy ăn tiền nhất:</strong> Vị trí ngắm cảnh và chụp hình đỉnh nhất trên boong tàu là khu vực mũi tàu bên mạn phải (Starboard). Khi tàu rời bến quay đầu lướt ngang qua trực diện Tháp Đông Phương Minh Châu và Tháp Thượng Hải khổng lồ lấp lánh, hãy canh góc rộng và tranh thủ bấm máy liền tay.</li>
+                            </ul>`,
+                            warnings: `<ul>
+                                <li><strong>Hiểm họa trơn trượt trên boong tàu:</strong> Sàn boong tàu (deck) lộ thiên buổi tối chạy trên sông hay đọng hơi sương nước bề mặt rất trơn trượt. Cộng thêm việc hàng trăm khách du lịch thường xuyên xô đẩy, nhao nhao chạy từ bên này sang mạn bên kia để tranh góc chụp ảnh. Ba Thạnh khi ôm con tuyệt đối không đứng sát lan can lưới thép của tàu để đề phòng bị xô ngã nhoài.</li>
+                                <li><strong>Gió giật kinh hồn bạt vía:</strong> Sức gió tạt trên mặt sông trống trải buổi tối thường mạnh gấp 3-4 lần đất liền. Gió rít qua các khe hở áo mang theo hơi nước rất buốt thấu xương. Lời khuyên chân thành là: Hãy để mẹ Hà và bé Ủn ngồi chơi êm ấm bên trong khoang kính (indoor cabin) sang trọng của tàu, chỉ có ba Thạnh nai nịt gọn gàng vác máy ảnh ra ngoài boong lộng gió quay video cảnh vật 15 phút rồi chui vào lại.</li>
+                            </ul>`
                         }
                     }
                 ]
             },
             {
-                date: "Ngày 9 (Thứ Sáu, 1/5 - QUỐC KHÁNH TQ)",
-                title: "Tây Hồ rợp bóng liễu - Hàng Châu",
+                date: "Ngày 8 (Thứ Hai, 4/5)",
+                title: "TRẠM 3: HÀNG CHÂU - Tây Hồ mộng mơ",
                 tasks: [
                     { 
-                        id: "d9-1", time: "Sáng/Trưa", desc: "Đẩy xe tản bộ dọc cầu Đoạn Kiều - Tây Hồ. Thưởng thức Trà Long Tỉnh.", cn: "西湖风景名胜区", transport: "Taxi / DiDi.", note: "THẬN TRỌNG Đám đông nghỉ lễ 1/5!!!",
+                        id: "d8-1", time: "09:00 - 10:30", desc: "Tàu cao tốc chạy thẳng xuống Hàng Châu. Check-in Ashy Hotel.", cn: "上海虹桥站 ➡️ 杭州东站", transport: "Tàu cao tốc (Khoảng 1 tiếng).", note: "Chặng cực ngắn, nhàn nhã chuyển trạm.",
                         details: {
-                            trivia: "Tây Hồ là di sản quy hoạch đặc trưng triều đại phong kiến, hồ đẹp vì 'tứ mù' - 4 mùa chìm trong khói sương.",
-                            tips: "Thuê xuồng điện có mái che tự lái trên hồ Tây là cách hoàn hảo để cả gia đình tránh bị xô đẩy mệt mỏi.",
-                            warnings: "BÁO ĐỘNG ĐỎ KỲ NGHỈ LỄ QUỐC KHÁNH 1/5. TRUNG QUỐC NGHỈ DÀI NGÀY VÀ LƯỢNG NGƯỜI LÀ NGHẼN MẠCH. KHÔNG ĐƯỢC RỜI XE ĐẨY CON!"
+                            trivia: `<ul>
+                                <li>Người xưa Trung Hoa có một câu ngạn ngữ nổi tiếng lưu truyền ngàn đời: "Thượng hữu thiên đàng, hạ hữu Tô Hàng" (Ý nói: Trên trời có cõi thiên đàng, dưới đất có Tô Châu, Hàng Châu) để ca ngợi vẻ đẹp tuyệt mỹ, thanh bình, và giàu có bậc nhất của vùng đất Giang Nam này.</li>
+                                <li>Khoảng cách địa lý từ Thượng Hải đi Hàng Châu chỉ khoảng 170km, tàu viên đạn cao tốc xé gió băng qua những khu công nghiệp trù phú sầm uất nhất Trung Quốc chỉ trong cái chớp mắt (45-60 phút).</li>
+                                <li>Không chỉ nổi tiếng về trà và lụa, Hàng Châu ngày nay còn là đại bản doanh rễ sâu của tập đoàn công nghệ Alibaba khổng lồ (Jack Ma). Điều này khiến Hàng Châu trở thành "Thành phố không tiền mặt" (Cashless) phát triển tiên tiến nhất toàn cầu, mọi ngóc ngách từ chợ rau đến ăn xin đều dùng mã QR.</li>
+                            </ul>`,
+                            tips: `<ul>
+                                <li><strong>Chiến thuật Chuyển Base thần tốc:</strong> Chặng này cực ngắn. Mẹ Hà hoàn toàn nhàn nhã: chỉ cần xách một chiếc túi bỉm nhỏ bên người, vali lớn kéo lên xe cất lên giá hành lý rồi về ghế ngồi lướt điện thoại ngắm phong cảnh là tới nơi. Cứ để em bé ngủ vùi trên xe đẩy, không cần phải chuẩn bị bình nước sôi pha sữa lích kích lôi thôi như chặng dài Bắc Kinh.</li>
+                                <li><strong>Hào phóng gọi xe Premium:</strong> Khi tàu cập Ga Hàng Châu Đông (Hangzhou East), hành lý của gia đình lúc này (quần áo bẩn, đồ shopping mua từ Thượng Hải) chắc chắn đã phình to cồng kềnh hơn nhiều so với ngày đầu bay sang. Hãy dứt khoát bật DiDi gọi thẳng một chiếc xe Premium/Limo loại 6 chỗ VIP (thường là xe MPV Buick GL8 hoặc Maxus). Cốp sau sâu hoắm của xe sẽ nuốt trọn lọt thỏm cả chiếc xe đẩy bé chưa thèm gập và 3 cái vali to, lên xe ngồi khoanh chân nệm da sưởi ấm như ông chủ.</li>
+                            </ul>`,
+                            warnings: `<ul>
+                                <li><strong>Đề phòng thất lạc ở ga tàu khổng lồ:</strong> Các Ga tàu cao tốc ở Trung Quốc (nhất là ga lớn như Hàng Châu) xây to lớn và phức tạp như một sân bay quốc tế. Khi vừa bước xuống tàu ngập người, hãy kiểm đếm lại số lượng vali hành lý, đeo chặt đai ba lô, ôm sát em bé trước ngực rồi mới bắt đầu ngước nhìn biển báo đi tìm đường ra điểm đón Taxi (Taxi Stand / Ride Hailing Pick-up). TUYỆT ĐỐI không vừa đi vừa cúi gằm mặt mải miết nhìn điện thoại tìm tài xế DiDi kẻo lạc mất nhau.</li>
+                            </ul>`
                         }
                     },
                     { 
-                        id: "d9-2", time: "Chiều", desc: "Lảng tránh trung tâm, dắt cả nhà thư thái Trà Khu Long Tỉnh (Đồi Trà).", cn: "龙井村", transport: "DiDi (có thể tắc đường đèo).", note: "An yên, tránh bão dân số.",
+                        id: "d8-2", time: "14:00 - 17:30", desc: "Tản bộ dọc Tây Hồ rợp bóng liễu.", cn: "西湖风景名胜区", transport: "DiDi.", note: "Không gian thoáng đãng chìm trong sương mây.",
                         details: {
-                            trivia: "Trà Long Tỉnh mọc trên sườn đồi là cống phẩm hoàng gia. Mùi thơm như kẹo hoa sen xanh.",
-                            tips: "Lên đồi trà ngồi ghế mây húp nước trà, mua ít bánh trái dỗ e bé và bỏ thế giới ngày 1/5 bận rộn ngoài sau lưng.",
-                            warnings: "Khu đồi mấp mô, nhiều lúc xe đẩy phải vác vai, nhớ xịt thuốc chống muỗi organic cho Ủn."
+                            trivia: `<ul>
+                                <li>Tây Hồ là di sản văn hóa cảnh quan thế giới được UNESCO công nhận, là nguồn cảm hứng bất tận, cái nôi tuôn trào cho thi ca và hội họa phong thủy thủy mặc Trung Hoa ròng rã hàng ngàn năm qua.</li>
+                                <li>Vẻ đẹp của hồ được giới thi nhân miêu tả là hoàn hảo vì "Tứ Mù": Nghĩa là hồ đẹp ảo diệu nhất vào những ngày có sương mù, mưa mù mịt, tuyết mù rơi và khói mù che phủ mặt nước, tạo nên một bức tranh thủy mặc huyễn hoặc không thấy bờ.</li>
+                                <li>Khu vực này gắn liền chặt chẽ với truyền thuyết ma mị Thanh Xà Bạch Xà nổi tiếng (Tháp Lôi Phong - nơi hòa thượng Pháp Hải nhốt Bạch Nương Tử vẫn đứng sừng sững bên hồ rực rỡ lúc hoàng hôn).</li>
+                                <li>Đặc trưng nhận diện nhất của Tây Hồ là hai bờ đê ngập bóng hàng ngàn cây liễu rủ la đà mặt nước (Tô Đê và Bạch Đê). Hai bờ đê này được đích thân đắp chỉ đạo bởi hai đại thi hào kiêm quan phụ mẫu nổi tiếng nhất TQ là Tô Đông Pha và Bạch Cư Dị trong thời gian họ trị nhậm ở đây nhằm ngăn ngập lụt.</li>
+                            </ul>`,
+                            tips: `<ul>
+                                <li><strong>Lái thuyền điện tự túc lãng mạn:</strong> Đừng dại dột đi bộ chen lấn mồ hôi nhễ nhại trên bờ! Trải nghiệm đáng giá 10/10 là hãy ra bến thuyền, thuê riêng một chiếc thuyền điện tự lái có mái che bạt. Ba Thạnh sẽ cầm vô lăng lái tà tà ra giữa lòng hồ mênh mông phẳng lặng. Cả gia đình có thể nằm ngửa ra ghế nệm hóng gió thu mát rượi, tránh xa sự xô bồ ồn ào của khách du lịch trên bờ. Bé Ủn được thả lỏng sẽ cực kỳ khoái chí.</li>
+                                <li><strong>Chụp ảnh concept nàng thơ:</strong> Những cây liễu cổ thụ cành mềm rủ sát đụng mặt nước là phông nền chụp hình hoàn hảo không tì vết. Hai mẹ con hãy chuẩn bị mặc váy lụa trắng hoặc sườn xám màu pastel, mượn thêm một chiếc quạt giấy lụa mỏng để ba Thạnh chụp những tấm ảnh chân dung trong vắt, nhẹ nhàng.</li>
+                                <li><strong>Thưởng thức Trà Đạo ven hồ:</strong> Ghe thuyền vào một bến nghỉ, ghé vào một gian lầu gỗ truyền thống ven bờ, gọi một ấm trà Long Tỉnh xịn (đặc sản dâng vua xưa kia hái trên đồi ở Hàng Châu). Cắn hạt dưa, nhâm nhi vị chát ngọt của trà và ngắm mặt trời lặn lặn đỏ lựng chìm từ từ xuống đáy hồ mờ sương.</li>
+                            </ul>`,
+                            warnings: `<ul>
+                                <li><strong>HIỂM HỌA RỚT XUỐNG HỒ KHÔNG RÀO CHẮN:</strong> KHU VỰC BỜ ĐÊ VÀ BẾN NƯỚC TÂY HỒ HOÀN TOÀN KHÔNG CÓ LAN CAN RÀO CHẮN (chính quyền muốn giữ nguyên vẻ đẹp tự nhiên nguyên thủy). Mực nước ngay mép hồ rất sâu và bờ đá đóng rêu trơn. TUYỆT ĐỐI không bao giờ để xe đẩy đứng gần sát mép nước chụp ảnh. Phải luôn KHÓA CỨNG BÁNH XE đẩy (bật chốt phanh chân) mỗi khi ba mẹ thả tay rời khỏi đuôi xe dù chỉ 1 giây để lấy đồ!</li>
+                                <li><strong>Móc túi và xả rác ngày cao điểm:</strong> Ngày lễ lượng người đổ về các tiểu cảnh (Cầu Đoạn Kiều) quanh Tây Hồ đông như kiến cỏ tràn bờ. Hãy bám sát nhau bảo vệ tư trang và chủ động nhét túi nilon đựng rác bỉm cá nhân vào gầm xe nôi để mang về khách sạn vứt, vì các thùng rác công cộng quanh hồ có thể đã bị nhét đầy tràn ứa ra ngoài bốc mùi.</li>
+                            </ul>`
+                        }
+                    },
+                    { 
+                        id: "d8-3", time: "18:30 - 21:00", desc: "Ban công thành phố (City Balcony) & Đèn Tiền Giang.", cn: "钱江新城灯光秀", transport: "DiDi tới TTTM Raffles/MixC.", note: "Đúng 19:30 ra ngắm show ánh sáng siêu đô thị.",
+                        details: {
+                            trivia: `<ul>
+                                <li>Khu đô thị mới Tiền Giang Tân Thành (Qianjiang New City) được quy hoạch và xây mới thần tốc với ngân sách khổng lồ để phục vụ hội nghị thượng đỉnh G20. Kiến trúc ở đây phá vỡ mọi quy chuẩn, được thế giới đánh giá là mang thiết kế siêu viễn tưởng (Futuristic) của thế kỷ 22.</li>
+                                <li>Điểm nhấn kiến trúc là Tòa nhà Intercontinental mang hình dáng Trăng Vàng khổng lồ tròn vo và Tòa Trung tâm hội nghị Thị chính hình đóa hoa sen thép bung nở nhô lên từ mặt đất.</li>
+                                <li>Ban công Thành Phố (City Balcony) thực chất là một quảng trường đi bộ lát sàn gỗ khổng lồ nhô hẳn lơ lửng ra ngoài không trung phía trên dòng sông Tiền Đường cuồn cuộn sóng vỗ.</li>
+                                <li>Show ánh sáng (Light Show) ban đêm ở đây vô đối: Không phải chỉ chiếu đèn LED trên 1-2 tòa nhà đơn lẻ, mà nó được lập trình đồng bộ chớp nháy chạy dọc màn hình của hàng chục tòa cao ốc chọc trời liên tiếp nhau, in bóng vĩ đại xuống mặt sông tạo thành một bức tường màn hình khổng lồ uốn lượn dài nhiều dặm.</li>
+                            </ul>`,
+                            tips: `<ul>
+                                <li><strong>Phòng chăm sóc tối tân để nạp đạn:</strong> Hãy chọn ăn tối ở trung tâm thương mại hình xoắn ốc Raffles City hoặc MixC Mall (Vạn Tượng Thành) sang chảnh nằm ngay sát đó. Những Mall hạng sang này có hệ thống phòng vắt sữa / thay tã (Nursery room) đạt chuẩn 5 sao xịn xò. Hãy tận dụng dọn dẹp vệ sinh sạch sẽ mông bé, thay bỉm mới khô ráo và pha sẵn cữ sữa ấm cho Ủn no bụng trước khi đẩy xe nôi ra ngoài bờ sông hóng gió đêm.</li>
+                                <li><strong>Sàn diễn lý tưởng cho em bé tập đi:</strong> Quảng trường Ban công thành phố rộng mênh mông, mặt sàn gỗ gõ nhẵn thín sạch bong không một hạt bụi và quan trọng là bị cấm tuyệt đối không có một chiếc xe đạp/xe máy nào qua lại. Ba mẹ có thể yên tâm thả bé Ủn lẫm chẫm tập đi hoặc bò trên sàn gõ ngắm các vòi phun nước mà không lo nguy hiểm.</li>
+                                <li><strong>Góc xem toàn cảnh hoàn hảo:</strong> Đừng đứng tít trong bờ. Hãy đẩy xe nôi ra sát mép lan can kính ngoài cùng nhìn xuống dòng nước xiết. Từ vị trí này, quay đầu nhìn chếch ngược lại về phía đất liền dãy cao ốc sẽ bao quát thấy trọn vẹn màn múa ánh sáng Panorama hùng vĩ nhất.</li>
+                            </ul>`,
+                            warnings: `<ul>
+                                <li><strong>Bắt buộc check lịch chiếu đèn LED:</strong> Lịch chiếu đèn LED dọc bờ sông của chính quyền không cố định, có thể bị thay đổi giờ giấc hoặc cắt giảm đột xuất để tiết kiệm điện lưới thành phố. Hãy dặn nhờ lễ tân khách sạn gọi điện thoại đường dây nóng hỏi trước ban quản lý xem TỐI NAY CÓ CHIẾU ĐÈN HAY KHÔNG (mấy giờ chiếu) để tránh tình trạng cả nhà hăm hở đến nơi lại thấy tối thui hụt hẫng bực mình.</li>
+                                <li><strong>Gió lồng lộng thổi bay mũ:</strong> Do cấu trúc Ban công nằm vươn hẳn nhô ra giữa mặt sông mênh mông không vật cản nên đón trọn sức gió phần phật. Tuy rất mát mẻ nhưng gió thổi thốc từ dưới lên. Mẹ Hà bắt buộc phải nhớ đội mũ len/nỉ che kín phần mỏ ác (thóp) trên đỉnh đầu cho em bé cẩn thận để tránh gió độc lùa vào làm bé bị cảm lạnh sốt đêm.</li>
+                            </ul>`
                         }
                     }
                 ]
             },
             {
-                date: "Ngày 10 (Thứ Bảy, 2/5)",
-                title: "Hàng Châu 🚗 Ô Trấn (Về trong ngày)",
+                date: "Ngày 9 (Thứ Ba, 5/5)",
+                title: "Hàng Châu 🚗 Ô Trấn (Đi về trong ngày)",
                 tasks: [
                     { 
-                        id: "d10-1", time: "Sáng/Chiều", desc: "Bao xe đi Ô Trấn, dạo chơi cổ trấn ngàn năm Tây Sách (Xizha).", cn: "乌镇东/西栅", transport: "Thuê Bao xe (Bản địa).", note: "1h15p di chuyển thẳng tắp.",
+                        id: "d9-1", time: "08:30 - 16:30", desc: "Khám phá cổ trấn 1000 năm tuổi Tây Sách - Ô Trấn.", cn: "乌镇西栅景区", transport: "Thuê bao xe riêng (1.5 tiếng).", note: "Lái xe êm, bé ngủ ngoan. Cảnh cáo đường đá xanh.",
                         details: {
-                            trivia: "Trấn đã hơn 1000 tuổi nhưng được khai thác siêu đẳng cấp 5 sao: Nước sạch trong, ván gỗ trơn tru, toilet thơm lừng mùi xả.",
-                            tips: "Lên thẳng khu Tây Sách (Xizha) vì nó rực rỡ và quy mô rộng lớn bạt ngàn nhất.",
-                            warnings: "KẺ THÙ CỦA XE ĐẨY: Toàn bộ đường đi là các khối xếp bằng đá xanh hộc lớn cổ gồ ghề. Xe đẩy lún và giằn não em nhỏ. Cực lỳ khuyên dùng đai địu quấn hông suốt chặng này!"
-                        }
-                    },
-                    { 
-                        id: "d10-2", time: "Tối", desc: "Ngắm Ô Tấn lên đèn hoa đăng vàng rực dưới sông và về bằng ô tô.", cn: "乘车回杭州", transport: "Xe chờ sẵn ngoài bãi đỗ VIP.", note: "Khung cảnh đẹp nhói tim.",
-                        details: {
-                            trivia: "Ô trấn chuyển mình ngoạn mục vào khoảng 6h tối khi tất cả các căn nhà quanh mép nước đồng loạt thắp lên ánh đèn nến cam rực rỡ vàng ngọc.",
-                            tips: "Chơi xong tối về, lên xe điều hoà ngủ 1 giấc ngắn bồng bềnh là đã về lại Khách sạn Hàng Châu ấm êm.",
-                            warnings: "Sương đêm lùa rất buốt lạnh ở vùng ven sông. Mặc áo len dệt mỏng kĩ càng cho em nhỏ."
+                            trivia: `<ul>
+                                <li>Ô Trấn (Wuzhen) là thủy trấn cổ kính tự hào mang danh hiệu "Venice của phương Đông", một cổ trấn có bề dày lịch sử hơn 1300 năm, nằm trên mạng lưới sông ngòi chằng chịt của vùng sinh thái ngập nước sông nước Giang Nam (vùng trũng giữa Tam giác Thượng Hải - Hàng Châu - Tô Châu).</li>
+                                <li>Khu Tây Sách (Xizha) là khu vực quy mô rộng lớn nhất và được một tập đoàn tư nhân đổ tiền đầu tư phục dựng, quản lý theo chuẩn resort nghỉ dưỡng đẳng cấp 5 sao: Nhà cửa cổ kính rêu phong, giữ nguyên vẹn cột kèo mọt gỗ nhưng hệ thống cơ sở hạ tầng ngầm lại vô cùng hiện đại: xử lý nước thải sinh hoạt sạch trong vắt, đường dây điện chôn ngầm không có mạng nhện, đường ván gỗ thẳng tắp, không có một cọng rác nào trôi nổi trên kênh, và đặc biệt toilet công cộng luôn có máy lạnh và tinh dầu thơm lừng.</li>
+                                <li>Cảnh sắc nổi bật nhất ở đây là Xưởng nhuộm thủ công với nghề nhuộm vải chàm in hoa văn bằng sáp ong truyền thống. Những mảnh lụa lam dài hàng chục mét nhuộm phơi treo phất phơ đan chéo trên sào tre cao vút tạo nên khung cảnh điện ảnh nổi tiếng kinh điển xuất hiện trong mọi sách hướng dẫn du lịch TQ.</li>
+                                <li>Đặc sản ẩm thực đường phố níu chân du khách ở đây có món thịt lợn kho Đông Pha (thịt ba chỉ hầm nhừ tơi béo ngậy tan trong miệng không ngấy), gà ăn mày bó đất sét nướng than củi, và nhâm nhi tách trà hoa cúc trắng mật ong ngọt dịu nhuận tràng.</li>
+                                <li>Thuyền gỗ chèo tay chở khách đi dọc kênh đào ở đây được gọi là thuyền "Wupeng" (Ô Bồng Thuyền). Đặc trưng là người lái thuyền sẽ đứng ở đuôi thuyền, phải dùng cả hai tay cầm một mái chèo cái khổng lồ và lắc người nhịp nhàng uyển chuyển để tì lực đẩy nước cho thuyền trôi đi không cần động cơ nổ.</li>
+                                <li>Cổ trấn này còn là nơi khai sinh của đại văn hào Mao Thuẫn (một trong những nhà văn vĩ đại nhất văn học hiện đại TQ), có cả một bảo tàng tưởng niệm ông ngay bờ kênh.</li>
+                                <li>Tại đây còn lưu giữ hệ thống Bưu điện Cổ Ô Trấn đã hoạt động liên tục hàng trăm năm. Du khách có thể tự tay viết một tấm bưu thiếp đóng dấu mộc cổ gửi về quê nhà.</li>
+                                <li>Ô Trấn cũng là địa điểm được chính phủ Trung Quốc chọn làm nơi đăng cai "Đại hội Internet Toàn cầu" (World Internet Conference) thường niên, biến nó thành thị trấn cổ đại thông minh bậc nhất với phủ sóng 5G mọi ngóc ngách.</li>
+                            </ul>`,
+                            tips: `<ul>
+                                <li><strong>Đặc quyền Du lịch thảnh thơi:</strong> Bao xe ô tô con trọn gói đón từ sảnh KS Hàng Châu chạy thẳng đường cao tốc cắm vào tận cửa khu du lịch Ô Trấn là khoản đầu tư tuyệt vời nhất. Giúp cả nhà tránh được thảm cảnh vã mồ hôi bồng bế lỉnh kỉnh đồ đạc, nhồi nhét lên xe buýt liên tỉnh hay tàu hỏa chuyển trạm. Em bé Tùng Văn có thể đánh một giấc ngủ trưa sâu ngon lành không đứt đoạn trong xe điều hòa máy lạnh êm ái xịn xò.</li>
+                                <li><strong>Góc sống ảo ngàn like với lụa lam:</strong> Mẹ Hà hãy tìm đường đến khu vực Hàng Nhuộm Vải (Indigo Fabric Dyeing Workshop). Bước vào đứng giữa những dải lụa xanh thẫm in hoa phất phơ tung bay trong gió, canh góc sao cho ánh sáng mặt trời hắt xuyên rọi qua lớp vải mỏng. Ba Thạnh chụp góc nào ở đây cũng cho ra đời tấm ảnh nghệ thuật đỉnh cao mang hơi hướm tạp chí Vouge.</li>
+                                <li><strong>Trải nghiệm Ngồi Ô Bồng Thuyền mộc mạc:</strong> Đi bộ rã rời rồi thì cả nhà hãy vung tiền thuê bao nguyên một chiếc đò mộc Wupeng (có mái che nan tre) chở dọc dòng kênh đào chính, lướt qua dưới gầm những vòm cầu đá cong vút cổ xưa rêu phong. Nước chảy róc rách sát mạn thuyền, tiếng mái chèo gỗ khua nhẹ vào nước, em bé Tùng Văn nằm lọt thỏm an toàn trong lòng mẹ tròn xoe mắt nhìn ngắm những chiếc đèn lồng đỏ treo đung đưa ngoài hiên nhà gỗ hai bên bờ. Một khung cảnh bình yên vô giá!</li>
+                                <li><strong>Bữa trưa ven kênh thơ mộng:</strong> Hãy thong thả dạo quanh tìm và chọn một quán ăn có sàn ván gỗ xây chìa nhô hẳn ra ngoài mặt nước kênh đào. Gia đình ngồi sát mép nước, vừa xì xụp ăn bát mì xá xíu cay tê nóng hổi, vừa thảy vụn bánh mì xuống ngắm đàn cá chép Koi sặc sỡ béo múp bơi lội tranh ăn qua lại ngay dưới mũi chân mình.</li>
+                                <li><strong>Gửi bưu thiếp vượt thời gian:</strong> Nhớ ghé vào Bưu điện Cổ bằng gỗ, mua một tấm bưu thiếp in hình Ô Trấn thủy mặc, viết vài dòng kỷ niệm chuyến đi đầu đời của Ủn và nhờ nhân viên bưu điện đóng cái mộc son đỏ chót gửi đường bưu điện về địa chỉ nhà ở Sài Gòn. Cảm giác vài tuần sau nhận lại lá thư này cực kỳ cảm động.</li>
+                                <li><strong>Tránh nắng nôi đỉnh điểm:</strong> Buổi trưa 12h-14h ở Giang Nam nắng hắt mặt nước lên khá gắt. Hãy đẩy cửa bước vào các trà lầu hoặc các bảo tàng giường gỗ, bảo tàng phong tục tập quán... (miễn phí vào cửa) nằm rải rác. Vừa trốn nắng có điều hòa máy lạnh mát rượi, vừa cho bé ti mẹ nghỉ ngơi chợp mắt.</li>
+                                <li><strong>Trang phục tiệp màu bối cảnh:</strong> Để có hình đẹp, hãy dặn mẹ Hà mặc đồ tone màu đối lập hoặc hòa hợp với cổ trấn. Tốt nhất là váy trắng, sườn xám hoặc đồ linen màu đất (nâu, be, đỏ mận). Tránh xa các bộ đồ thể thao neon chói lóa hay in logo to đùng sẽ bị lạc quẻ hoàn toàn giữa không gian rêu phong cổ kính.</li>
+                                <li><strong>Thưởng thức ẩm thực vặt tinh tế:</strong> Dọc các con hẻm lát ván gỗ có bán rất nhiều đồ ăn vặt đặc trưng Giang Nam như: Bánh nếp củ sen bọc đường quế ngọt lịm dẻo thơm, hay món bánh đậu phộng giòn rụm. Tranh thủ mua cầm tay nhóp nhép ăn dọc đường.</li>
+                                <li><strong>Check-in cây cầu đá nối đôi:</strong> Khu vực "Cầu trong cầu" (Bridge in bridge) là nơi hai chiếc cầu đá cổ xây vuông góc chéo nhau tạo thành một góc nhìn có một không hai. Cố gắng chờ lúc vắng người, đứng trên cầu này chụp cầu kia lấy bối cảnh thuyền mộc chui qua gầm là góc kinh điển nhất của dân nhiếp ảnh chuyên nghiệp.</li>
+                                <li><strong>Hoàng hôn ma thuật chạng vạng:</strong> Cố gắng nán lại chơi đến khoảng 17:30 - 18:00 chiều để đón giờ "Phút ma thuật" (Blue Hour). Toàn bộ hệ thống đèn lồng, đèn hắt vàng cam viền quanh các mái nhà gỗ cổ sẽ đồng loạt được bật sáng rực rỡ, hắt bóng lấp lánh xuống mặt nước kênh xanh ngắt tạo ra không gian cổ trang huyền huyễn đẹp nhói tim. Quãng thời gian này chụp ảnh là đỉnh cao nhất.</li>
+                            </ul>`,
+                            warnings: `<ul>
+                                <li><strong>KẺ THÙ KHÔNG ĐỘI TRỜI CHUNG CỦA XE ĐẨY - ĐÁ XANH GỒ GHỀ:</strong> Toàn bộ mạng lưới đường đi ngõ hẻm chính ở bên trong Ô Trấn được phục dựng nguyên bản lát bằng các khối đá xanh gồ ghề (đá học) mấp mô lồi lõm không bằng phẳng hoặc các khe ván gỗ. Việc đẩy xe nôi bánh nhỏ du lịch ở đây là <strong>MỘT CỰC HÌNH HÀNH XÁC</strong>. Bánh xe sẽ nảy bần bật liên tục gây giằng xóc mạnh tác động lên não bộ của trẻ sơ sinh và bánh xe liên tục bị kẹt vào các khe đá hở nứt gãy bánh. Đề xuất TỐI THƯỢNG: <strong>GỬI HẲN XE ĐẨY LẠI KHÁCH SẠN HÀNG CHÂU HOẶC NHÉT VÀO CỐP Ô TÔ BAO XE. Bắt buộc Ba Thạnh (dân thể thao sức khỏe tốt) phải dùng Đai Địu Trợ Lực (Hip-seat Carrier) bế bé dính chặt vào người trong suốt 5-6 tiếng lội bộ ở buổi chơi này!</strong></li>
+                                <li><strong>Hiểm họa rớt nước do không rào chắn:</strong> Đa số các đường dạo ven kênh, cầu thang bằng đá dẫn xuống bến nước rửa rau, giặt giũ xưa của nhà dân HOÀN TOÀN KHÔNG CÓ bậc thềm nhô lên hay rào chắn lan can ngăn rớt xuống nước. Ba Thạnh khi địu con hoặc bế ẵm con bước đi tuyệt đối lùi sâu vào bên trong, đi sát lề đường mảng tường nhà. KHÔNG đứng sát mép bờ rêu trơn trượt để nhón gót chụp ảnh vì lỡ hụt chân ngã xuống nước cực kỳ nguy hiểm.</li>
+                                <li><strong>Quân đoàn Muỗi dĩn vùng sinh thái ngập nước:</strong> Khu vực kênh rạch ẩm thấp nước tù, đặc biệt lùm cây rậm rạp và các khu góc tối vắng vẻ thường có rất nhiều muỗi vằn, dĩn độc cắn đốt sưng ngứa. Hãy trang bị sẵn vũ khí: miếng dán đuổi muỗi (Mosquito repellent patch) dán kín lên vạt áo sau lưng, đùi quần và cả đai địu của em bé để phòng ngừa hiệu quả. Nhớ mang theo tuýp bôi chống hăm/muỗi đốt dự phòng.</li>
+                                <li><strong>Nghẽn mạch giao thông hẻm nhỏ:</strong> Một số hẻm đá nhỏ luồn lách qua các dãy nhà chỉ vừa lọt 2 người tránh nhau. Gặp lúc đoàn khách tour cờ quạt đi ngược chiều, tình trạng kẹt cứng nhích từng centimet sẽ xảy ra. Ba bế con phải lấy tay che chắn bảo vệ đầu bé khỏi bị cùi chỏ hay túi xách của người khác va quẹt trúng mặt. Thấy đông quá tốt nhất tấp vào hàng quán chờ họ đi qua hết.</li>
+                                <li><strong>Nhà vệ sinh công cộng khó tìm:</strong> Tuy toilet ở khu Tây Sách nổi tiếng là đẹp và sạch như khách sạn 5 sao, nhưng nó thường nằm khuất lấp ở các lối đi rẽ hẻm phụ, không lộ thiên ra ngoài mặt đường chính để tránh mất mỹ quan. Khi bé cần thay bỉm khẩn cấp, mẹ Hà phải mở app bản đồ nội bộ ngay hoặc hỏi nhân viên vệ sinh quét rác để tìm nhà vệ sinh gần nhất, đừng để đến lúc luống cuống mới chạy đi tìm sẽ không thấy.</li>
+                                <li><strong>Cầu vồng đá dốc đứng trơn trượt:</strong> Rất nhiều cây cầu đá vòng cung bắc qua hai bờ kênh tuy nhỏ nhắn dễ thương nhưng bậc thang lại dốc đứng, mặt đá bị mài nhẵn thín qua hàng ngàn năm bước chân nên cực trơn trượt (đặc biệt nếu trời râm râm có sương ẩm). Khi bước qua các cây cầu này, người bế em bé phải bước bằng nửa bàn chân vững chãi, hai tay ôm con, tuyệt đối không đùa giỡn, nhảy nhót, mắt phải nhìn xuống từng bậc thang để đảm bảo an toàn 100%.</li>
+                                <li><strong>Ẩm thực Giang Nam ngập dầu vị ngọt:</strong> Đồ ăn đặc sản của dân Tô Châu - Hàng Châu có khẩu vị rất đặc trưng: Nấu đổ cực kỳ nhiều dầu mỡ (dầu nổi lềnh bềnh) và nêm gia vị siêu ngọt, lợ lợ (ít ăn mặn hay cay như Tứ Xuyên). Ba mẹ dạ dày yếu hoặc không quen đồ ngọt mỡ màng ăn sẽ rất dễ bị ngán, đầy bụng ợ hơi hoặc "Tào Tháo rượt" đau bụng nôn mửa. Hãy thủ sẵn mang theo thuốc tiêu hóa, men vi sinh, và chuẩn bị trước vài hộp ruốc/chà bông, gói canh rong biển khô từ nhà mang đi để ăn kèm cơm trắng cầm hơi.</li>
+                                <li><strong>Thuyền mộc chao đảo:</strong> Khi bước lên đò chèo tay (Wupeng boat), đò sẽ tròng trành chao đảo rất mạnh. Quy tắc là: Ba Thạnh (người khỏe không bế em) luôn bước xuống đò trước, dang rộng hai chân để giữ thăng bằng trọng tâm đò, sau đó mới vươn tay đỡ mẹ Hà bế bé bước cẩn thận từng nhịp một truyền tay sang. Lên đò xong phải ngồi cố định, cấm đứng dậy đổi chỗ chụp ảnh lúc thuyền đang di chuyển lướt trên nước sâu.</li>
+                                <li><strong>Nguy cơ kiệt sức do bao la rộng lớn:</strong> Khu Tây Sách (Xizha) có quy mô rộng bạt ngàn gấp 3-4 lần khu Đông Sách. Đi bộ cả ngày dài vòng vèo qua hàng chục cây cầu đá và hàng trăm con hẻm sẽ khiến gót chân đau buốt, bắp chân căng cứng phồng rộp, đặc biệt với người phải địu em bé nặng 8kg+ phía trước bụng. Đừng cố gắng đi "tham" để xem bằng hết mọi ngóc ngách bản đồ. Đi được 1/3, thấy chỗ nào đẹp thì dừng lại nghỉ uống nước chụp ảnh thật lâu, sức bền và sự thoải mái của em bé phải đặt lên ưu tiên tối thượng!</li>
+                                <li><strong>Giờ giấc đắt đỏ của tài xế Bao Xe:</strong> Hãy thống nhất và chốt kỹ càng bằng tin nhắn giờ giấc (đón mấy giờ, đợi đến mấy giờ) với tài xế bao xe tư nhân. Nếu gia đình ham chơi mải nán lại chụp ảnh đèn lồng buổi tối muộn màng, tài xế có thể sẽ tính thêm phí làm quá giờ (Overtime charge) rất đắt đỏ hoặc càu nhàu bực dọc lái xe ẩu. Đặt chuông báo thức trên điện thoại nhắc giờ phải đi bộ ra bãi xe bến bãi đúng hẹn quy định.</li>
+                            </ul>`
                         }
                     }
                 ]
             },
             {
-                date: "Ngày 11 (Chủ Nhật, 3/5)",
-                title: "Hàng Châu ✈️ Sài Gòn",
+                date: "Ngày 10 (Thứ Tư, 6/5)",
+                title: "Hàng Châu ✈️ Sài Gòn (Chuyển tiếp Vũ Hán)",
                 tasks: [
                     { 
-                        id: "d11-1", time: "Sáng/Trưa", desc: "Đóng gói hành lý toàn bộ. Bắt xe Premium ra Sân bay Tiêu Sơn bay về SG.", cn: "杭州萧山国际机场 (HGH)", transport: "DiDi VIP thẳng ra sảnh đi.", note: "Sân bay siêu đẹp, rộng thênh thang.",
+                        id: "d10-1", time: "09:00 - 12:30", desc: "Dọn đồ, trả phòng. Ăn trưa & Gom quà lưu niệm.", cn: "杭州市区商场", transport: "DiDi dạo phố.", note: "Ngày cuối gom quà.",
                         details: {
-                            trivia: "Sân bay Tiêu Sơn mới được đập xây lại có nguyên một khu sinh thái 3D và hồ sen lóng lánh giả lập trong sảnh đợi đón xuất nhập cảnh.",
-                            tips: "Luôn chừa 3 tiếng 30 phút rảnh rỗi thủ tục quá cảnh soi gắt hành lý và xếp xe đẩy.",
-                            warnings: "Sân bay cực kỳ rộng, lên tàu điện bay nội bộ để đến đúng Cổng tàu bay (Gate) của bạn. Tuyệt đối không la cà mua sắm sát giờ cất cánh."
+                            tips: `<ul>
+                                <li><strong>Gom chiến lợi phẩm thông minh:</strong> Tã bỉm mang theo đã dùng gần hết nên chắc chắn sẽ dư ra một khoảng không gian trống khổng lồ lùng bùng trong vali. Hãy dùng khoảng không quý giá này để nhồi nhét an toàn các đồ chơi mua cho Tùng Văn ở Disneyland, các hộp trà Long Tỉnh thiếc cứng, và cuộn tròn khăn lụa mua về làm quà biếu ông bà chèn vào các khe hở. Nhớ để gọn bình sữa sạch, chăn len mỏng và tã dự phòng vào một túi riêng để xách tay lên máy bay tiện lấy.</li>
+                            </ul>`
+                        }
+                    },
+                    { 
+                        id: "d10-2", time: "13:00 - 16:00", desc: "Lấy đồ, bắt xe VIP ra Sân bay Tiêu Sơn bay chặng 1 về Vũ Hán.", cn: "杭州萧山国际机场", transport: "DiDi VIP thẳng ra sảnh đi.", note: "Sân bay rộng, soi chiếu gắt gao.",
+                        details: {
+                            tips: `<ul>
+                                <li><strong>Quy tắc phòng ngự 3 tiếng rưỡi:</strong> HGH là sân bay lớn tấp nập và khâu kiểm tra soi chiếu hải quan xuất cảnh của TQ hiện cực kỳ gắt gao chậm chạp. ĐỪNG ĐI SÁT GIỜ. Hãy luôn trừ hao có mặt trước sân bay tối thiểu 3 tiếng rưỡi (210 phút) để thong thả đẩy xe nôi check-in, xếp hàng rồng rắn làm thủ tục soi túi xách, và dọn dẹp thay tã sạch sẽ cho bé trước giờ ra cổng Boarding.</li>
+                            </ul>`,
+                            warnings: `<ul>
+                                <li><strong>Chuẩn bị tinh thần nối chuyến WUH:</strong> Tới Vũ Hán lúc 18:15 chiều chạng vạng, cả nhà sẽ có một khoảng thời gian nghỉ chờ nối chuyến (Transit) rảnh rỗi tại WUH kéo dài khoảng 4 tiếng trước khi bay chuyến cuối cùng (22:10) về Sài Gòn. Hãy tranh thủ 4 tiếng này để tìm nhà hàng ăn no bụng cho ấm bụng ba mẹ, rửa ráy thay bỉm mới tinh tươm cho Ủn, xạc đầy pin điện thoại và chuẩn bị pha sẵn sữa ấm. Cố gắng dỗ bé ngủ thẳng cẳng từ Vũ Hán về hạ cánh tới Tân Sơn Nhất Sài Gòn lúc (01:05 sáng hôm sau) để bé không bị quấy khóc kiệt sức do bay đổi chặng ban đêm mệt mỏi!</li>
+                            </ul>`
                         }
                     }
                 ]
@@ -585,7 +902,7 @@
         const container = document.getElementById('timelineContainer');
         const searchInput = document.getElementById('searchInput');
         let totalTasks = 0;
-        let serverImages = {}; // Trữ dữ liệu ảnh từ server
+        let serverImages = {}; 
 
         function renderItinerary(filterText = '') {
             container.innerHTML = '';
@@ -608,7 +925,6 @@
                     const isChecked = localStorage.getItem(task.id) === 'true';
                     if(isChecked) currentTasks++;
 
-                    // Image Upload UI
                     const hasImage = !!serverImages[task.id];
                     const imageSrc = hasImage ? serverImages[task.id] : '';
                     const imageSection = `
@@ -624,7 +940,6 @@
                         </div>
                     `;
 
-                    // Details Accordion UI
                     const expIcon = '<span class="icon-expand">▼</span>';
                     const detailsHTML = task.details ? `
                         <div class="task-details" id="details-${task.id}">
@@ -652,11 +967,14 @@
                                 ${imageSection}
                                 
                                 <div class="cn-box">
-                                    <span class="cn-text">${task.cn}</span>
+                                    <div class="cn-text">${task.cn}</div>
                                     <div class="cn-actions">
                                         <button class="btn-copy" onclick="copyText('${task.cn}')">Copy</button>
-                                        <a href="http://api.map.baidu.com/direction?origin=我的位置&destination=${encodeURIComponent(task.cn)}&mode=transit&output=html" target="_blank" class="btn-navi">
-                                            🗺️ Bản đồ
+                                        <a href="https://map.baidu.com/mobile/webapp/search/search/qt=s&wd=${encodeURIComponent(task.cn)}" target="_blank" class="btn-navi" style="background-color: #2468F2;">
+                                            🗺️ Baidu
+                                        </a>
+                                        <a href="https://uri.amap.com/search?keyword=${encodeURIComponent(task.cn)}" target="_blank" class="btn-navi" style="background-color: #0091FF;">
+                                            🗺️ Amap (Cao Đức)
                                         </a>
                                     </div>
                                 </div>
@@ -680,30 +998,24 @@
             });
 
             updateProgressBar(currentTasks, totalTasks);
-            
-            // Render saved state if you connect backend later
-            // (Currently blank since backend isn't hooked up yet)
         }
 
-        // --- CORE FUNCTION CHO BACKEND CỦA ANH ---
         async function handleImageUpload(event, taskId) {
             const file = event.target.files[0];
             if (!file) return;
 
             const password = prompt("Nhập mật khẩu (admin) để upload ảnh:", "");
             if (!password) {
-                event.target.value = ""; // reset input
+                event.target.value = ""; 
                 return;
             }
 
-            // 1. Hiển thị Preview tạm thời
             const previewUrl = URL.createObjectURL(file);
             document.getElementById(`img-preview-${taskId}`).src = previewUrl;
             document.getElementById(`img-container-${taskId}`).style.display = 'block';
             document.getElementById(`upload-wrapper-${taskId}`).style.display = 'none';
             showToast("Đang tải lên...");
 
-            // 2. Gọi API PHP
             const formData = new FormData();
             formData.append('image', file);
             formData.append('taskId', taskId);
@@ -720,14 +1032,12 @@
                     throw new Error(json.message);
                 }
             } catch (err) {
-                // Khôi phục UI nếu lỗi
                 document.getElementById(`img-container-${taskId}`).style.display = 'none';
                 document.getElementById(`upload-wrapper-${taskId}`).style.display = 'block';
             }
-            event.target.value = ""; // reset input
+            event.target.value = ""; 
         }
 
-        // Xóa ảnh (Có xác thực)
         window.deleteImage = async function(taskId) {
             if(confirm("Xóa ảnh tham khảo này?")) {
                 const password = prompt("Nhập mật khẩu (admin) để xóa ảnh:", "");
@@ -793,7 +1103,6 @@
 
         searchInput.addEventListener('input', (e) => { renderItinerary(e.target.value.toLowerCase()); });
 
-        // Khởi tạo: Lấy dữ liệu ảnh trước khi render
         fetch('./api.php?action=get_data')
             .then(r => r.json())
             .then(json => {
@@ -807,7 +1116,6 @@
                 renderItinerary();
             });
 
-        // Đăng ký Service Worker với cơ chế Auto-Update nhẹ nhàng
         if ('serviceWorker' in navigator) {
             navigator.serviceWorker.register('./sw.js').then(reg => {
                 reg.onupdatefound = () => {
@@ -822,29 +1130,22 @@
             }).catch(console.error);
         }
 
-        // Handle Tab Switching
         window.switchTab = function(tabName, index) {
-            // Update Slider position
             const slider = document.getElementById('tabSlider');
-            if(index === 0) {
-                slider.style.transform = 'translateX(0)';
-            } else {
-                slider.style.transform = 'translateX(100%)';
-            }
+            slider.style.transform = `translateX(${index * 100}%)`;
             
-            // Update Active class on text
             const btns = document.querySelectorAll('.tab-btn');
             btns.forEach((btn, i) => {
                 if(i === index) btn.classList.add('active');
                 else btn.classList.remove('active');
             });
             
-            // Toggle Content Views
-            const isItinerary = tabName === 'itinerary';
-            document.getElementById('timelineContainer').style.display = isItinerary ? 'block' : 'none';
-            document.getElementById('progressBox').style.display = isItinerary ? 'block' : 'none';
-            document.getElementById('searchBox').style.display = isItinerary ? 'block' : 'none';
-            document.getElementById('flightContainer').style.display = !isItinerary ? 'block' : 'none';
+            document.getElementById('timelineContainer').style.display = tabName === 'itinerary' ? 'block' : 'none';
+            document.getElementById('progressBox').style.display = tabName === 'itinerary' ? 'block' : 'none';
+            document.getElementById('searchBox').style.display = tabName === 'itinerary' ? 'block' : 'none';
+            
+            document.getElementById('hotelContainer').style.display = tabName === 'hotel' ? 'block' : 'none';
+            document.getElementById('flightContainer').style.display = tabName === 'flight' ? 'block' : 'none';
         }
     </script>
 </body>
