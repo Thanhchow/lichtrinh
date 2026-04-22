@@ -82,8 +82,11 @@
 
         .cn-box { display: flex; align-items: center; justify-content: space-between; background: #F2F2F7; padding: 12px 14px; border-radius: 12px; margin-bottom: 12px; }
         .cn-text { font-size: 1.1rem; font-weight: 600; color: #1C1C1E; }
+        .cn-actions { display: flex; gap: 8px; }
         .btn-copy { background: #FFFFFF; border: none; padding: 6px 14px; border-radius: 8px; font-size: 0.85rem; color: var(--primary); cursor: pointer; font-weight: 600; box-shadow: 0 2px 5px rgba(0,0,0,0.05);}
         .btn-copy:active { transform: scale(0.96); }
+        .btn-navi { background: #007AFF; color: #fff; text-decoration: none; padding: 6px 12px; border-radius: 8px; font-size: 0.85rem; font-weight: 600; box-shadow: 0 2px 5px rgba(0,122,255,0.2); transition: all 0.2s; display: flex; align-items: center; gap: 4px; }
+        .btn-navi:active { transform: scale(0.96); }
 
         .info-group { display: flex; flex-direction: column; gap: 8px; }
         .badge { display: flex; align-items: flex-start; padding: 10px 14px; border-radius: 12px; font-size: 0.9rem; font-weight: 500; line-height: 1.4;}
@@ -91,20 +94,99 @@
         .badge-note { background: #FFF3E0; color: #E65100; }
         .badge span.icon { margin-right: 8px; font-size: 1.1rem; }
         
+        /* Collapsible Details Styles */
+        .task-details { margin-top: 14px; position: relative; }
+        .details-summary {
+            display: flex; align-items: center; justify-content: space-between;
+            background: #E8F0FE; color: var(--primary); padding: 12px 16px;
+            border-radius: 12px; font-weight: 600; font-size: 0.95rem;
+            cursor: pointer; user-select: none; transition: background 0.2s;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.02);
+        }
+        .details-summary:active { background: #d2e3fc; }
+        .details-summary .icon-expand { transition: transform 0.3s ease; font-size: 1.1rem; }
+        .task-details.open .details-summary .icon-expand { transform: rotate(180deg); }
+        .details-content {
+            background: #FAFAFC; padding: 16px; border-radius: 0 0 12px 12px;
+            margin-top: -5px; font-size: 0.95rem; color: #3C4043;
+            display: none; border: 1px solid var(--border); border-top: none;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.02);
+            padding-top: 20px; /* bù lại margin âm */
+        }
+        .task-details.open .details-content { display: block; animation: fadeIn 0.3s ease; }
+        .details-section { margin-bottom: 14px; line-height: 1.5; }
+        .details-section:last-child { margin-bottom: 0; }
+        .details-section-title { font-weight: 700; margin-bottom: 6px; display: flex; align-items: center; gap: 6px; font-size: 0.9rem;}
+        .dt-trivia .details-section-title { color: #8E24AA; }
+        .dt-guide .details-section-title { color: #0288D1; }
+        .dt-warning .details-section-title { color: #D32F2F; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(-10px); } to { opacity: 1; transform: translateY(0); } }
+
         #toast { visibility: hidden; min-width: 200px; background-color: rgba(0,0,0,0.8); color: #fff; text-align: center; border-radius: 24px; padding: 12px 20px; position: fixed; z-index: 1000; left: 50%; bottom: 40px; transform: translateX(-50%); font-size: 0.95rem; font-weight: 500; backdrop-filter: blur(5px); transition: visibility 0s, opacity 0.3s, bottom 0.3s; opacity: 0; }
         #toast.show { visibility: visible; opacity: 1; bottom: 50px;}
+
+        /* Tab Navigation */
+        .tab-menu {
+            display: flex; background: rgba(118, 118, 128, 0.12); border-radius: 9px; padding: 2px; margin: 10px 0 15px; position: relative;
+        }
+        .tab-btn {
+            flex: 1; text-align: center; padding: 8px 0; font-size: 0.9rem; font-weight: 600; color: #3C3C43; cursor: pointer; border-radius: 7px;
+            transition: all 0.3s ease; z-index: 2; position: relative;
+        }
+        .tab-btn.active { color: #000; }
+        .tab-slider {
+            position: absolute; top: 2px; bottom: 2px; left: 2px; width: calc(50% - 2px); background: #FFFFFF; border-radius: 7px;
+            box-shadow: 0 3px 8px rgba(0,0,0,0.12), 0 3px 1px rgba(0,0,0,0.04); transition: transform 0.3s cubic-bezier(0.25, 0.8, 0.25, 1); z-index: 1;
+        }
+
+        /* Flight Pass Styles */
+        #flightContainer { display: none; padding: 10px 20px; padding-bottom: 50px;}
+        .flight-card {
+            background: #fff; border-radius: 20px; margin-bottom: 25px; box-shadow: 0 8px 30px rgba(0,0,0,0.08); overflow: hidden; position: relative; border: 1px solid rgba(0,0,0,0.05);
+        }
+        .flight-header {
+            background: linear-gradient(135deg, #0288D1 0%, #01579B 100%); color: white; padding: 25px 20px 40px; position: relative;
+        }
+        .flight-header.china-airlines { background: linear-gradient(135deg, #D32F2F 0%, #B71C1C 100%); }
+        .flight-logo { font-size: 1.15rem; font-weight: 700; margin-bottom: 25px; display: flex; align-items: center; justify-content: space-between;}
+        .flight-cities { display: flex; align-items: center; justify-content: space-between; position: relative; z-index: 2;}
+        .city-block { flex: 1; }
+        .city-code { font-size: 3rem; font-weight: 800; letter-spacing: -1px; line-height: 1; text-shadow: 0 2px 5px rgba(0,0,0,0.2);}
+        .city-name { font-size: 0.9rem; opacity: 0.95; margin-top: 5px; font-weight: 500;}
+        .flight-icon { font-size: 2rem; transform: rotate(45deg); opacity: 0.9; margin: 0 10px;}
+        .flight-curve { position: absolute; bottom: -1px; left: 0; right: 0; width: 100%; height: 25px; fill: #fff; z-index: 1;}
+        
+        .flight-body { background: #fff; padding: 15px 20px 30px; position: relative; }
+        .info-row { display: flex; justify-content: space-between; margin-bottom: 20px; }
+        .info-block { display: flex; flex-direction: column; }
+        .info-label { font-size: 0.75rem; color: #8E8E93; text-transform: uppercase; font-weight: 700; letter-spacing: 0.5px; margin-bottom: 4px; }
+        .info-value { font-size: 1.05rem; color: #1C1C1E; font-weight: 600; }
+        .value-red { color: #D32F2F; font-size: 1.15rem;}
+        .pnr-block { text-align: center; margin-top: 10px; padding-top: 25px; border-top: 2px dashed #E5E5EA; position: relative; }
+        .pnr-block::before, .pnr-block::after {
+            content: ""; position: absolute; top: -12px; width: 24px; height: 24px; background: var(--bg); border-radius: 50%;
+        }
+        .pnr-block::before { left: -32px; box-shadow: inset -2px 0 3px rgba(0,0,0,0.03); }
+        .pnr-block::after { right: -32px; box-shadow: inset 2px 0 3px rgba(0,0,0,0.03); }
+        .pnr-code { font-size: 2.8rem; font-weight: 800; letter-spacing: 6px; color: #1C1C1E; margin-bottom: 5px; }
+        .qr-placeholder { background: repeating-linear-gradient(45deg, #f0f0f0, #f0f0f0 10px, #e0e0e0 10px, #e0e0e0 20px); height: 80px; width: 80px; margin: 15px auto 0; border-radius: 12px; display: flex; align-items: center; justify-content: center; color: #000; font-size: 2rem;}
     </style>
 </head>
 <body>
 
     <header>
         <h1>Hành Trình Tùng Văn</h1>
-        <div class="search-container">
+        <div class="tab-menu" id="mainTabs">
+            <div class="tab-slider" id="tabSlider"></div>
+            <div class="tab-btn active" onclick="switchTab('itinerary', 0)">Lịch trình</div>
+            <div class="tab-btn" onclick="switchTab('flight', 1)">Chuyến bay</div>
+        </div>
+        <div class="search-container" id="searchBox">
             <input type="text" id="searchInput" placeholder="Tìm kiếm địa điểm, ngày...">
         </div>
     </header>
 
-    <div class="progress-container">
+    <div class="progress-container" id="progressBox">
         <div class="progress-text">
             <span>Tiến độ chuyến đi</span>
             <span id="progressPercent">0%</span>
@@ -115,97 +197,387 @@
     </div>
 
     <div class="container" id="timelineContainer"></div>
+    
+    <div id="flightContainer">
+        <!-- Flight 1: Go -->
+        <div class="flight-card">
+            <div class="flight-header">
+                <div class="flight-logo">
+                    <span>✈️ Vietnam Airlines</span>
+                    <span style="font-size: 0.85rem; font-weight: 500; opacity: 0.9">Hạng Phổ Thông</span>
+                </div>
+                <div class="flight-cities">
+                    <div class="city-block" style="text-align: left;">
+                        <div class="city-code">SGN</div>
+                        <div class="city-name">Hồ Chí Minh</div>
+                    </div>
+                    <div class="flight-icon">✈</div>
+                    <div class="city-block" style="text-align: right;">
+                        <div class="city-code">PEK</div>
+                        <div class="city-name">Bắc Kinh</div>
+                    </div>
+                </div>
+                <svg class="flight-curve" viewBox="0 0 1440 320" preserveAspectRatio="none">
+                    <path d="M0,160L48,170.7C96,181,192,203,288,197.3C384,192,480,160,576,160C672,160,768,192,864,213.3C960,235,1056,245,1152,229.3C1248,213,1344,171,1392,149.3L1440,128L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path>
+                </svg>
+            </div>
+            <div class="flight-body">
+                <div class="info-row">
+                    <div class="info-block">
+                        <span class="info-label">Chuyến bay</span>
+                        <span class="info-value">VN 512</span>
+                    </div>
+                    <div class="info-block" style="text-align: right;">
+                        <span class="info-label">Ngày bay</span>
+                        <span class="info-value value-red">23 Apr 2026</span>
+                    </div>
+                </div>
+                <div class="info-row">
+                    <div class="info-block">
+                        <span class="info-label">Sảnh (Terminal)</span>
+                        <span class="info-value">T2 (Đi) ➡️ T2 (Đến)</span>
+                    </div>
+                    <div class="info-block" style="text-align: right;">
+                        <span class="info-label">Hành lý Bỉm sữa</span>
+                        <span class="info-value">23kg Gửi + 7kg Tay</span>
+                    </div>
+                </div>
+                <div class="pnr-block">
+                    <div class="info-label">MÃ ĐẶT CHỖ (PNR)</div>
+                    <div class="pnr-code" style="color: #0288D1;">BABYVIP</div>
+                    <div class="qr-placeholder">🔲</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Flight 2: Return -->
+        <div class="flight-card">
+            <div class="flight-header china-airlines">
+                <div class="flight-logo">
+                    <span>✈️ China Eastern</span>
+                    <span style="font-size: 0.85rem; font-weight: 500; opacity: 0.9">Hạng Phổ Thông</span>
+                </div>
+                <div class="flight-cities">
+                    <div class="city-block" style="text-align: left;">
+                        <div class="city-code">HGH</div>
+                        <div class="city-name">Hàng Châu</div>
+                    </div>
+                    <div class="flight-icon">✈</div>
+                    <div class="city-block" style="text-align: right;">
+                        <div class="city-code">SGN</div>
+                        <div class="city-name">Hồ Chí Minh</div>
+                    </div>
+                </div>
+                <svg class="flight-curve" viewBox="0 0 1440 320" preserveAspectRatio="none">
+                    <path d="M0,160L48,170.7C96,181,192,203,288,197.3C384,192,480,160,576,160C672,160,768,192,864,213.3C960,235,1056,245,1152,229.3C1248,213,1344,171,1392,149.3L1440,128L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path>
+                </svg>
+            </div>
+            <div class="flight-body">
+                <div class="info-row">
+                    <div class="info-block">
+                        <span class="info-label">Chuyến bay</span>
+                        <span class="info-value">MU 214</span>
+                    </div>
+                    <div class="info-block" style="text-align: right;">
+                        <span class="info-label">Ngày bay</span>
+                        <span class="info-value value-red">03 May 2026</span>
+                    </div>
+                </div>
+                <div class="info-row">
+                    <div class="info-block">
+                        <span class="info-label">Sảnh (Terminal)</span>
+                        <span class="info-value">T4 (Đi) ➡️ T2 (Đến)</span>
+                    </div>
+                    <div class="info-block" style="text-align: right;">
+                        <span class="info-label">Hành lý Thỏa thích</span>
+                        <span class="info-value">23kg Gửi + 7kg Tay</span>
+                    </div>
+                </div>
+                <div class="pnr-block">
+                    <div class="info-label">MÃ ĐẶT CHỖ (PNR)</div>
+                    <div class="pnr-code" style="color: #D32F2F;">FLYUNUN</div>
+                    <div class="qr-placeholder">🔲</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <div id="toast">Thông báo</div>
 
     <script>
-        // Dữ liệu Lịch trình đã Update (Đi thẳng Hàng Châu, tham quan Ô Trấn về trong ngày)
         const itineraryData = [
             {
-                date: "Ngày 1 (Thứ 5, 23/4)",
-                title: "Sài Gòn ✈️ Ninh Ba ✈️ Bắc Kinh",
+                date: "Ngày 1 (Thứ năm, 23/4)",
+                title: "Bắc Kinh | Tiệc Cung Đình",
                 tasks: [
-                    { id: "d1-1", time: "03:35", desc: "Bay từ Tân Sơn Nhất. Quá cảnh 2 tiếng tại Ninh Ba.", cn: "宁波栎社国际机场", transport: "Hành lý check-through chuyển thẳng.", note: "Chuẩn bị sẵn bỉm sữa gọn nhẹ trên máy bay." },
-                    { id: "d1-2", time: "13:10", desc: "Đáp sân bay Đại Hưng. Về khách sạn.", cn: "北京大兴国际机场 ➡️ 王府井", transport: "Gọi DiDi Premium hoặc Taxi.", note: "Lấy sẵn chăn mỏng đắp xe đẩy cho bé." },
-                    { id: "d1-3", time: "Tối", desc: "Tản bộ Vương Phủ Tỉnh, ăn Vịt quay Bắc Kinh.", cn: "王府井步行街 - 北京烤鸭 (全聚德)", transport: "Đẩy xe bộ từ khách sạn.", note: "Cho bé ngủ bù sớm nạp năng lượng." }
+                    { 
+                        id: "d1-1", time: "Sáng/Trưa", desc: "Đáp sân bay Bắc Kinh, taxi về khách sạn nhận phòng, cho bé nghỉ ngơi.", cn: "北京首都国际机场", transport: "Taxi di chuyển thẳng về khách sạn.", note: "Chuẩn bị sẵn bỉm sữa gọn nhẹ trên máy bay.",
+                        details: {
+                            trivia: "Sân bay có kiến trúc khổng lồ hình rồng (Terminal 3) được thiết kế cho Olympic 2008.",
+                            tips: "Hãy đi theo biển chỉ dẫn 'Official Taxi' xếp hàng. Đưa địa chỉ tiếng Trung (khách sạn) cho tài xế xem trên điện thoại.",
+                            warnings: "Tuyệt đối không đi theo những người chèo kéo 'Taxi' ở sảnh chờ (Black Taxi) vì sẽ bị chặt chém giá gấp 3-4 lần."
+                        }
+                    },
+                    { 
+                        id: "d1-2", time: "Chiều", desc: "Thong thả dạo chơi Phố cổ Hutong (Hồ Đồng).", cn: "北京胡同", transport: "Đẩy xe bộ hoặc gọi DiDi.", note: "Cảnh sắc bình yên rất hợp ngắm phố phường.",
+                        details: {
+                            trivia: "Hutong là những con hẻm cổ tồn tại từ triều Nguyên (hơn 700 năm), nơi lưu giữ lối sống truyền thống của người Bắc Kinh.",
+                            tips: "Khu Nanluoguxiang thường rất đông đúc. Nếu muốn vắng hơn để dễ đẩy xe, hãy đi các hẻm xung quanh tháp Chuông Trống (Bell/Drum Tower).",
+                            warnings: "Đường hẻm lát đá gồ ghề và hẹp, có xe đạp/xe máy lách qua. Hãy giữ xe đẩy cẩn thận và đi sát vào lề."
+                        }
+                    },
+                    { 
+                        id: "d1-3", time: "Tối", desc: "Trải nghiệm Tiệc Cung Yến tại nhà hàng Phỏng Thiện.", cn: "仿膳饭庄", transport: "DiDi từ khách sạn.", note: "Thưởng thức các món ăn xưa của Từ Hy Thái Hậu.",
+                        details: {
+                            trivia: "Phỏng Thiện ban đầu do các ngự trù trong Tử Cấm Thành ra mở, chuyên phục vụ món ăn theo đúng công thức cung đình thanh triều.",
+                            tips: "Hãy thử món 'Bánh đậu đỏ Hoàng gia' mềm tan trong miệng, rất hợp để dỗ em bé ăn.",
+                            warnings: "Giá khá cao và cần xếp hàng/đặt bàn trước. Nhà hàng trải thảm nên đẩy xe nôi vào trong có thể hơi nặng."
+                        }
+                    }
                 ]
             },
             {
-                date: "Ngày 2 (Thứ 6, 24/4)",
-                title: "Cố Cung & Tiệc Cung Đình",
+                date: "Ngày 2 (Thứ sáu, 24/4)",
+                title: "Tử Cấm Thành & Thiên An Môn",
                 tasks: [
-                    { id: "d2-1", time: "Sáng", desc: "Khám phá Tử Cấm Thành (Cố Cung).", cn: "故宫博物院", transport: "DiDi thả gần Ngọ Môn (午门).", note: "Mang theo bình thủy nước nóng pha sữa. VÉ MUA TRƯỚC 7 NGÀY!" },
-                    { id: "d2-2", time: "Chiều", desc: "Quảng trường Thiên An Môn.", cn: "天安门广场", transport: "Đi bộ từ khu Cố Cung.", note: "Đường siêu phẳng, xe đẩy đi êm." },
-                    { id: "d2-3", time: "Tối", desc: "Tiệc Cung Yến Phỏng Thiện.", cn: "仿膳饭庄 (北海公园内)", transport: "DiDi từ khách sạn.", note: "Nằm trong Công viên Bắc Hải." }
+                    { 
+                        id: "d2-1", time: "Sáng", desc: "Dành nửa ngày khám phá Cố Cung (Tử Cấm Thành).", cn: "故宫博物院", transport: "DiDi thả gần Ngọ Môn (午门).", note: "Mang theo bình thủy nước nóng pha sữa. VÉ MUA TRƯỚC 7 NGÀY!",
+                        details: {
+                            trivia: "Tử Cấm Thành có đúng 9,999.5 căn phòng vì người xưa quan niệm chỉ có Ngọc Hoàng mới được sở hữu 10,000 phòng.",
+                            tips: "Chỉ có thể đi vào từ cửa phía Nam (Ngọ Môn) và đi ra ở cửa phía Bắc (Thần Vũ Môn). Luôn mang theo Hộ chiếu để quét khi qua cổng.",
+                            warnings: "QUAN TRỌNG: Gần như không có bóng râm ở các quảng trường lớn và quãng đường đi bộ cực kỳ xa (hơn 2km). Đảm bảo xe đẩy có mái che nắng tốt và có quạt mini cho bé."
+                        }
+                    },
+                    { 
+                        id: "d2-2", time: "Chiều", desc: "Tham quan Quảng trường Thiên An Môn, sau đó về khách sạn nghỉ ngơi.", cn: "天安门广场", transport: "Đi bộ từ khu Cố Cung.", note: "Đường rộng, xe đẩy đi rất êm.",
+                        details: {
+                            trivia: "Đây là quảng trường thành phố lớn nhất thế giới, có thể chứa được 1 triệu người.",
+                            tips: "Nếu muốn xem lễ hạ cờ, hãy canh giờ hoàng hôn. Có các hầm chui dưới đường để di chuyển an toàn.",
+                            warnings: "Kiểm tra an ninh vô cùng gắt gao. Chuẩn bị tinh thần phải xếp hàng kiểm tra túi xách, cởi áo khoác. Nhớ mang theo Hộ chiếu."
+                        }
+                    }
                 ]
             },
             {
-                date: "Ngày 3 (Thứ 7, 25/4)",
-                title: "Vạn Lý Trường Thành (Mộ Điền Dục)",
+                date: "Ngày 3 (Thứ bảy, 25/4)",
+                title: "Vạn Lý Trường Thành & Mua sắm",
                 tasks: [
-                    { id: "d3-1", time: "Sáng", desc: "Chinh phục Vạn Lý Trường Thành.", cn: "慕田峪长城", transport: "Bao xe riêng 7 chỗ.", note: "Gửi xe đẩy ở ga cáp treo. Dùng địu trợ lực bế bé." }
+                    { 
+                        id: "d3-1", time: "Sáng", desc: "Thuê xe đi Vạn Lý Trường Thành (khu Mộ Điền Dục).", cn: "慕田峪长城", transport: "Bao xe riêng 7 chỗ.", note: "Lên thành bằng cáp treo. Dùng địu bế bé.",
+                        details: {
+                            trivia: "Mộ Điền Dục ít khách du lịch hơn Badaling, thân thiện với gia đình hơn vì có cáp treo khép kín đưa lên tận đỉnh.",
+                            tips: "Nên thuê bao xe có sẵn ghế trẻ em (baby car seat). Xuất phát sớm (7:30 sáng) để tránh kẹt xe.",
+                            warnings: "KHÔNG NÊN dùng xe máng trượt (Toboggan) khi có em bé vì rất rung lắc. Hãy mua vé cáp treo cả chiều lên và chiều xuống."
+                        }
+                    },
+                    { 
+                        id: "d3-2", time: "Chiều", desc: "Về lại trung tâm, mua sắm tại Vương Phủ Tỉnh.", cn: "王府井步行街", transport: "DiDi hoặc xe riêng thả tại trung tâm.", note: "Có thể ăn Vịt Quay Bắc Kinh tại đây.",
+                        details: {
+                            trivia: "Cái tên 'Vương Phủ Tỉnh' có nghĩa là 'Giếng nước của Vương phủ', chiếc giếng cổ này vẫn còn được bảo tồn trên phố.",
+                            tips: "Ghé trung tâm thương mại APM hoặc Oriental Plaza để nghỉ ngơi, đi vệ sinh, vào phòng Nursery pha sữa.",
+                            warnings: "Khu vực bán côn trùng nướng trong hẻm chủ yếu để 'vặt tiền' du khách, vệ sinh kém, bỏ qua."
+                        }
+                    }
                 ]
             },
             {
-                date: "Ngày 4 (CN, 26/4)",
+                date: "Ngày 4 (Chủ Nhật, 26/4)",
                 title: "Bắc Kinh 🚄 Thượng Hải",
                 tasks: [
-                    { id: "d4-1", time: "Trưa", desc: "Tàu cao tốc G-train đi Thượng Hải.", cn: "北京南站 ➡️ 上海虹桥站", transport: "DiDi ra Ga Nam. Đến trước 1 tiếng.", note: "Trên tàu có nước sôi 100 độ." },
-                    { id: "d4-2", time: "Chiều/Tối", desc: "Nhận phòng Lục Gia Thủy. Ăn tối IFC Mall.", cn: "陆家嘴 - 上海国金中心商场", transport: "DiDi từ Ga Hồng Kiều.", note: "Tận dụng Nursery Room ở Mall cho bé." },
-                    { id: "d4-3", time: "Tối muộn", desc: "Du thuyền sông Hoàng Phố.", cn: "黄浦江游船", transport: "Đi bộ ra bến tàu.", note: "Nên mua vé VIP từ trước." }
+                    { 
+                        id: "d4-1", time: "Sáng/Trưa", desc: "Đi tàu cao tốc thẳng đến Thượng Hải (Ga Hồng Kiều).", cn: "北京南站 ➡️ 上海虹桥站", transport: "Tàu cao tốc G-train (4.5 tiếng).", note: "Tàu xịn, nhiều chỗ cho bé chơi.",
+                        details: {
+                            trivia: "Tàu Fuxing chạy với vận tốc 350km/h êm đến mức có thể dựng đứng một đồng xu.",
+                            tips: "Khoang hạng Nhất có không gian siêu rộng. Nước sôi luôn có sẵn ở cuối mỗi toa xe để thay bỉm pha sữa.",
+                            warnings: "Ga Hồng Kiều Thượng Hải cực kỳ đông đúc (Big Hub). Đi lách xa khỏi dòng người, dùng thang máy dọc (Elevator) thay vì thang cuốn cho xe đẩy."
+                        }
+                    },
+                    { 
+                        id: "d4-2", time: "Chiều", desc: "Nhận phòng khách sạn, dạo bộ Tô Giới Pháp, đường Vũ Khang.", cn: "法租界 - 武康路", transport: "DiDi nội ô.", note: "Khu phố cổ phong cách châu Âu siêu râm mát.",
+                        details: {
+                            trivia: "Tòa nhà Ngô Đồng (Wukang Mansion) xây hình như chiếc tàu thủy, siêu kinh điển do kiến trúc sư Hungary thiết kế.",
+                            tips: "Vỉa hè lát gạch êm ru, 2 bên đường rợp bóng cây cổ thụ lớn, xe đẩy cho bé đi thoải mái, rất hợp sống ảo uống cafe.",
+                            warnings: "Luôn nhường đường và chú ý xe đạp công cộng leo lên lề đường giành chỗ."
+                        }
+                    },
+                    { 
+                        id: "d4-3", time: "Tối", desc: "Ăn tối sang trọng và dạo TTTM IAPM Mall lấy sức.", cn: "IAPM Mall", transport: "Đi bộ / DiDi gần.", note: "IAPM có nursery room cao cấp.",
+                        details: {
+                            trivia: "IAPM chuyên trị các thương hiệu siêu xa xỉ, mở cửa cực trễ (đến 11h đêm), mô hình hiếm thấy trên thế giới.",
+                            tips: "Dọc theo đường Huaihai bên ngoài Mall lên đèn rất lộng lẫy vào ban đêm.",
+                            warnings: "Ăn uống ở đây giá khá cao, nhưng bù lại sạch sẽ vô trùng, lý tưởng cho bé ngày vừa đặt chân xuống tàu mệt mỏi."
+                        }
+                    }
                 ]
             },
             {
-                date: "Ngày 5 (Thứ 2, 27/4)",
-                title: "Trọn vẹn Disneyland",
+                date: "Ngày 5 (Thứ Hai, 27/4)",
+                title: "Trọn vẹn Thượng Hải Disneyland",
                 tasks: [
-                    { id: "d5-1", time: "Cả ngày", desc: "Disneyland, xem pháo hoa Illuminations.", cn: "上海迪士尼乐园", transport: "DiDi chạy thẳng.", note: "Mua sẵn gói Premier Access để không xếp hàng." }
+                    { 
+                        id: "d5-1", time: "Sáng/Chiều", desc: "Tham quan và chơi khu vui chơi Zootopia ở Disneyland.", cn: "上海迪士尼乐园", transport: "Taxi/DiDi đến tận nơi.", note: "Nhất định Mua Premier Access để khỏi đợi.",
+                        details: {
+                            trivia: "Shanghai Disneyland sở hữu Lâu đài To nhất thế giới và khu vực thành phố động vật Zootopia hoàn toàn mới.",
+                            tips: "Tải app Shanghai Disney Resort để xem thời gian chờ. Em bé dưới 1 tuổi tập đi rất hạp trò thuyền mộc.",
+                            warnings: "Các xe đẩy (Stroller) CẤM ĐEM VÀO MÁY CHƠI, phải đậu thành cụm ngoài bãi. Tuyệt đối không để Hộ Chiếu/Tiền ở xe đẩy lúc bỏ đi chơi!"
+                        }
+                    },
+                    { 
+                        id: "d5-2", time: "Tối", desc: "Xem pháo hoa Illuminations hoành tráng", cn: "迪士尼烟火秀", transport: "DiDi gọi sớm về khách sạn.", note: "Khá lạnh về đêm.",
+                        details: {
+                            trivia: "ILLUMINATE show dùng map 3D lên lâu đài kèm lửa đốt thực tế rất đã mắt và hoành tráng.",
+                            tips: "Giữ chỗ ngồi ở hồ trước cung điện từ 6:30 chiều. Trải thớt nhựa nhỏ ra ngồi cho tiện thay vì đứng 1 tiếng.",
+                            warnings: "Pháo hoa nổ lớn gắt, có thể làm bé sơ sinh thót tim. Mẹ nhớ mang nút bịt tai (earmuffs) mềm cho bé đỡ hoảng."
+                        }
+                    }
                 ]
             },
             {
-                date: "Ngày 6 (Thứ 3, 28/4)",
-                title: "Thượng Hải 🚄 Tô Châu",
+                date: "Ngày 6 (Thứ Ba, 28/4)",
+                title: "Dự Viên, Bến Thượng Hải & Du thuyền",
                 tasks: [
-                    { id: "d6-1", time: "Sáng", desc: "Tàu cao tốc tới Tô Châu. Đi Chuyết Chính Viên.", cn: "苏州站 - 拙政园", transport: "Tàu 30 phút. DiDi nội ô.", note: "Linh động đi Metro nếu kẹt xe." },
-                    { id: "d6-2", time: "Đầu giờ chiều", desc: "Thuyền mộc chèo tay Phố cổ Bình Giang.", cn: "平江路", transport: "Đi bộ hoặc xe công nghệ ngắn.", note: "Ngắm thủy trấn nguyên bản." },
-                    { id: "d6-3", time: "Chiều muộn", desc: "Phố cổ Sơn Đường, ăn Cá tùng thử.", cn: "山塘街 - 松鼠桂鱼", transport: "Gọi xe sang Sơn Đường, sau đó ra Ga về Thượng Hải.", note: "Giữ bé cẩn thận vì rất đông." }
+                    { 
+                        id: "d6-1", time: "Sáng", desc: "Khám phá Dự Viên (Yu Garden) & ngõ Miếu Thành Hoàng.", cn: "豫园 - 城隍庙", transport: "DiDi thả gần khu đi bộ.", note: "Phố cổ ăn vặt Giang Nam.",
+                        details: {
+                            trivia: "Dự Viên được một viên quan triều Minh xây dựng ròng rã 18 năm để báo hiếu phụ mẫu an hưởng tuổi già.",
+                            tips: "Mua và hút Tiểu Long Bao bằng ống hút. Tranh thủ đi lúc sáng sớm vì trưa là đặc nghẹt.",
+                            warnings: "Khu cầu 9 Khúc trứ danh TẮC ĐƯỜNG do khách chụp selfie. Tuyệt đối BẾ BÉ qua thay vì đẩy xe cố chen lấn."
+                        }
+                    },
+                    { 
+                        id: "d6-2", time: "Chiều", desc: "Ngắm tháp Đông Phương qua Bến Thượng Hải (The Bund).", cn: "外滩 (The Bund)", transport: "DiDi nội ô.", note: "Chụp ảnh hoàng hôn tuyệt đỉnh.",
+                        details: {
+                            trivia: "Mệnh danh là 'Bảo tàng kiến trúc vạn quốc', Bến Thượng Hải gìn giữ trọn vẹn các tòa nhà tài chính Âu Châu thập niên 1920s.",
+                            tips: "Đi dạo men theo bờ sông là trải nghiệm miễn phí đỉnh nhất. Đường rộng, xe đẩy mượt mà.",
+                            warnings: "Sức gió ở Bến Thượng Hải luôn giật RẤT MẠNH từ sông vào. Nhớ mặc áo phao gió, che trùm kĩ cho bé."
+                        }
+                    },
+                    { 
+                        id: "d6-3", time: "Tối", desc: "Ăn tối và Du thuyền ngắm đêm sông Hoàng Phố.", cn: "黄浦江游船", transport: "Đi bộ từ Bến.", note: "Nhớ mua vé du thuyền trên app trước.",
+                        details: {
+                            trivia: "Cảnh ban đêm thắp đèn LED rực rỡ khiến Thượng Hải có biệt danh là 'Ma Đô' (thành bang phép thuật ảo diệu).",
+                            tips: "Nếu chưa tới giờ lên thuyền hãy trú tạm ở IFC Mall cực gần đó, có phòng vắt sữa thay tã VIP.",
+                            warnings: "Boong tàu hở trơn trượt lúc khách nhao nhao chụp ảnh, giữ bé ngồi bọc bên trong khoang kính để an toàn."
+                        }
+                    }
                 ]
             },
             {
-                date: "Ngày 7 (Thứ 4, 29/4)",
-                title: "Phim trường & Tô Giới Pháp",
+                date: "Ngày 7 (Thứ Tư, 29/4)",
+                title: "Thượng Hải 🚄 Tô Châu (Về trong ngày)",
                 tasks: [
-                    { id: "d7-1", time: "Sáng", desc: "Tham quan Phim trường Thượng Hải.", cn: "上海影视乐园", transport: "DiDi chạy ra ngoại ô.", note: "Đường lát đá cuội, đẩy xe sẽ hơi rung." },
-                    { id: "d7-2", time: "Chiều", desc: "Tô Giới Pháp & đường Vũ Khang.", cn: "法租界 - 武康路", transport: "DiDi về trung tâm.", note: "Vỉa hè cực rộng. Rất hợp uống trà chiều." }
+                    { 
+                        id: "d7-1", time: "Sáng", desc: "Tàu cao tốc tới Tô Châu. Xem Bảo tàng Tô Châu & Chuyết Chính Viên.", cn: "苏州站 - 拙政园/苏州博物馆", transport: "Tàu cao tốc (30p) & DiDi.", note: "Chuyết Chính vương là viên ngọc Giang Nam.",
+                        details: {
+                            trivia: "Bảo tàng Tô Châu là di sản kiệt tác cuối đời của KTS đại tài I.M.Pei (chủ nhân Kim tự tháp kính bảo tàng Louvre).",
+                            tips: "Góc sân vườn hồ nước cắt hình đỉnh núi hòn non bộ là góc check-in nổi nhất TQ.",
+                            warnings: "BẢO TÀNG bắt buộc phải đặt giờ trên Mini-app WeChat trước 7 ngày, KHÔNG CÓ vé bán trực tiếp tại cổng!"
+                        }
+                    },
+                    { 
+                        id: "d7-2", time: "Trưa/Chiều", desc: "Phố cổ Bình Giang, đi thuyền mộc chèo tay qua cầu đá.", cn: "平江路", transport: "Đi bộ từ Chuyết Chính Viên sang.", note: "Bóng liễu rủ rất đẹp hai bên cầu.",
+                        details: {
+                            trivia: "Bình Giang Lộ là nguyên mẫu cổ trang chuẩn chỉ bậc nhất Tô Châu với cảnh 'Cây cầu nhỏ, Dưới dòng nước, Quanh nếp nhà'.",
+                            tips: "Book 1 chuyến đò gỗ có người chèo tay ngân nga bài hát Côn Khúc, gió thu hồ thổi mát rượi giúp bé ngủ ngoan.",
+                            warnings: "Tuyệt đối không để em bé đứng lên trong đò. Dọc bờ kênh cũng KHÔNG CÓ RÀO CHẮN an toàn."
+                        }
+                    },
+                    { 
+                        id: "d7-3", time: "Tối", desc: "Sơn Đường phố ăn Cá, bắt tàu cao tốc về lại Thượng Hải.", cn: "山塘街 - 晚列车回上海", transport: "DiDi sang ga. Tàu về.", note: "Trấn Sơn Đường thắp đèn cực ảo.",
+                        details: {
+                            trivia: "Bạch Cư Dị đã khơi thông dòng sông cổ và cho xây dựng khu phố lụa sầm uất kéo dài 7 dặm này.",
+                            tips: "Đặc sản 'Cá Tùng Thử' (Cá nêm chua ngọt chẻ cánh bông), chua chua ngọt ngọt không xương dễ cho bé ăn.",
+                            warnings: "Khi lên đèn lồng phố kẹt đặc người không nhúc nhích nổi. Giải pháp bỉm sữa 5 sao: Ăn xong lúc 6:30 tối và gọi taxi ra Ga ngay lập tức!"
+                        }
+                    }
                 ]
             },
             {
-                date: "Ngày 8 (Thứ 5, 30/4)",
+                date: "Ngày 8 (Thứ Năm, 30/4)",
                 title: "Thượng Hải 🚄 Hàng Châu",
                 tasks: [
-                    { id: "d8-1", time: "Sáng/Trưa", desc: "Trả phòng, đi tàu cao tốc thẳng Hàng Châu.", cn: "上海虹桥站 ➡️ 杭州东站", transport: "Tàu cao tốc (khoảng 1 tiếng).", note: "Tiết kiệm sức lực chuyển hành lý." },
-                    { id: "d8-2", time: "Chiều", desc: "Nhận phòng, tản bộ nhẹ nhàng ven Tây Hồ.", cn: "西湖", transport: "DiDi từ Ga Hàng Châu Đông về khách sạn.", note: "Nghỉ ngơi lấy sức, ngắm hoàng hôn ven hồ." }
+                    { 
+                        id: "d8-1", time: "Sáng", desc: "Lên tháp truyền hình Đông Phương Minh Châu.", cn: "东方明珠", transport: "DiDi nội ô.", note: "Đài quan sát tháp kính.",
+                        details: {
+                            trivia: "Tháp có cấu trúc 11 quả cầu thép theo thiết kế hạt minh châu rớt trên bàn ngọc lấy từ thơ cổ.",
+                            tips: "Đài quan sát bằng sàn kính trong suốt lơ lửng trên không rất dọa tim. Chơi sớm trước khi đi trả phòng khách sạn.",
+                            warnings: "Trẻ nếu hoảng sợ độ cao mẹ nên dặn bé nhìn thẳng về phía trước thay vì nhìn xuyên sàn kính."
+                        }
+                    },
+                    { 
+                        id: "d8-2", time: "Chiều", desc: "Tàu cao tốc chạy thẳng xuống Hàng Châu. Nhận phòng Ks Hàng Châu.", cn: "上海虹桥站 ➡️ 杭州东站", transport: "Tàu cao tốc ngắn 1 tiếng.", note: "Bé dễ dàng ngủ trên ghế.",
+                        details: {
+                            trivia: "Thượng Hải và Hàng Châu giáp ranh kết nối bằng vùng kinh tế Giang Nam rất khăng khít.",
+                            tips: "Chuyển cứ điểm base đi tàu chặng cực ngắn rất nhàn hạ. Hãy chỉ xách sẵn 1 tui bỉm sữa nhẹ bên mình.",
+                            warnings: "Khi chuyển Base hành lý sẽ cồng kềnh gấp đôi, bắt DiDi Premium loại 6 chỗ có khoang gầm bự nhét xe đẩy bé cho tiện."
+                        }
+                    },
+                    { 
+                        id: "d8-3", time: "Tối", desc: "Xem trình diễn tòa nhà ánh sáng khu Tiền Giang Mới.", cn: "钱江新城灯光秀", transport: "DiDi tới Raffles City.", note: "Khu đô thị văn minh, sạch sẽ.",
+                        details: {
+                            trivia: "Được xây chuẩn siêu thực G20, hàng dãy các cao ốc phát sáng đồng loạt hắt bóng xuống sông Tiền Đường cuồn cuộn.",
+                            tips: "Khu vực 'Ban công thành phố' rộng như Sân bóng đá, tha hồ thả bé xuống tập đi và gió siêu lộng mát rượi.",
+                            warnings: "Hãy nhờ lễ tân KS gọi điện hỏi trước xem Tối nay có chiếu đèn hay không phòng bị cúp điện tiết kiệm ngân sách."
+                        }
+                    }
                 ]
             },
             {
-                date: "Ngày 9 (Thứ 6, 1/5 - Lễ LĐ)",
-                title: "Hàng Châu 🚗 Ô Trấn (Sáng đi chiều về)",
+                date: "Ngày 9 (Thứ Sáu, 1/5 - QUỐC KHÁNH TQ)",
+                title: "Tây Hồ rợp bóng liễu - Hàng Châu",
                 tasks: [
-                    { id: "d9-1", time: "Sáng/Chiều", desc: "Đi Ô Trấn ngắm thủy trấn, dạo cầu đá.", cn: "乌镇 - 西栅", transport: "Bao xe riêng đi về trong ngày (1.5h/chiều).", note: "Ngày lễ sẽ đông, đi xe riêng giúp bé ngủ ngon trên đường đi/về." },
-                    { id: "d9-2", time: "Tối", desc: "Xem Show ánh sáng Tiền Giang.", cn: "钱江新城灯光秀", transport: "Ăn tối Raffles City đi bộ ra Ban công thành phố.", note: "Ra sớm trước 19h để xí chỗ." }
+                    { 
+                        id: "d9-1", time: "Sáng/Trưa", desc: "Đẩy xe tản bộ dọc cầu Đoạn Kiều - Tây Hồ. Thưởng thức Trà Long Tỉnh.", cn: "西湖风景名胜区", transport: "Taxi / DiDi.", note: "THẬN TRỌNG Đám đông nghỉ lễ 1/5!!!",
+                        details: {
+                            trivia: "Tây Hồ là di sản quy hoạch đặc trưng triều đại phong kiến, hồ đẹp vì 'tứ mù' - 4 mùa chìm trong khói sương.",
+                            tips: "Thuê xuồng điện có mái che tự lái trên hồ Tây là cách hoàn hảo để cả gia đình tránh bị xô đẩy mệt mỏi.",
+                            warnings: "BÁO ĐỘNG ĐỎ KỲ NGHỈ LỄ QUỐC KHÁNH 1/5. TRUNG QUỐC NGHỈ DÀI NGÀY VÀ LƯỢNG NGƯỜI LÀ NGHẼN MẠCH. KHÔNG ĐƯỢC RỜI XE ĐẨY CON!"
+                        }
+                    },
+                    { 
+                        id: "d9-2", time: "Chiều", desc: "Lảng tránh trung tâm, dắt cả nhà thư thái Trà Khu Long Tỉnh (Đồi Trà).", cn: "龙井村", transport: "DiDi (có thể tắc đường đèo).", note: "An yên, tránh bão dân số.",
+                        details: {
+                            trivia: "Trà Long Tỉnh mọc trên sườn đồi là cống phẩm hoàng gia. Mùi thơm như kẹo hoa sen xanh.",
+                            tips: "Lên đồi trà ngồi ghế mây húp nước trà, mua ít bánh trái dỗ e bé và bỏ thế giới ngày 1/5 bận rộn ngoài sau lưng.",
+                            warnings: "Khu đồi mấp mô, nhiều lúc xe đẩy phải vác vai, nhớ xịt thuốc chống muỗi organic cho Ủn."
+                        }
+                    }
                 ]
             },
             {
-                date: "Ngày 10 (Thứ 7, 2/5)",
-                title: "Trọn vẹn Tây Hồ & Mua sắm",
+                date: "Ngày 10 (Thứ Bảy, 2/5)",
+                title: "Hàng Châu 🚗 Ô Trấn (Về trong ngày)",
                 tasks: [
-                    { id: "d10-1", time: "Cả ngày", desc: "Tản bộ Tây Hồ, Shopping mall in77.", cn: "湖滨银泰in77", transport: "DiDi nội ô.", note: "Tâm lý đi du lịch xả hơi, hai vợ chồng vừa dạo chơi vừa tham khảo mấy mẫu đồ sơ sinh hay hay cho Uñ Uñ Baby." }
+                    { 
+                        id: "d10-1", time: "Sáng/Chiều", desc: "Bao xe đi Ô Trấn, dạo chơi cổ trấn ngàn năm Tây Sách (Xizha).", cn: "乌镇东/西栅", transport: "Thuê Bao xe (Bản địa).", note: "1h15p di chuyển thẳng tắp.",
+                        details: {
+                            trivia: "Trấn đã hơn 1000 tuổi nhưng được khai thác siêu đẳng cấp 5 sao: Nước sạch trong, ván gỗ trơn tru, toilet thơm lừng mùi xả.",
+                            tips: "Lên thẳng khu Tây Sách (Xizha) vì nó rực rỡ và quy mô rộng lớn bạt ngàn nhất.",
+                            warnings: "KẺ THÙ CỦA XE ĐẨY: Toàn bộ đường đi là các khối xếp bằng đá xanh hộc lớn cổ gồ ghề. Xe đẩy lún và giằn não em nhỏ. Cực lỳ khuyên dùng đai địu quấn hông suốt chặng này!"
+                        }
+                    },
+                    { 
+                        id: "d10-2", time: "Tối", desc: "Ngắm Ô Tấn lên đèn hoa đăng vàng rực dưới sông và về bằng ô tô.", cn: "乘车回杭州", transport: "Xe chờ sẵn ngoài bãi đỗ VIP.", note: "Khung cảnh đẹp nhói tim.",
+                        details: {
+                            trivia: "Ô trấn chuyển mình ngoạn mục vào khoảng 6h tối khi tất cả các căn nhà quanh mép nước đồng loạt thắp lên ánh đèn nến cam rực rỡ vàng ngọc.",
+                            tips: "Chơi xong tối về, lên xe điều hoà ngủ 1 giấc ngắn bồng bềnh là đã về lại Khách sạn Hàng Châu ấm êm.",
+                            warnings: "Sương đêm lùa rất buốt lạnh ở vùng ven sông. Mặc áo len dệt mỏng kĩ càng cho em nhỏ."
+                        }
+                    }
                 ]
             },
             {
-                date: "Ngày 11 (CN, 3/5)",
+                date: "Ngày 11 (Chủ Nhật, 3/5)",
                 title: "Hàng Châu ✈️ Sài Gòn",
                 tasks: [
-                    { id: "d11-1", time: "Sáng", desc: "Gói ghém hành lý ra sân bay.", cn: "杭州萧山国际机场", transport: "DiDi Premium ra sân bay.", note: "Có mặt trước 3.5 tiếng." }
+                    { 
+                        id: "d11-1", time: "Sáng/Trưa", desc: "Đóng gói hành lý toàn bộ. Bắt xe Premium ra Sân bay Tiêu Sơn bay về SG.", cn: "杭州萧山国际机场 (HGH)", transport: "DiDi VIP thẳng ra sảnh đi.", note: "Sân bay siêu đẹp, rộng thênh thang.",
+                        details: {
+                            trivia: "Sân bay Tiêu Sơn mới được đập xây lại có nguyên một khu sinh thái 3D và hồ sen lóng lánh giả lập trong sảnh đợi đón xuất nhập cảnh.",
+                            tips: "Luôn chừa 3 tiếng 30 phút rảnh rỗi thủ tục quá cảnh soi gắt hành lý và xếp xe đẩy.",
+                            warnings: "Sân bay cực kỳ rộng, lên tàu điện bay nội bộ để đến đúng Cổng tàu bay (Gate) của bạn. Tuyệt đối không la cà mua sắm sát giờ cất cánh."
+                        }
+                    }
                 ]
             }
         ];
@@ -213,6 +585,7 @@
         const container = document.getElementById('timelineContainer');
         const searchInput = document.getElementById('searchInput');
         let totalTasks = 0;
+        let serverImages = {}; // Trữ dữ liệu ảnh từ server
 
         function renderItinerary(filterText = '') {
             container.innerHTML = '';
@@ -236,18 +609,36 @@
                     if(isChecked) currentTasks++;
 
                     // Image Upload UI
+                    const hasImage = !!serverImages[task.id];
+                    const imageSrc = hasImage ? serverImages[task.id] : '';
                     const imageSection = `
-                        <div class="upload-wrapper" id="upload-wrapper-${task.id}">
+                        <div class="upload-wrapper" id="upload-wrapper-${task.id}" style="display: ${hasImage ? 'none' : 'block'};">
                             <label class="btn-upload">
                                 <span>📸 Thêm ảnh tham khảo</span>
                                 <input type="file" accept="image/*" class="upload-input" onchange="handleImageUpload(event, '${task.id}')">
                             </label>
                         </div>
-                        <div class="image-container" id="img-container-${task.id}">
-                            <img src="" class="task-image" id="img-preview-${task.id}" alt="Reference">
+                        <div class="image-container" id="img-container-${task.id}" style="display: ${hasImage ? 'block' : 'none'};">
+                            <img src="${imageSrc}" class="task-image" id="img-preview-${task.id}" alt="Reference">
                             <button class="btn-delete-img" onclick="deleteImage('${task.id}')">✕</button>
                         </div>
                     `;
+
+                    // Details Accordion UI
+                    const expIcon = '<span class="icon-expand">▼</span>';
+                    const detailsHTML = task.details ? `
+                        <div class="task-details" id="details-${task.id}">
+                            <div class="details-summary" onclick="toggleDetails('${task.id}')">
+                                <span>📖 Thông tin Chi tiết & Cảnh báo</span>
+                                ${expIcon}
+                            </div>
+                            <div class="details-content">
+                                ${task.details.trivia ? `<div class="details-section dt-trivia"><div class="details-section-title">✨ Fun Fact / Góc thú vị</div><div>${task.details.trivia}</div></div>` : ''}
+                                ${task.details.tips ? `<div class="details-section dt-guide"><div class="details-section-title">🗺️ Hướng dẫn / Bí quyết</div><div>${task.details.tips}</div></div>` : ''}
+                                ${task.details.warnings ? `<div class="details-section dt-warning"><div class="details-section-title">⚠️ Cảnh báo an toàn (Du lịch có Trẻ em)</div><div>${task.details.warnings}</div></div>` : ''}
+                            </div>
+                        </div>
+                    ` : '';
 
                     tasksHTML += `
                         <div class="task-item">
@@ -262,13 +653,20 @@
                                 
                                 <div class="cn-box">
                                     <span class="cn-text">${task.cn}</span>
-                                    <button class="btn-copy" onclick="copyText('${task.cn}')">Copy</button>
+                                    <div class="cn-actions">
+                                        <button class="btn-copy" onclick="copyText('${task.cn}')">Copy</button>
+                                        <a href="http://api.map.baidu.com/direction?origin=我的位置&destination=${encodeURIComponent(task.cn)}&mode=transit&output=html" target="_blank" class="btn-navi">
+                                            🗺️ Bản đồ
+                                        </a>
+                                    </div>
                                 </div>
                                 
                                 <div class="info-group">
                                     <div class="badge badge-transport"><span class="icon">🚗</span> <span>${task.transport}</span></div>
                                     <div class="badge badge-note"><span class="icon">💡</span> <span>${task.note}</span></div>
                                 </div>
+                                
+                                ${detailsHTML}
                             </div>
                         </div>
                     `;
@@ -288,42 +686,73 @@
         }
 
         // --- CORE FUNCTION CHO BACKEND CỦA ANH ---
-        function handleImageUpload(event, taskId) {
+        async function handleImageUpload(event, taskId) {
             const file = event.target.files[0];
             if (!file) return;
 
-            // 1. Hiển thị Preview ngay lập tức bằng ObjectURL (Không tốn LocalStorage)
+            const password = prompt("Nhập mật khẩu (admin) để upload ảnh:", "");
+            if (!password) {
+                event.target.value = ""; // reset input
+                return;
+            }
+
+            // 1. Hiển thị Preview tạm thời
             const previewUrl = URL.createObjectURL(file);
             document.getElementById(`img-preview-${taskId}`).src = previewUrl;
             document.getElementById(`img-container-${taskId}`).style.display = 'block';
             document.getElementById(`upload-wrapper-${taskId}`).style.display = 'none';
+            showToast("Đang tải lên...");
 
-            // 2. TODO: Gọi API Upload lên Hosting/Github của anh
-            /*
+            // 2. Gọi API PHP
             const formData = new FormData();
             formData.append('image', file);
             formData.append('taskId', taskId);
+            formData.append('password', password);
 
-            fetch('https://api.yourhosting.com/upload', {
-                method: 'POST',
-                body: formData
-            })
-            .then(res => res.json())
-            .then(data => {
-                showToast("Đã upload lên server!");
-                // Lưu data.url vào Database của anh
-            })
-            .catch(err => console.error("Lỗi upload:", err));
-            */
-        }
-
-        // Xóa ảnh (Chỉ xóa UI tạm thời, anh cần viết thêm API Delete nếu cần)
-        window.deleteImage = function(taskId) {
-            if(confirm("Xóa ảnh tham khảo này?")) {
-                document.getElementById(`img-preview-${taskId}`).src = '';
+            try {
+                const res = await fetch('./api.php?action=upload', { method: 'POST', body: formData });
+                const json = await res.json();
+                if (json.success) {
+                    showToast(json.message);
+                    serverImages[taskId] = json.imageUrl;
+                } else {
+                    alert("Lỗi: " + json.message);
+                    throw new Error(json.message);
+                }
+            } catch (err) {
+                // Khôi phục UI nếu lỗi
                 document.getElementById(`img-container-${taskId}`).style.display = 'none';
                 document.getElementById(`upload-wrapper-${taskId}`).style.display = 'block';
-                // TODO: Gọi API Delete trên server
+            }
+            event.target.value = ""; // reset input
+        }
+
+        // Xóa ảnh (Có xác thực)
+        window.deleteImage = async function(taskId) {
+            if(confirm("Xóa ảnh tham khảo này?")) {
+                const password = prompt("Nhập mật khẩu (admin) để xóa ảnh:", "");
+                if (!password) return;
+                
+                showToast("Đang xóa...");
+                try {
+                    const res = await fetch('./api.php?action=delete', {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({ taskId, password })
+                    });
+                    const json = await res.json();
+                    if (json.success) {
+                        document.getElementById(`img-preview-${taskId}`).src = '';
+                        document.getElementById(`img-container-${taskId}`).style.display = 'none';
+                        document.getElementById(`upload-wrapper-${taskId}`).style.display = 'block';
+                        delete serverImages[taskId];
+                        showToast(json.message);
+                    } else {
+                        alert("Lỗi: " + json.message);
+                    }
+                } catch (err) {
+                    alert("Lỗi kết nối.");
+                }
             }
         }
 
@@ -344,6 +773,13 @@
             document.getElementById('progressPercent').innerText = percent + '%';
         }
 
+        window.toggleDetails = function(taskId) {
+            const detailsDiv = document.getElementById(`details-${taskId}`);
+            if(detailsDiv) {
+                detailsDiv.classList.toggle('open');
+            }
+        };
+
         function showToast(msg) {
             const toast = document.getElementById("toast");
             toast.innerText = msg;
@@ -357,7 +793,59 @@
 
         searchInput.addEventListener('input', (e) => { renderItinerary(e.target.value.toLowerCase()); });
 
-        renderItinerary();
+        // Khởi tạo: Lấy dữ liệu ảnh trước khi render
+        fetch('./api.php?action=get_data')
+            .then(r => r.json())
+            .then(json => {
+                if(json.success && json.data) {
+                    serverImages = json.data;
+                }
+                renderItinerary();
+            })
+            .catch(err => {
+                console.error("Không tải được dữ liệu ảnh", err);
+                renderItinerary();
+            });
+
+        // Đăng ký Service Worker với cơ chế Auto-Update nhẹ nhàng
+        if ('serviceWorker' in navigator) {
+            navigator.serviceWorker.register('./sw.js').then(reg => {
+                reg.onupdatefound = () => {
+                    const installingWorker = reg.installing;
+                    installingWorker.onstatechange = () => {
+                        if (installingWorker.state === 'installed' && navigator.serviceWorker.controller) {
+                            showToast("Có bản cập nhật mới! Đang tải lại...");
+                            setTimeout(() => window.location.reload(true), 1500);
+                        }
+                    };
+                };
+            }).catch(console.error);
+        }
+
+        // Handle Tab Switching
+        window.switchTab = function(tabName, index) {
+            // Update Slider position
+            const slider = document.getElementById('tabSlider');
+            if(index === 0) {
+                slider.style.transform = 'translateX(0)';
+            } else {
+                slider.style.transform = 'translateX(100%)';
+            }
+            
+            // Update Active class on text
+            const btns = document.querySelectorAll('.tab-btn');
+            btns.forEach((btn, i) => {
+                if(i === index) btn.classList.add('active');
+                else btn.classList.remove('active');
+            });
+            
+            // Toggle Content Views
+            const isItinerary = tabName === 'itinerary';
+            document.getElementById('timelineContainer').style.display = isItinerary ? 'block' : 'none';
+            document.getElementById('progressBox').style.display = isItinerary ? 'block' : 'none';
+            document.getElementById('searchBox').style.display = isItinerary ? 'block' : 'none';
+            document.getElementById('flightContainer').style.display = !isItinerary ? 'block' : 'none';
+        }
     </script>
 </body>
 </html>
