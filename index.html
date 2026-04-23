@@ -8,7 +8,7 @@
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     <meta name="apple-mobile-web-app-title" content="Tùng Văn Trip">
-    <link rel="apple-touch-icon" href="https://via.placeholder.com/192x192.png?text=TV">
+    <link rel="apple-touch-icon" href="logo 192x192.png">
     <link rel="manifest" href="./manifest.json">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     
@@ -105,7 +105,7 @@
         .details-content li { margin-bottom: 8px; font-size: 0.95rem; line-height: 1.5; text-align: justify;}
         @keyframes fadeIn { from { opacity: 0; transform: translateY(-10px); } to { opacity: 1; transform: translateY(0); } }
 
-        #toast { visibility: hidden; min-width: 200px; background-color: rgba(0,0,0,0.8); color: #fff; text-align: center; border-radius: 24px; padding: 12px 20px; position: fixed; z-index: 1000; left: 50%; bottom: 40px; transform: translateX(-50%); font-size: 0.95rem; font-weight: 500; backdrop-filter: blur(5px); transition: visibility 0s, opacity 0.3s, bottom 0.3s; opacity: 0; }
+        #toast { visibility: hidden; min-width: 200px; background-color: rgba(0,0,0,0.8); color: #fff; text-align: center; border-radius: 24px; padding: 12px 20px; position: fixed; z-index: 3000; left: 50%; bottom: 40px; transform: translateX(-50%); font-size: 0.95rem; font-weight: 500; backdrop-filter: blur(5px); transition: visibility 0s, opacity 0.3s, bottom 0.3s; opacity: 0; }
         #toast.show { visibility: visible; opacity: 1; bottom: 50px;}
 
         .tab-menu { display: flex; background: rgba(118, 118, 128, 0.12); border-radius: 9px; padding: 2px; margin: 10px 0 15px; position: relative; }
@@ -144,6 +144,19 @@
         .hotel-guide { font-size: 0.95rem; color: #3C3C43; line-height: 1.5; background: #E8F0FE; padding: 15px; border-radius: 12px; border-left: 4px solid #007AFF;}
         .passenger-info { font-size: 0.85rem; color: #8E8E93; margin-top: 15px; border-top: 1px dashed #E5E5EA; padding-top: 15px;}
         .passenger-info strong { color: #1C1C1E;}
+
+        /* CSS Modal Mật khẩu */
+        .modal-overlay { display: none; position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0,0,0,0.4); z-index: 2000; justify-content: center; align-items: center; backdrop-filter: blur(4px); }
+        .modal-box { background: #fff; padding: 24px; border-radius: 20px; width: 90%; max-width: 320px; box-shadow: 0 10px 40px rgba(0,0,0,0.15); text-align: center; }
+        .modal-title { font-size: 1.15rem; font-weight: 700; margin-bottom: 16px; color: var(--text-main); }
+        .modal-input { width: 100%; padding: 12px 16px; border: 1px solid var(--border); border-radius: 12px; margin-bottom: 20px; font-size: 1rem; outline: none; text-align: center; background: #F2F2F7; transition: 0.3s; }
+        .modal-input:focus { background: #fff; border-color: var(--primary); }
+        .modal-actions { display: flex; gap: 10px; }
+        .btn-cancel, .btn-confirm { flex: 1; padding: 12px; border-radius: 12px; font-weight: 600; border: none; cursor: pointer; font-size: 0.95rem; transition: 0.2s;}
+        .btn-cancel { background: #E5E5EA; color: var(--text-main); }
+        .btn-cancel:active { background: #D1D1D6; }
+        .btn-confirm { background: var(--primary); color: white; }
+        .btn-confirm:active { opacity: 0.8; transform: scale(0.98); }
         
     </style>
 </head>
@@ -301,6 +314,17 @@
                     <div class="info-block"><span class="info-label">Ngày khởi hành</span><span class="info-value value-red">06 May 2026</span></div>
                     <div class="info-block" style="text-align: right;"><span class="info-label">Hành khách</span><span class="info-value">CHU CHI THANH + 2</span></div>
                 </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal-overlay" id="passwordModal">
+        <div class="modal-box">
+            <div class="modal-title" id="modalTitle">Nhập mật khẩu</div>
+            <input type="password" class="modal-input" id="modalPassword" placeholder="Mật khẩu (admin)...">
+            <div class="modal-actions">
+                <button class="btn-cancel" onclick="closePasswordModal()">Hủy</button>
+                <button class="btn-confirm" onclick="submitPasswordModal()">Xác nhận</button>
             </div>
         </div>
     </div>
@@ -513,7 +537,7 @@
                                 <li><strong>Nghỉ ngơi Picnic nhẹ:</strong> Tìm một băng ghế đá dưới tán cây liễu rủ ven hồ, trải khăn, lấy bánh ngọt và sữa ra để cả nhà cùng tận hưởng khoảnh khắc picnic bình yên hiếm hoi, ngắm các cụ già Bắc Kinh viết thư pháp bằng nước lã trên sân gạch.</li>
                             </ul>`,
                             warnings: `<ul>
-                                <li><strong>CẢNH BÁO BỎ QUA VẠN THỌ SƠN:</strong> Tuyệt đối KHÔNG ĐẨY XE NÔI leo lên khu vực các ngôi chùa Tháp Hương Các nằm trên đồi Vạn Thọ Sơn. Đường dốc thẳng đứng, vô số bậc đá lởm chởm. Vác xe đẩy và bế em bé lên đỉnh đồi này là một sự hành xác tàn khốc gây kiệt sức. Chỉ nên đi dạo vòng quanh mép hồ phẳng lặng!</li>
+                                <li><strong>CẢNH BÁO BỎ QUẢ VẠN THỌ SƠN:</strong> Tuyệt đối KHÔNG ĐẨY XE NÔI leo lên khu vực các ngôi chùa Tháp Hương Các nằm trên đồi Vạn Thọ Sơn. Đường dốc thẳng đứng, vô số bậc đá lởm chởm. Vác xe đẩy và bế em bé lên đỉnh đồi này là một sự hành xác tàn khốc gây kiệt sức. Chỉ nên đi dạo vòng quanh mép hồ phẳng lặng!</li>
                                 <li><strong>Gió lộng nguy hiểm:</strong> Cảnh quan chủ yếu là hồ nước mênh mông bọc rặng núi, do đó gió lùa vào mặt rất mạnh và mang theo hơi lạnh. Hãy kéo kín rèm che phủ thùng xe nôi để tránh bụi bay vào mắt và bảo vệ phổi của trẻ sơ sinh khỏi nhiễm lạnh.</li>
                                 <li><strong>Cẩn thận khi lên xuống thuyền:</strong> Bến thuyền dập dềnh sóng, hãy để ba Thạnh bước xuống thuyền giữ thăng bằng trước, sau đó mẹ Hà mới bế em bé bước cẩn thận truyền tay sang. Khóa bánh xe đẩy gửi lại trên bờ hoặc gấp gọn hoàn toàn nếu mang xuống thuyền.</li>
                             </ul>`
@@ -903,7 +927,30 @@
         const searchInput = document.getElementById('searchInput');
         let totalTasks = 0;
         let serverImages = {}; 
+        let serverProgress = {}; 
 
+        // === HỆ THỐNG MODAL MẬT KHẨU ===
+        let passwordPromiseResolve = null;
+        function requirePassword(title) {
+            document.getElementById('modalTitle').innerText = title;
+            document.getElementById('modalPassword').value = '';
+            document.getElementById('passwordModal').style.display = 'flex';
+            setTimeout(() => document.getElementById('modalPassword').focus(), 100);
+            return new Promise(resolve => {
+                passwordPromiseResolve = resolve;
+            });
+        }
+        function closePasswordModal() {
+            document.getElementById('passwordModal').style.display = 'none';
+            if(passwordPromiseResolve) passwordPromiseResolve(null);
+        }
+        function submitPasswordModal() {
+            const pass = document.getElementById('modalPassword').value;
+            document.getElementById('passwordModal').style.display = 'none';
+            if(passwordPromiseResolve) passwordPromiseResolve(pass);
+        }
+
+        // === RENDER CHÍNH ===
         function renderItinerary(filterText = '') {
             container.innerHTML = '';
             totalTasks = 0;
@@ -922,7 +969,7 @@
                 let tasksHTML = '';
                 day.tasks.forEach(task => {
                     totalTasks++;
-                    const isChecked = localStorage.getItem(task.id) === 'true';
+                    const isChecked = serverProgress[task.id] === true || serverProgress[task.id] === "true";
                     if(isChecked) currentTasks++;
 
                     const hasImage = !!serverImages[task.id];
@@ -935,7 +982,7 @@
                             </label>
                         </div>
                         <div class="image-container" id="img-container-${task.id}" style="display: ${hasImage ? 'block' : 'none'};">
-                            <img src="${imageSrc}" class="task-image" id="img-preview-${task.id}" alt="Reference">
+                            <img src="${imageSrc}" class="task-image" id="img-preview-${task.id}" alt="Reference" loading="lazy">
                             <button class="btn-delete-img" onclick="deleteImage('${task.id}')">✕</button>
                         </div>
                     `;
@@ -948,9 +995,9 @@
                                 ${expIcon}
                             </div>
                             <div class="details-content">
-                                ${task.details.trivia ? `<div class="details-section dt-trivia"><div class="details-section-title">✨ Fun Fact / Góc thú vị</div><div>${task.details.trivia}</div></div>` : ''}
-                                ${task.details.tips ? `<div class="details-section dt-guide"><div class="details-section-title">🗺️ Hướng dẫn / Bí quyết</div><div>${task.details.tips}</div></div>` : ''}
-                                ${task.details.warnings ? `<div class="details-section dt-warning"><div class="details-section-title">⚠️ Cảnh báo an toàn (Du lịch có Trẻ em)</div><div>${task.details.warnings}</div></div>` : ''}
+                                ${task.details.trivia ? `<div class="details-section dt-trivia"><div class="details-section-title">✨ Fun Fact</div><div>${task.details.trivia}</div></div>` : ''}
+                                ${task.details.tips ? `<div class="details-section dt-guide"><div class="details-section-title">🗺️ Bí quyết</div><div>${task.details.tips}</div></div>` : ''}
+                                ${task.details.warnings ? `<div class="details-section dt-warning"><div class="details-section-title">⚠️ Cảnh báo</div><div>${task.details.warnings}</div></div>` : ''}
                             </div>
                         </div>
                     ` : '';
@@ -963,27 +1010,19 @@
                             <div class="task-content ${isChecked ? 'completed' : ''}" id="content-${task.id}">
                                 <span class="task-time">${task.time}</span>
                                 <div class="task-desc">${task.desc}</div>
-                                
                                 ${imageSection}
-                                
                                 <div class="cn-box">
                                     <div class="cn-text">${task.cn}</div>
                                     <div class="cn-actions">
                                         <button class="btn-copy" onclick="copyText('${task.cn}')">Copy</button>
-                                        <a href="https://map.baidu.com/mobile/webapp/search/search/qt=s&wd=${encodeURIComponent(task.cn)}" target="_blank" class="btn-navi" style="background-color: #2468F2;">
-                                            🗺️ Baidu
-                                        </a>
-                                        <a href="https://uri.amap.com/search?keyword=${encodeURIComponent(task.cn)}" target="_blank" class="btn-navi" style="background-color: #0091FF;">
-                                            🗺️ Amap (Cao Đức)
-                                        </a>
+                                        <a href="https://map.baidu.com/mobile/webapp/search/search/qt=s&wd=${encodeURIComponent(task.cn)}" target="_blank" class="btn-navi" style="background-color: #2468F2;">🗺️ Baidu</a>
+                                        <a href="https://uri.amap.com/search?keyword=${encodeURIComponent(task.cn)}" target="_blank" class="btn-navi" style="background-color: #0091FF;">🗺️ Amap</a>
                                     </div>
                                 </div>
-                                
                                 <div class="info-group">
                                     <div class="badge badge-transport"><span class="icon">🚗</span> <span>${task.transport}</span></div>
                                     <div class="badge badge-note"><span class="icon">💡</span> <span>${task.note}</span></div>
                                 </div>
-                                
                                 ${detailsHTML}
                             </div>
                         </div>
@@ -1004,7 +1043,7 @@
             const file = event.target.files[0];
             if (!file) return;
 
-            const password = prompt("Nhập mật khẩu (admin) để upload ảnh:", "");
+            const password = await requirePassword("Xác thực tải ảnh lên");
             if (!password) {
                 event.target.value = ""; 
                 return;
@@ -1040,7 +1079,7 @@
 
         window.deleteImage = async function(taskId) {
             if(confirm("Xóa ảnh tham khảo này?")) {
-                const password = prompt("Nhập mật khẩu (admin) để xóa ảnh:", "");
+                const password = await requirePassword("Xác thực xóa ảnh");
                 if (!password) return;
                 
                 showToast("Đang xóa...");
@@ -1066,14 +1105,29 @@
             }
         }
 
-        function updateProgress(checkbox) {
-            localStorage.setItem(checkbox.id, checkbox.checked);
+        async function updateProgress(checkbox) {
+            const isChecked = checkbox.checked;
+            serverProgress[checkbox.id] = isChecked;
+            
             const contentDiv = document.getElementById(`content-${checkbox.id}`);
-            checkbox.checked ? contentDiv.classList.add('completed') : contentDiv.classList.remove('completed');
+            isChecked ? contentDiv.classList.add('completed') : contentDiv.classList.remove('completed');
 
             let currentTasks = 0;
-            itineraryData.forEach(day => day.tasks.forEach(task => { if(localStorage.getItem(task.id) === 'true') currentTasks++; }));
+            Object.values(serverProgress).forEach(status => {
+                if(status === true || status === "true") currentTasks++;
+            });
             updateProgressBar(currentTasks, totalTasks);
+
+            try {
+                await fetch('./api.php?action=update_progress', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ taskId: checkbox.id, status: isChecked })
+                });
+            } catch (err) {
+                console.error("Lỗi đồng bộ", err);
+                showToast("Lỗi đồng bộ máy chủ!");
+            }
         }
 
         function updateProgressBar(current, total) {
@@ -1085,9 +1139,7 @@
 
         window.toggleDetails = function(taskId) {
             const detailsDiv = document.getElementById(`details-${taskId}`);
-            if(detailsDiv) {
-                detailsDiv.classList.toggle('open');
-            }
+            if(detailsDiv) detailsDiv.classList.toggle('open');
         };
 
         function showToast(msg) {
@@ -1098,52 +1150,32 @@
         }
 
         window.copyText = function(text) {
-            navigator.clipboard.writeText(text).then(() => { showToast("Đã copy thành công!"); }).catch(err => { console.error('Lỗi: ', err); });
+            navigator.clipboard.writeText(text).then(() => { showToast("Đã copy thành công!"); });
         }
 
         searchInput.addEventListener('input', (e) => { renderItinerary(e.target.value.toLowerCase()); });
 
-        fetch('./api.php?action=get_data')
-            .then(r => r.json())
-            .then(json => {
-                if(json.success && json.data) {
-                    serverImages = json.data;
-                }
-                renderItinerary();
-            })
-            .catch(err => {
-                console.error("Không tải được dữ liệu ảnh", err);
-                renderItinerary();
-            });
+        Promise.all([
+            fetch('./api.php?action=get_data').then(r => r.json()),
+            fetch('./api.php?action=get_progress').then(r => r.json())
+        ]).then(([imgRes, progRes]) => {
+            if(imgRes.success && imgRes.data) serverImages = imgRes.data;
+            if(progRes.success && progRes.data) serverProgress = progRes.data;
+            renderItinerary();
+        }).catch(() => renderItinerary());
 
         if ('serviceWorker' in navigator) {
-            navigator.serviceWorker.register('./sw.js').then(reg => {
-                reg.onupdatefound = () => {
-                    const installingWorker = reg.installing;
-                    installingWorker.onstatechange = () => {
-                        if (installingWorker.state === 'installed' && navigator.serviceWorker.controller) {
-                            showToast("Có bản cập nhật mới! Đang tải lại...");
-                            setTimeout(() => window.location.reload(true), 1500);
-                        }
-                    };
-                };
-            }).catch(console.error);
+            navigator.serviceWorker.register('./sw.js').catch(console.error);
         }
 
         window.switchTab = function(tabName, index) {
             const slider = document.getElementById('tabSlider');
             slider.style.transform = `translateX(${index * 100}%)`;
-            
             const btns = document.querySelectorAll('.tab-btn');
-            btns.forEach((btn, i) => {
-                if(i === index) btn.classList.add('active');
-                else btn.classList.remove('active');
-            });
-            
+            btns.forEach((btn, i) => i === index ? btn.classList.add('active') : btn.classList.remove('active'));
             document.getElementById('timelineContainer').style.display = tabName === 'itinerary' ? 'block' : 'none';
             document.getElementById('progressBox').style.display = tabName === 'itinerary' ? 'block' : 'none';
             document.getElementById('searchBox').style.display = tabName === 'itinerary' ? 'block' : 'none';
-            
             document.getElementById('hotelContainer').style.display = tabName === 'hotel' ? 'block' : 'none';
             document.getElementById('flightContainer').style.display = tabName === 'flight' ? 'block' : 'none';
         }
