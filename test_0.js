@@ -1,1130 +1,4 @@
-<!DOCTYPE html>
-<html lang="vi">
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport"
-        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
-    <title>Hành Trình Tùng Văn</title>
-
-    <meta name="apple-mobile-web-app-capable" content="yes">
-    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <meta name="apple-mobile-web-app-title" content="Tùng Văn Trip">
-    <link rel="apple-touch-icon" href="logo 192x192.png">
-    <link rel="manifest" href="./manifest.json">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-
-    <style>
-        :root {
-            --primary: #007AFF;
-            --primary-light: #E5F1FF;
-            --bg: #F2F2F7;
-            --card-bg: #FFFFFF;
-            --text-main: #1C1C1E;
-            --text-muted: #8E8E93;
-            --border: #E5E5EA;
-            --success: #34C759;
-            --danger: #FF3B30;
-        }
-
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-            font-family: 'Inter', sans-serif;
-            -webkit-tap-highlight-color: transparent;
-        }
-
-        body {
-            background-color: var(--bg);
-            color: var(--text-main);
-            padding-bottom: 50px;
-            line-height: 1.5;
-        }
-
-        header {
-            background: rgba(255, 255, 255, 0.85);
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
-            padding: env(safe-area-inset-top, 20px) 20px 15px;
-            position: sticky;
-            top: 0;
-            z-index: 100;
-            border-bottom: 1px solid rgba(0, 0, 0, 0.05);
-        }
-
-        h1 {
-            font-size: 1.4rem;
-            margin-bottom: 12px;
-            font-weight: 700;
-            letter-spacing: -0.5px;
-            color: #000;
-            text-align: center;
-        }
-
-        .search-container input {
-            width: 100%;
-            padding: 12px 16px;
-            border: none;
-            border-radius: 12px;
-            font-size: 0.95rem;
-            outline: none;
-            background: #e3e3e8;
-            color: var(--text-main);
-            transition: all 0.3s ease;
-        }
-
-        .search-container input:focus {
-            background: #d1d1d6;
-        }
-
-        .progress-container {
-            padding: 20px 20px 10px;
-        }
-
-        .progress-text {
-            display: flex;
-            justify-content: space-between;
-            font-size: 0.9rem;
-            color: var(--text-muted);
-            margin-bottom: 8px;
-            font-weight: 600;
-        }
-
-        .progress-bar {
-            width: 100%;
-            height: 10px;
-            background: #E5E5EA;
-            border-radius: 10px;
-            overflow: hidden;
-        }
-
-        .progress-fill {
-            height: 100%;
-            background: var(--success);
-            width: 0%;
-            transition: width 0.5s ease;
-            border-radius: 10px;
-        }
-
-        .container {
-            padding: 10px 20px;
-        }
-
-        .day-card {
-            background: var(--card-bg);
-            border-radius: 20px;
-            padding: 20px;
-            margin-bottom: 20px;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.04);
-            border: 1px solid rgba(0, 0, 0, 0.02);
-        }
-
-        .day-title {
-            font-size: 1.15rem;
-            font-weight: 700;
-            color: var(--text-main);
-            margin-bottom: 20px;
-            display: flex;
-            flex-direction: column;
-        }
-
-        .day-title span.date {
-            font-size: 0.85rem;
-            color: var(--primary);
-            text-transform: uppercase;
-            font-weight: 600;
-            margin-bottom: 4px;
-        }
-
-        .task-item {
-            display: flex;
-            align-items: flex-start;
-            margin-bottom: 25px;
-            position: relative;
-        }
-
-        .task-item:last-child {
-            margin-bottom: 0;
-        }
-
-        .checkbox-wrapper {
-            margin-right: 15px;
-            margin-top: 2px;
-            flex-shrink: 0;
-        }
-
-        .custom-checkbox {
-            appearance: none;
-            -webkit-appearance: none;
-            width: 26px;
-            height: 26px;
-            border: 2px solid var(--border);
-            border-radius: 50%;
-            outline: none;
-            cursor: pointer;
-            transition: all 0.2s ease;
-            background: white;
-        }
-
-        .custom-checkbox:checked {
-            background-color: var(--success);
-            border-color: var(--success);
-        }
-
-        .custom-checkbox:checked::after {
-            content: '';
-            position: absolute;
-            left: 8px;
-            top: 5px;
-            width: 5px;
-            height: 11px;
-            border: solid white;
-            border-width: 0 2px 2px 0;
-            transform: rotate(45deg);
-        }
-
-        .task-content {
-            flex: 1;
-            transition: opacity 0.3s ease;
-            width: 100%;
-            overflow: hidden;
-        }
-
-        .task-content.completed {
-            opacity: 0.6;
-        }
-
-        .task-content.completed .task-desc {
-            text-decoration: line-through;
-        }
-
-        .task-time {
-            font-size: 0.8rem;
-            font-weight: 700;
-            color: var(--primary);
-            margin-bottom: 8px;
-            display: inline-block;
-            background: var(--primary-light);
-            padding: 5px 10px;
-            border-radius: 8px;
-        }
-
-        .task-desc {
-            font-size: 1.05rem;
-            font-weight: 600;
-            margin-bottom: 12px;
-            color: var(--text-main);
-            line-height: 1.4;
-        }
-
-        .image-container {
-            position: relative;
-            margin-bottom: 12px;
-            display: none;
-        }
-
-        .task-image {
-            width: 100%;
-            max-height: 300px;
-            object-fit: contain;
-            border-radius: 12px;
-            border: 1px solid var(--border);
-            display: block;
-            background: #f8f8f8;
-        }
-
-        .btn-delete-img {
-            position: absolute;
-            top: 8px;
-            right: 8px;
-            background: rgba(255, 59, 48, 0.9);
-            color: white;
-            border: none;
-            width: 28px;
-            height: 28px;
-            border-radius: 50%;
-            font-size: 14px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
-            backdrop-filter: blur(4px);
-        }
-
-        .upload-wrapper {
-            margin-bottom: 12px;
-        }
-
-        .upload-input {
-            display: none;
-        }
-
-        .btn-upload {
-            background: #F2F2F7;
-            color: var(--primary);
-            border: 1px dashed #A1C6EA;
-            padding: 10px;
-            width: 100%;
-            text-align: center;
-            border-radius: 12px;
-            font-size: 0.9rem;
-            font-weight: 600;
-            cursor: pointer;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            gap: 8px;
-        }
-
-        .btn-upload:active {
-            background: #E5E5EA;
-        }
-
-        .cn-box {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            flex-wrap: wrap;
-            background: #F2F2F7;
-            padding: 12px 14px;
-            border-radius: 12px;
-            margin-bottom: 12px;
-            gap: 8px;
-        }
-
-        .cn-text {
-            font-size: 1.1rem;
-            font-weight: 600;
-            color: #1C1C1E;
-            width: 100%;
-            margin-bottom: 4px;
-        }
-
-        .cn-actions {
-            display: flex;
-            gap: 6px;
-            flex-wrap: wrap;
-            width: 100%;
-        }
-
-        .btn-copy {
-            background: #FFFFFF;
-            border: none;
-            padding: 6px 14px;
-            border-radius: 8px;
-            font-size: 0.85rem;
-            color: var(--text-main);
-            cursor: pointer;
-            font-weight: 600;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
-        }
-
-        .btn-copy:active {
-            transform: scale(0.96);
-        }
-
-        .btn-navi {
-            color: #fff;
-            text-decoration: none;
-            padding: 6px 12px;
-            border-radius: 8px;
-            font-size: 0.85rem;
-            font-weight: 600;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-            transition: all 0.2s;
-            display: flex;
-            align-items: center;
-            gap: 4px;
-        }
-
-        .btn-navi:active {
-            transform: scale(0.96);
-        }
-
-        .info-group {
-            display: flex;
-            flex-direction: column;
-            gap: 8px;
-        }
-
-        .badge {
-            display: flex;
-            align-items: flex-start;
-            padding: 10px 14px;
-            border-radius: 12px;
-            font-size: 0.9rem;
-            font-weight: 500;
-            line-height: 1.4;
-        }
-
-        .badge-transport {
-            background: #E8F5E9;
-            color: #2E7D32;
-        }
-
-        .badge-note {
-            background: #FFF3E0;
-            color: #E65100;
-        }
-
-        .badge span.icon {
-            margin-right: 8px;
-            font-size: 1.1rem;
-        }
-
-        .task-details {
-            margin-top: 14px;
-            position: relative;
-        }
-
-        .details-summary {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            background: #E8F0FE;
-            color: var(--primary);
-            padding: 12px 16px;
-            border-radius: 12px;
-            font-weight: 600;
-            font-size: 0.95rem;
-            cursor: pointer;
-            user-select: none;
-            transition: background 0.2s;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.02);
-        }
-
-        .details-summary:active {
-            background: #d2e3fc;
-        }
-
-        .details-summary .icon-expand {
-            transition: transform 0.3s ease;
-            font-size: 1.1rem;
-        }
-
-        .task-details.open .details-summary .icon-expand {
-            transform: rotate(180deg);
-        }
-
-        .details-content {
-            background: #FAFAFC;
-            padding: 16px;
-            border-radius: 0 0 12px 12px;
-            margin-top: -5px;
-            font-size: 0.95rem;
-            color: #3C4043;
-            display: none;
-            border: 1px solid var(--border);
-            border-top: none;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.02);
-            padding-top: 20px;
-        }
-
-        .task-details.open .details-content {
-            display: block;
-            animation: fadeIn 0.3s ease;
-        }
-
-        .details-section {
-            margin-bottom: 14px;
-            line-height: 1.5;
-        }
-
-        .details-section:last-child {
-            margin-bottom: 0;
-        }
-
-        .details-section-title {
-            font-weight: 700;
-            margin-bottom: 6px;
-            display: flex;
-            align-items: center;
-            gap: 6px;
-            font-size: 0.9rem;
-        }
-
-        .dt-trivia .details-section-title {
-            color: #8E24AA;
-        }
-
-        .dt-guide .details-section-title {
-            color: #0288D1;
-        }
-
-        .dt-warning .details-section-title {
-            color: #D32F2F;
-        }
-
-        .details-content ul {
-            padding-left: 20px;
-            margin-top: 6px;
-            list-style-type: disc;
-        }
-
-        .details-content li {
-            margin-bottom: 8px;
-            font-size: 0.95rem;
-            line-height: 1.5;
-            text-align: justify;
-        }
-
-        @keyframes fadeIn {
-            from {
-                opacity: 0;
-                transform: translateY(-10px);
-            }
-
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        #toast {
-            visibility: hidden;
-            min-width: 200px;
-            background-color: rgba(0, 0, 0, 0.8);
-            color: #fff;
-            text-align: center;
-            border-radius: 24px;
-            padding: 12px 20px;
-            position: fixed;
-            z-index: 3000;
-            left: 50%;
-            bottom: 40px;
-            transform: translateX(-50%);
-            font-size: 0.95rem;
-            font-weight: 500;
-            backdrop-filter: blur(5px);
-            transition: visibility 0s, opacity 0.3s, bottom 0.3s;
-            opacity: 0;
-        }
-
-        #toast.show {
-            visibility: visible;
-            opacity: 1;
-            bottom: 50px;
-        }
-
-        .tab-menu {
-            display: flex;
-            background: rgba(118, 118, 128, 0.12);
-            border-radius: 9px;
-            padding: 2px;
-            margin: 10px 0 15px;
-            position: relative;
-        }
-
-        .tab-btn {
-            flex: 1;
-            text-align: center;
-            padding: 8px 0;
-            font-size: 0.9rem;
-            font-weight: 600;
-            color: #3C3C43;
-            cursor: pointer;
-            border-radius: 7px;
-            transition: all 0.3s ease;
-            z-index: 2;
-            position: relative;
-        }
-
-        .tab-btn.active {
-            color: #000;
-        }
-
-        .tab-slider {
-            position: absolute;
-            top: 2px;
-            bottom: 2px;
-            left: 2px;
-            width: calc(33.33% - 2px);
-            background: #FFFFFF;
-            border-radius: 7px;
-            box-shadow: 0 3px 8px rgba(0, 0, 0, 0.12), 0 3px 1px rgba(0, 0, 0, 0.04);
-            transition: transform 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
-            z-index: 1;
-        }
-
-        #flightContainer,
-        #hotelContainer {
-            display: none;
-            padding: 10px 20px;
-            padding-bottom: 50px;
-        }
-
-        .flight-card {
-            background: #fff;
-            border-radius: 20px;
-            margin-bottom: 25px;
-            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.08);
-            overflow: hidden;
-            position: relative;
-            border: 1px solid rgba(0, 0, 0, 0.05);
-        }
-
-        .flight-header {
-            background: linear-gradient(135deg, #FF3B30 0%, #D32F2F 100%);
-            color: white;
-            padding: 25px 20px 40px;
-            position: relative;
-        }
-
-        .flight-header.china-airlines {
-            background: linear-gradient(135deg, #0288D1 0%, #01579B 100%);
-        }
-
-        .flight-logo {
-            font-size: 1.15rem;
-            font-weight: 700;
-            margin-bottom: 25px;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-        }
-
-        .flight-cities {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            position: relative;
-            z-index: 2;
-        }
-
-        .city-block {
-            flex: 1;
-        }
-
-        .city-code {
-            font-size: 3rem;
-            font-weight: 800;
-            letter-spacing: -1px;
-            line-height: 1;
-            text-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
-        }
-
-        .city-name {
-            font-size: 0.9rem;
-            opacity: 0.95;
-            margin-top: 5px;
-            font-weight: 500;
-        }
-
-        .flight-icon {
-            font-size: 2rem;
-            transform: rotate(45deg);
-            opacity: 0.9;
-            margin: 0 10px;
-        }
-
-        .flight-curve {
-            position: absolute;
-            bottom: -1px;
-            left: 0;
-            right: 0;
-            width: 100%;
-            height: 25px;
-            fill: #fff;
-            z-index: 1;
-        }
-
-        .flight-body {
-            background: #fff;
-            padding: 15px 20px 30px;
-            position: relative;
-        }
-
-        .info-row {
-            display: flex;
-            justify-content: space-between;
-            margin-bottom: 20px;
-        }
-
-        .info-block {
-            display: flex;
-            flex-direction: column;
-        }
-
-        .info-label {
-            font-size: 0.75rem;
-            color: #8E8E93;
-            text-transform: uppercase;
-            font-weight: 700;
-            letter-spacing: 0.5px;
-            margin-bottom: 4px;
-        }
-
-        .info-value {
-            font-size: 1.05rem;
-            color: #1C1C1E;
-            font-weight: 600;
-        }
-
-        .value-red {
-            color: #D32F2F;
-            font-size: 1.15rem;
-        }
-
-        /* Hotel Styles */
-        .hotel-card {
-            background: #fff;
-            border-radius: 20px;
-            margin-bottom: 25px;
-            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.08);
-            overflow: hidden;
-            border: 1px solid rgba(0, 0, 0, 0.05);
-        }
-
-        .hotel-header {
-            background: linear-gradient(135deg, #FF9500 0%, #FF5E3A 100%);
-            color: white;
-            padding: 15px 20px;
-            font-weight: 700;
-            font-size: 1.1rem;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .hotel-header span.dates {
-            font-size: 0.85rem;
-            background: rgba(255, 255, 255, 0.2);
-            padding: 4px 10px;
-            border-radius: 12px;
-            font-weight: 600;
-        }
-
-        .hotel-body {
-            padding: 20px;
-        }
-
-        .hotel-name-cn {
-            font-size: 1.3rem;
-            font-weight: 800;
-            color: #1C1C1E;
-            margin-bottom: 4px;
-            line-height: 1.3;
-        }
-
-        .hotel-name-en {
-            font-size: 0.95rem;
-            color: #8E8E93;
-            margin-bottom: 15px;
-            font-weight: 500;
-        }
-
-        .hotel-address {
-            background: #F2F2F7;
-            padding: 12px 15px;
-            border-radius: 12px;
-            margin-bottom: 15px;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-        }
-
-        .hotel-address .addr-text {
-            font-weight: 600;
-            color: #1C1C1E;
-            font-size: 1.05rem;
-        }
-
-        .hotel-guide {
-            font-size: 0.95rem;
-            color: #3C3C43;
-            line-height: 1.5;
-            background: #E8F0FE;
-            padding: 15px;
-            border-radius: 12px;
-            border-left: 4px solid #007AFF;
-        }
-
-        .passenger-info {
-            font-size: 0.85rem;
-            color: #8E8E93;
-            margin-top: 15px;
-            border-top: 1px dashed #E5E5EA;
-            padding-top: 15px;
-        }
-
-        .passenger-info strong {
-            color: #1C1C1E;
-        }
-
-        /* CSS Modal Mật khẩu */
-        .modal-overlay {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: rgba(0, 0, 0, 0.4);
-            z-index: 2000;
-            justify-content: center;
-            align-items: center;
-            backdrop-filter: blur(4px);
-        }
-
-        .modal-box {
-            background: #fff;
-            padding: 24px;
-            border-radius: 20px;
-            width: 90%;
-            max-width: 320px;
-            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.15);
-            text-align: center;
-        }
-
-        .modal-title {
-            font-size: 1.15rem;
-            font-weight: 700;
-            margin-bottom: 16px;
-            color: var(--text-main);
-        }
-
-        .modal-input {
-            width: 100%;
-            padding: 12px 16px;
-            border: 1px solid var(--border);
-            border-radius: 12px;
-            margin-bottom: 20px;
-            font-size: 1rem;
-            outline: none;
-            text-align: center;
-            background: #F2F2F7;
-            transition: 0.3s;
-        }
-
-        .modal-input:focus {
-            background: #fff;
-            border-color: var(--primary);
-        }
-
-        .modal-actions {
-            display: flex;
-            gap: 10px;
-        }
-
-        .btn-cancel,
-        .btn-confirm {
-            flex: 1;
-            padding: 12px;
-            border-radius: 12px;
-            font-weight: 600;
-            border: none;
-            cursor: pointer;
-            font-size: 0.95rem;
-            transition: 0.2s;
-        }
-
-        .btn-cancel {
-            background: #E5E5EA;
-            color: var(--text-main);
-        }
-
-        .btn-cancel:active {
-            background: #D1D1D6;
-        }
-
-        .btn-confirm {
-            background: var(--primary);
-            color: white;
-        }
-
-        .btn-confirm:active {
-            opacity: 0.8;
-            transform: scale(0.98);
-        }
-
-        /* Container vuốt ngang */
-        .radar-container {
-            display: flex;
-            overflow-x: auto;
-            white-space: nowrap;
-            padding: 12px 0 5px 0;
-            margin-top: 5px;
-            gap: 8px;
-            -webkit-overflow-scrolling: touch;
-            scrollbar-width: none;
-            /* Firefox */
-        }
-
-        /* Ẩn scrollbar trên Chrome/Safari/Edge */
-        .radar-container::-webkit-scrollbar {
-            display: none;
-        }
-
-        /* Base style cho nút Radar */
-        .btn-radar {
-            flex-shrink: 0;
-            /* Chống bị bóp méo nút khi vuốt */
-            padding: 8px 14px;
-            border-radius: 20px;
-            border: none;
-            font-size: 0.85rem;
-            font-weight: 600;
-            cursor: pointer;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
-            transition: transform 0.2s, opacity 0.2s;
-            display: inline-flex;
-            align-items: center;
-            gap: 4px;
-        }
-
-        .btn-radar:active {
-            transform: scale(0.95);
-            opacity: 0.8;
-        }
-
-        /* Color Palette cho các nút */
-        .bg-pink {
-            background: #FCE4EC;
-            color: #C2185B;
-        }
-
-        .bg-blue {
-            background: #E3F2FD;
-            color: #1565C0;
-        }
-
-        .bg-red {
-            background: #FFEBEE;
-            color: #C62828;
-        }
-
-        .bg-orange {
-            background: #FFF3E0;
-            color: #E65100;
-        }
-
-        .bg-green {
-            background: #E8F5E9;
-            color: #2E7D32;
-        }
-
-        .bg-brown {
-            background: #EFEBE9;
-            color: #4E342E;
-        }
-
-        .bg-teal {
-            background: #E0F2F1;
-            color: #00695C;
-        }
-
-        .bg-purple {
-            background: #F3E5F5;
-            color: #6A1B9A;
-        }
-
-        .bg-gray {
-            background: #F5F5F5;
-            color: #424242;
-        }
-    </style>
-</head>
-
-<body>
-
-    <header>
-        <h1>Hành Trình Tùng Văn</h1>
-        <div class="tab-menu" id="mainTabs">
-            <div class="tab-slider" id="tabSlider"></div>
-            <div class="tab-btn active" onclick="switchTab('itinerary', 0)">Lịch trình</div>
-            <div class="tab-btn" onclick="switchTab('hotel', 1)">Khách sạn</div>
-            <div class="tab-btn" onclick="switchTab('flight', 2)">Chuyến bay</div>
-        </div>
-        <div class="search-container" id="searchBox">
-            <input type="text" id="searchInput" placeholder="Tìm kiếm địa điểm, ngày...">
-        </div>
-    </header>
-
-    <div class="progress-container" id="progressBox">
-        <div class="progress-text">
-            <span>Tiến độ chuyến đi</span>
-            <span id="progressPercent">0%</span>
-        </div>
-        <div class="progress-bar">
-            <div class="progress-fill" id="progressFill"></div>
-        </div>
-    </div>
-
-    <div class="container" id="timelineContainer"></div>
-
-    <div id="hotelContainer">
-        <div class="hotel-card">
-            <div class="hotel-header">
-                <span>📍 Bắc Kinh</span>
-                <span class="dates">26/4 - 29/4 (3 đêm)</span>
-            </div>
-            <div class="hotel-body">
-                <div class="hotel-name-cn">7天优品酒店 (北京东直门机场快轨站店)</div>
-                <div class="hotel-name-en">7 Days Premium Hotel (Beijing Dongzhimen Airport Express Station)</div>
-                <div class="hotel-address">
-                    <span class="addr-text">北京市东城区东直门外大街</span>
-                    <button class="btn-copy" onclick="copyText('北京市东城区东直门外大街 7天优品酒店')">Copy</button>
-                </div>
-                <div class="hotel-guide">
-                    <strong>🚖 Hướng dẫn di chuyển:</strong><br>
-                    Do chuyến bay hạ cánh xuống sân bay Đại Hưng (PKX) lúc 00:05 đêm, hệ thống tàu điện (Metro) đã ngừng
-                    hoạt động. Cách duy nhất là gia đình đi theo biển báo "Official Taxi" bắt taxi chính hãng thẳng về
-                    khách sạn. Thời gian di chuyển khoảng 1h15p, chi phí dự kiến 200 - 250 RMB. Hãy đưa tên tiếng Trung
-                    và địa chỉ phía trên cho tài xế xem.
-                </div>
-                <div class="passenger-info">Hạng phòng: <strong>Boutique Queen Room</strong><br>Người đặt: <strong>CHAU
-                        THI THANH HA</strong></div>
-            </div>
-        </div>
-
-        <div class="hotel-card">
-            <div class="hotel-header">
-                <span>📍 Thượng Hải</span>
-                <span class="dates">29/4 - 04/5 (5 đêm)</span>
-            </div>
-            <div class="hotel-body">
-                <div class="hotel-name-cn">鱼的客栈 (上海外滩店)</div>
-                <div class="hotel-name-en">Fish Inn (The Bund Shanghai)</div>
-                <div class="hotel-address">
-                    <span class="addr-text">上海市黄浦区 (近外滩/南京东路)</span>
-                    <button class="btn-copy" onclick="copyText('上海市黄浦区 鱼的客栈(外滩店)')">Copy</button>
-                </div>
-                <div class="hotel-guide">
-                    <strong>🚖 Hướng dẫn di chuyển:</strong><br>
-                    Từ ga tàu cao tốc Bắc Kinh Nam, gia đình sẽ đến ga Hồng Kiều Thượng Hải (Shanghai Hongqiao). Từ ga
-                    Hồng Kiều, hãy bắt tàu điện ngầm <strong>Metro Line 2</strong> (hoặc Line 10) đi thẳng khoảng 40
-                    phút tới bến <strong>East Nanjing Road</strong>. Từ đây kéo vali đi bộ một đoạn ngắn là tới khách
-                    sạn.
-                </div>
-                <div class="passenger-info">Hạng phòng: <strong>Phòng Giường King Tiêu Chuẩn</strong><br>Người đặt:
-                    <strong>CHAU THI THANH HA</strong></div>
-            </div>
-        </div>
-
-        <div class="hotel-card">
-            <div class="hotel-header">
-                <span>📍 Hàng Châu</span>
-                <span class="dates">04/5 - 06/5 (2 đêm)</span>
-            </div>
-            <div class="hotel-body">
-                <div class="hotel-name-cn">杭州雅栖酒店 (西湖湖滨店)</div>
-                <div class="hotel-name-en">Ashy Hotel (Xihu Lakeside Branch)</div>
-                <div class="hotel-address">
-                    <span class="addr-text">杭州市上城区西湖湖滨商圈</span>
-                    <button class="btn-copy" onclick="copyText('杭州市上城区 雅栖酒店(西湖湖滨店)')">Copy</button>
-                </div>
-                <div class="hotel-guide">
-                    <strong>🚖 Hướng dẫn di chuyển:</strong><br>
-                    Từ ga Hàng Châu Đông (Hangzhou East), cả nhà đi tàu điện ngầm <strong>Metro Line 1</strong>, đi
-                    thẳng vài bến là tới ga <strong>Longxiangqiao</strong> hoặc <strong>Ding'an Road</strong> (Khu trung
-                    tâm Hồ Tây). Tới nơi đẩy xe đi bộ khoảng 5-10 phút là vào tới sảnh khách sạn.
-                </div>
-                <div class="passenger-info">Hạng phòng: <strong>Lakeside Selected Double Bed Room</strong><br>Người đặt:
-                    <strong>CHAU THI THANH HA</strong></div>
-            </div>
-        </div>
-    </div>
-
-    <div id="flightContainer">
-        <div class="flight-card">
-            <div class="flight-header">
-                <div class="flight-logo">
-                    <span>✈️ VietJet Air (VJ3948)</span>
-                    <span style="font-size: 0.85rem; font-weight: 500; opacity: 0.9">SGN ➡️ PKX</span>
-                </div>
-                <div class="flight-cities">
-                    <div class="city-block" style="text-align: left;">
-                        <div class="city-code">SGN</div>
-                        <div class="city-name">Hồ Chí Minh</div>
-                    </div>
-                    <div class="flight-icon">✈</div>
-                    <div class="city-block" style="text-align: right;">
-                        <div class="city-code">PKX</div>
-                        <div class="city-name">Bắc Kinh (Đại Hưng)</div>
-                    </div>
-                </div>
-                <svg class="flight-curve" viewBox="0 0 1440 320" preserveAspectRatio="none">
-                    <path
-                        d="M0,160L48,170.7C96,181,192,203,288,197.3C384,192,480,160,576,160C672,160,768,192,864,213.3C960,235,1056,245,1152,229.3C1248,213,1344,171,1392,149.3L1440,128L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z">
-                    </path>
-                </svg>
-            </div>
-            <div class="flight-body">
-                <div class="info-row">
-                    <div class="info-block"><span class="info-label">Khởi hành</span><span
-                            class="info-value">18:05</span></div>
-                    <div class="info-block" style="text-align: right;"><span class="info-label">Ngày bay</span><span
-                            class="info-value value-red">26 Apr 2026</span></div>
-                </div>
-                <div class="info-row">
-                    <div class="info-block"><span class="info-label">Đến nơi</span><span class="info-value">00:05 (+1
-                            ngày)</span></div>
-                    <div class="info-block" style="text-align: right;"><span class="info-label">Hành khách</span><span
-                            class="info-value">CHU CHI THANH + 2</span></div>
-                </div>
-            </div>
-        </div>
-
-        <div class="flight-card">
-            <div class="flight-header china-airlines">
-                <div class="flight-logo">
-                    <span>✈️ China Southern</span>
-                    <span style="font-size: 0.85rem; font-weight: 500; opacity: 0.9">Nối chuyến Vũ Hán</span>
-                </div>
-                <div class="flight-cities">
-                    <div class="city-block" style="text-align: left;">
-                        <div class="city-code">HGH</div>
-                        <div class="city-name">Hàng Châu</div>
-                    </div>
-                    <div class="flight-icon">✈</div>
-                    <div class="city-block" style="text-align: right;">
-                        <div class="city-code">SGN</div>
-                        <div class="city-name">Hồ Chí Minh</div>
-                    </div>
-                </div>
-                <svg class="flight-curve" viewBox="0 0 1440 320" preserveAspectRatio="none">
-                    <path
-                        d="M0,160L48,170.7C96,181,192,203,288,197.3C384,192,480,160,576,160C672,160,768,192,864,213.3C960,235,1056,245,1152,229.3C1248,213,1344,171,1392,149.3L1440,128L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z">
-                    </path>
-                </svg>
-            </div>
-            <div class="flight-body">
-                <div
-                    style="background: #F2F2F7; padding: 10px 15px; border-radius: 8px; margin-bottom: 15px; font-size: 0.9rem;">
-                    <strong>Chặng 1:</strong> HGH ➡️ WUH (Vũ Hán)<br>
-                    Giờ bay: 16:45 ➡️ 18:15 (CZ8660)
-                </div>
-                <div
-                    style="background: #E8F0FE; padding: 10px 15px; border-radius: 8px; margin-bottom: 20px; font-size: 0.9rem;">
-                    <strong>Chặng 2:</strong> WUH ➡️ SGN (Hồ Chí Minh)<br>
-                    Giờ bay: 22:10 ➡️ 01:05 (CZ8317)
-                </div>
-
-                <div class="info-row">
-                    <div class="info-block"><span class="info-label">Ngày khởi hành</span><span
-                            class="info-value value-red">06 May 2026</span></div>
-                    <div class="info-block" style="text-align: right;"><span class="info-label">Hành khách</span><span
-                            class="info-value">CHU CHI THANH + 2</span></div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <div class="modal-overlay" id="passwordModal">
-        <div class="modal-box">
-            <div class="modal-title" id="modalTitle">Nhập mật khẩu</div>
-            <input type="password" class="modal-input" id="modalPassword" placeholder="Mật khẩu (admin)...">
-            <div class="modal-actions">
-                <button class="btn-cancel" onclick="closePasswordModal()">Hủy</button>
-                <button class="btn-confirm" onclick="submitPasswordModal()">Xác nhận</button>
-            </div>
-        </div>
-    </div>
-
-    <div id="toast">Thông báo</div>
-
-    <script>
         const HOTSPOTS_DB = {
             beijing: [
                 { id: "spot-bj-1", name_vn: "Vịt quay Tứ Quý Dân Phúc", name_cn: "四季民福烤鸭店(故宫店)", type: "food", desc: "Súp vịt hầm đậu hũ cực mềm, hợp đút cho bé ăn dặm. View nhìn thẳng ra rãnh nước Cố Cung.", lat: 39.9142, lng: 116.4055 },
@@ -1169,10 +43,10 @@
                 date: "Khởi Hành (CN, 26/4)",
                 title: "Xuất phát & Nhập cảnh Bắc Kinh",
                 tasks: [
-                    {
+                    { 
                         id: "d0-1", time: "18:05 - 02:30 (+1)", desc: "Bay VietJet Air (SGN) đi PKX. Nhập cảnh, lấy hành lý và đi taxi về Khách sạn 7 Days.", cn: "北京大兴国际机场", transport: "Taxi di chuyển thẳng về khách sạn.", note: "Pha sẵn bình sữa dỗ bé ngủ trên máy bay.",
                         lat: 39.9163, lng: 116.3971,
-                        details: {
+                            details: {
                             trivia: `<ul>
                                 <li>Sân bay Quốc tế Đại Hưng Bắc Kinh (PKX) có hình dáng như một con sao biển khổng lồ rực rỡ, nhìn từ trên cao cực kỳ viễn tưởng.</li>
                                 <li>Đây là một trong những thiết kế cuối cùng của nữ kiến trúc sư huyền thoại Zaha Hadid trước khi bà qua đời.</li>
@@ -1205,10 +79,10 @@
                 date: "Ngày 1 (Thứ Hai, 27/4)",
                 title: "TRẠM 1: BẮC KINH OAI HÙNG",
                 tasks: [
-                    {
+                    { 
                         id: "d1-1", time: "08:30 - 13:00", desc: "Chinh phục Vạn Lý Trường Thành (khu Mộ Điền Dục).", cn: "慕田峪长城", transport: "Bao xe riêng 7 chỗ (1.5 tiếng).", note: "Ba dùng địu bế bé, xe đẩy gửi lại dưới chân núi.",
                         lat: 39.9163, lng: 116.3971,
-                        details: {
+                            details: {
                             trivia: `<ul>
                                 <li>Đoạn Trường Thành Mộ Điền Dục (Mutianyu) được khởi xây từ thời Bắc Tề, sau đó danh tướng Thích Kế Quang triều Minh đích thân giám sát gia cố bằng đá granite kiên cố.</li>
                                 <li>Đây là đoạn có cấu trúc phòng thủ tinh vi nhất với 23 tháp canh nằm san sát nhau, tạo nên mạng lưới hỏa lực chéo không có điểm mù.</li>
@@ -1241,10 +115,10 @@
                             </ul>`
                         }
                     },
-                    {
+                    { 
                         id: "d1-2", time: "14:30 - 17:30", desc: "Tham quan Thiên Đàn (Đàn Tế Trời).", cn: "天坛", transport: "Bao xe chở về khu trung tâm.", note: "Lấy xe đẩy ra dùng, đường đi rộng rợp bóng mát.",
                         lat: 39.9163, lng: 116.3971,
-                        details: {
+                            details: {
                             trivia: `<ul>
                                 <li>Thiên Đàn (Đền thờ Trời) có diện tích lớn gấp 4 lần Tử Cấm Thành, là nơi các Hoàng đế nhà Minh và Thanh lập đàn tế cáo trời đất, cầu mong mưa thuận gió hòa.</li>
                                 <li>Cấu trúc thiết kế phản ánh sâu sắc tư tưởng vũ trụ quan cổ đại "Trời tròn, Đất vuông" (Thiên viên Địa phương): Các đền đài phía Bắc đều có mái hình nón tròn, còn khuôn viên phía Nam xây theo hình vuông góc cạnh.</li>
@@ -1269,7 +143,7 @@
                             </ul>`
                         }
                     },
-                    {
+                    { 
                         id: "d1-3", time: "18:30 - 21:00", desc: "Vương Phủ Tỉnh & Ăn tối Vịt quay Bắc Kinh.", cn: "王府井步行街", transport: "DiDi hoặc xe riêng thả đầu phố.", note: "Thong thả dạo phố đi bộ an toàn.",
                         details: {
                             trivia: `<ul>
@@ -1309,10 +183,10 @@
                 date: "Ngày 2 (Thứ Ba, 28/4)",
                 title: "Tử Cấm Thành & Cung Vương Phủ",
                 tasks: [
-                    {
+                    { 
                         id: "d2-1", time: "08:30 - 13:30", desc: "Khám phá Cố Cung (Tử Cấm Thành).", cn: "故宫博物院", transport: "DiDi thả gần Ngọ Môn (午门).", note: "Bắt buộc đặt vé online trước 7 ngày! Mang ô che nắng.",
                         lat: 39.9163, lng: 116.3971,
-                        details: {
+                            details: {
                             trivia: `<ul>
                                 <li>Tử Cấm Thành là tổ hợp cung điện bằng gỗ lớn nhất thế giới, được ròng rã xây dựng trong 14 năm với sự tham gia của 10 vạn thợ mộc tài hoa và 1 triệu nhân công.</li>
                                 <li>Quần thể này sở hữu chính xác 9,999.5 căn phòng. Người xưa tin rằng Ngọc Hoàng trên trời có 10,000 phòng, nên Hoàng đế hạ phàm chỉ được dùng ít hơn nửa phòng để thể hiện sự khiêm nhường.</li>
@@ -1338,10 +212,10 @@
                             </ul>`
                         }
                     },
-                    {
+                    { 
                         id: "d2-2", time: "15:00 - 18:00", desc: "Khám phá Cung Vương Phủ (Hòa Thân).", cn: "恭王府", transport: "DiDi chuyển trạm.", note: "Nhiều bậc thềm nhỏ, vất vả khi đẩy xe nôi.",
                         lat: 39.9163, lng: 116.3971,
-                        details: {
+                            details: {
                             trivia: `<ul>
                                 <li>Đây nguyên là tư dinh của Hòa Thân - vị đại thần sủng ái nhất của Càn Long và cũng là đệ nhất tham quan giàu nhất thế giới trong lịch sử Trung Hoa thế kỷ 18.</li>
                                 <li>Quy mô và mức độ xa hoa của vương phủ này từng được ví là "chỉ kém hoàng đế một bậc", với các cột nhà làm bằng gỗ Kim Tơ Nam Mộc cực kỳ quý hiếm, tỏa mùi thơm ngát, một cây gỗ giá trị bằng cả tòa thành.</li>
@@ -1368,10 +242,10 @@
                 date: "Ngày 3 (Thứ Tư, 29/4)",
                 title: "Di Hòa Viên & Chuyển Trạm Thượng Hải",
                 tasks: [
-                    {
+                    { 
                         id: "d3-1", time: "08:30 - 12:30", desc: "Dạo chơi Cung điện Mùa Hè (Di Hòa Viên).", cn: "颐和园", transport: "DiDi thả cổng Đông Cung.", note: "Cảnh quan hồ nước Côn Minh lộng gió.",
                         lat: 39.9163, lng: 116.3971,
-                        details: {
+                            details: {
                             trivia: `<ul>
                                 <li>Di Hòa Viên là hoàng gia lâm uyển (vườn ngự uyển) quy mô lớn nhất thế giới còn nguyên vẹn, bảo tồn hoàn hảo kiệt tác thiết kế sân vườn Trung Hoa kết hợp non nước.</li>
                                 <li>Khuôn viên này từng bị liên quân 8 nước phá hủy, sau đó Từ Hy Thái Hậu đã ngang nhiên rút hàng triệu lượng bạc (quỹ xây dựng hiện đại hóa hải quân) để đại tu làm nơi dưỡng lão, xem kịch và tổ chức tiệc tùng.</li>
@@ -1393,10 +267,10 @@
                             </ul>`
                         }
                     },
-                    {
+                    { 
                         id: "d3-2", time: "14:00 - 19:00", desc: "Tàu cao tốc 350km/h tiến về Thượng Hải. Check-in Fish Inn.", cn: "北京南站 ➡️ 上海虹桥站", transport: "Tàu cao tốc G-train (Fuxing).", note: "Chặng dài 5 tiếng, tàu xịn êm ru.",
                         lat: 39.9163, lng: 116.3971,
-                        details: {
+                            details: {
                             trivia: `<ul>
                                 <li>Chặng đường sắt huyết mạch Bắc Kinh - Thượng Hải dài hơn 1.300 km (tương đương chặng Hà Nội - Sài Gòn) nhưng nhờ công nghệ đỉnh cao, chỉ mất chưa đầy 4.5 đến 5 tiếng di chuyển.</li>
                                 <li>Tàu Fuxing (Phục Hưng) là thế hệ tàu viên đạn nội địa tự hào nhất của TQ, đạt vận tốc khai thác tối đa lên tới 350km/h.</li>
@@ -1423,10 +297,10 @@
                 date: "Ngày 4 (Thứ Năm, 30/4)",
                 title: "TRẠM 2: THƯỢNG HẢI RỰC RỠ - Trọn vẹn Disneyland",
                 tasks: [
-                    {
+                    { 
                         id: "d4-1", time: "09:00 - 20:00", desc: "Quẩy tung Thượng Hải Disneyland (Khu Zootopia).", cn: "上海迪士尼乐园", transport: "Taxi/DiDi đến tận cổng (45p).", note: "Bắt buộc mua gói nhảy cóc (Premier Access).",
                         lat: 31.2365, lng: 121.5015,
-                        details: {
+                            details: {
                             trivia: `<ul>
                                 <li>Shanghai Disneyland tự hào sở hữu "Enchanted Storybook Castle" - tòa lâu đài Disney to nhất, cao nhất và phức hợp nhất trên toàn cầu, tụ hội biểu tượng của tất cả các nàng công chúa chứ không chỉ riêng 1 người.</li>
                                 <li>Đây là công viên đầu tiên và duy nhất trên thế giới ra mắt khu phố động vật "Zootopia" siêu thực, với các nhân vật cử động bằng công nghệ animatronics (robot biểu cảm) tinh xảo đỉnh cao.</li>
@@ -1453,10 +327,10 @@
                             </ul>`
                         }
                     },
-                    {
+                    { 
                         id: "d4-2", time: "20:00 - 21:30", desc: "Xem siêu show Pháo hoa Illuminations hoành tráng.", cn: "迪士尼烟火秀", transport: "DiDi gọi sẵn để về Fish Inn.", note: "Hiệu ứng ánh sáng bùng nổ, có thể làm bé giật mình.",
                         lat: 31.2365, lng: 121.5015,
-                        details: {
+                            details: {
                             trivia: `<ul>
                                 <li>Show diễn "ILLUMINATE! A Nighttime Celebration" sử dụng công nghệ projection mapping (trình chiếu 3D) phủ kín, biến hình toàn bộ bề mặt tòa lâu đài khổng lồ thành các khung cảnh phim hoạt hình.</li>
                                 <li>Kết hợp hoàn hảo đồng bộ giữa laser cường độ cao, đài phun nước múa ballet, súng phun lửa và pháo hoa rực rỡ bắn thẳng lên không trung từ nóc lâu đài.</li>
@@ -1479,10 +353,10 @@
                 date: "Ngày 5 (Thứ Sáu, 1/5)",
                 title: "Phim trường Tùng Giang & Đêm Lục Gia Thủy",
                 tasks: [
-                    {
+                    { 
                         id: "d5-1", time: "10:00 - 12:00", desc: "Dậy muộn, giãn cơ, ăn uống thong thả.", cn: "上海市区", transport: "Đi bộ quanh KS Fish Inn.", note: "Hồi phục sau ngày cày ải Disneyland.",
                         lat: 31.2365, lng: 121.5015,
-                        details: {
+                            details: {
                             tips: `<ul>
                                 <li>Trải qua hơn 25,000 bước chân vắt kiệt sức ở Disneyland hôm qua, sáng nay gia đình KHÔNG CẦN đặt báo thức. Hãy đóng rèm cản sáng, tắt điện thoại để cả nhà ngủ nướng thật say giấc đến 9h30 sáng bù đắp lại thể lực.</li>
                                 <li>Ba Thạnh có thể xuống phố đi bộ dọc Bến Thượng Hải mua đồ ăn sáng: vài lồng tiểu long bao (xiao long bao) nóng hổi, xôi cuộn mặn (ci fan tuan) và sữa đậu nành mang về tận giường cho mẹ Hà và dỗ bé ăn dặm.</li>
@@ -1490,10 +364,10 @@
                             </ul>`
                         }
                     },
-                    {
+                    { 
                         id: "d5-2", time: "12:30 - 17:00", desc: "Phim trường Thượng Hải (Xem show 13h30).", cn: "上海影视乐园", transport: "DiDi (mất khoảng 45 phút - Ngoại ô).", note: "Hoài niệm khung cảnh Tân Dòng Sông Ly Biệt.",
                         lat: 31.2365, lng: 121.5015,
-                        details: {
+                            details: {
                             trivia: `<ul>
                                 <li>Shanghai Film Park (Phim trường Chedun - Xa Đôn) là đại bản doanh quay bối cảnh thực tế của vô số bộ phim dân quốc kinh điển gối đầu giường thế hệ 8x-9x: Tân Dòng Sông Ly Biệt (Triệu Vy), Sắc Giới (Lương Triều Vỹ), Cẩm Tú Duyên, Tuyệt Đỉnh Kungfu.</li>
                                 <li>Nơi đây tái hiện hoàn hảo tỷ lệ 1:1 con đường Nam Kinh (Nanjing Road) phồn hoa của Thượng Hải thập niên 1930 với những biển hiệu đèn neon chữ phồn thể rực rỡ, xe kéo tay và dãy nhà cửa kiến trúc Âu Châu Art Deco.</li>
@@ -1512,7 +386,7 @@
                             </ul>`
                         }
                     },
-                    {
+                    { 
                         id: "d5-3", time: "18:00 - 21:00", desc: "Ăn tối IFC Mall/Bến Thượng Hải ngắm Tháp Đông Phương.", cn: "陆家嘴 - IFC国金中心", transport: "DiDi về lại trung tâm.", note: "Thiên đường Nursery Room cho em bé.",
                         details: {
                             trivia: `<ul>
@@ -1550,10 +424,10 @@
                 date: "Ngày 6 (Thứ Bảy, 2/5)",
                 title: "Tiệc Cung Yến & Lãng mạn Tô Giới Pháp",
                 tasks: [
-                    {
+                    { 
                         id: "d6-1", time: "11:30 - 14:00", desc: "Thưởng thức Tiệc Cung Yến Thượng Lưu.", cn: "高级宫廷宴", transport: "DiDi.", note: "Thưởng thức ẩm thực tiến Vua.",
                         lat: 31.2365, lng: 121.5015,
-                        details: {
+                            details: {
                             trivia: `<ul>
                                 <li>Ẩm thực cung đình được dày công phục dựng dựa trên các cuộn giấy thực đơn bí truyền của Ngự Thiện Phòng triều Thanh, đặc trưng bởi sự thanh đạm, tỉ mỉ nhặt cặn và sử dụng nguyên liệu cực kỳ đắt đỏ quý hiếm.</li>
                                 <li>Nhiều món ăn có tên gọi hoa mỹ mang ý nghĩa trường thọ, cát tường (ví dụ: Phật nhảy tường, Bát trân nghênh phúc, Đậu phụ vạn thọ).</li>
@@ -1569,10 +443,10 @@
                             </ul>`
                         }
                     },
-                    {
+                    { 
                         id: "d6-2", time: "15:00 - 18:00", desc: "Thư giãn lãng mạn tại Tô Giới Pháp (Đường Vũ Khang).", cn: "法租界 - 武康路", transport: "DiDi thả đầu phố.", note: "Uống cafe, đẩy xe nôi dưới tán cây Ngô Đồng.",
                         lat: 31.2365, lng: 121.5015,
-                        details: {
+                            details: {
                             trivia: `<ul>
                                 <li>Tô Giới Pháp (French Concession) từng là vùng đất nhượng địa do chính phủ thực dân Pháp độc quyền quản lý suốt hàng chục năm, để lại một di sản kiến trúc dinh thự châu Âu đặc quánh giữa lòng Thượng Hải phồn hoa.</li>
                                 <li>Tòa nhà Wukang Mansion (Vũ Khang Đại Lâu) nằm ở ngã tư là biểu tượng nhiếp ảnh số 1 tại đây. Nó mang hình dáng mũi một con tàu thủy khổng lồ đang rẽ sóng lướt đi, do kiến trúc sư thiên tài người Hungary Laszlo Hudec thiết kế năm 1924.</li>
@@ -1596,10 +470,10 @@
                 date: "Ngày 7 (Chủ Nhật, 3/5)",
                 title: "Tuyết Trắng & Du Thuyền Xuyên Đêm",
                 tasks: [
-                    {
+                    { 
                         id: "d7-1", time: "09:00 - 14:00", desc: "Yaoxue Snow World (Trượt tuyết trong nhà).", cn: "耀雪冰雪世界", transport: "DiDi ra quận Lâm Cảng (Lin-gang).", note: "Lạnh âm độ, chuẩn bị áo phao bọc xe nôi.",
                         lat: 31.2365, lng: 121.5015,
-                        details: {
+                            details: {
                             trivia: `<ul>
                                 <li>Yaoxue Snow World (Thế giới băng tuyết Diệu Tuyết) vừa khánh thành và ngay lập tức xô đổ kỷ lục của Ski Dubai để trở thành khu trượt tuyết trong nhà lớn nhất thế giới, rộng tới hơn 90,000 mét vuông.</li>
                                 <li>Nơi đây sở hữu 3 dốc trượt khổng lồ độ khó khác nhau (dốc cao nhất rơi thẳng đứng rất ngoạn mục), cùng hệ thống cáp treo đưa người chơi lên đỉnh dốc y hệt như đang ở một khu resort núi tuyết Alps ngoài trời.</li>
@@ -1618,10 +492,10 @@
                             </ul>`
                         }
                     },
-                    {
+                    { 
                         id: "d7-2", time: "15:30 - 18:00", desc: "Mua sắm Phố đi bộ Nam Kinh (Nanjing Road).", cn: "南京东路", transport: "DiDi từ Lâm Cảng về.", note: "Đại lộ mua sắm sầm uất nhất Thượng Hải.",
                         lat: 31.2365, lng: 121.5015,
-                        details: {
+                            details: {
                             trivia: `<ul>
                                 <li>Đường Đông Nam Kinh là đại lộ mua sắm danh giá, lâu đời và nhộn nhịp bậc nhất Trung Quốc, có lưu lượng khách bộ hành khổng lồ, thường được ví như "Quảng trường Thời Đại (Times Square) của phương Đông".</li>
                                 <li>Tuyến phố đi bộ trải dài 5.5 km từ trung tâm ra tận mép bờ sông Hoàng Phố, quy tụ hai bên đường là hơn 600 cửa hàng, từ các thương hiệu thời trang bình dân "fast-fashion" đến các đại lộ siêu xa xỉ phẩm.</li>
@@ -1639,10 +513,10 @@
                             </ul>`
                         }
                     },
-                    {
+                    { 
                         id: "d7-3", time: "19:00 - 21:00", desc: "Lên Du thuyền ngắm cảnh sông Hoàng Phố.", cn: "黄浦江游船", transport: "Đi bộ từ cuối phố Nam Kinh ra bến tàu.", note: "Gió sông lồng lộng, nhớ mặc áo ấm.",
                         lat: 31.2365, lng: 121.5015,
-                        details: {
+                            details: {
                             trivia: `<ul>
                                 <li>Sông Hoàng Phố uốn lượn chính là ranh giới tự nhiên chia cắt Thượng Hải thành hai mảng đối lập: Phố Tây (Puxi - khu Bến Thượng Hải giữ gìn kiến trúc châu Âu cổ) và Phố Đông (Pudong - khu Lục Gia Thủy rừng chọc trời hiện đại).</li>
                                 <li>Chuyến du thuyền đêm sẽ mang lại góc nhìn Panorama ngoạn mục ôm trọn cả quá khứ và tương lai: Một bên là các dinh thự ngân hàng đá hoa cương trầm mặc soi bóng lịch sử, một bên là Rừng tháp kính chớp nháy đèn LED viễn tưởng phô trương sức mạnh.</li>
@@ -1664,10 +538,10 @@
                 date: "Ngày 8 (Thứ Hai, 4/5)",
                 title: "TRẠM 3: HÀNG CHÂU - Tây Hồ mộng mơ",
                 tasks: [
-                    {
+                    { 
                         id: "d8-1", time: "09:00 - 10:30", desc: "Tàu cao tốc chạy thẳng xuống Hàng Châu. Check-in Ashy Hotel.", cn: "上海虹桥站 ➡️ 杭州东站", transport: "Tàu cao tốc (Khoảng 1 tiếng).", note: "Chặng cực ngắn, nhàn nhã chuyển trạm.",
                         lat: 30.252, lng: 120.137,
-                        details: {
+                            details: {
                             trivia: `<ul>
                                 <li>Người xưa Trung Hoa có một câu ngạn ngữ nổi tiếng lưu truyền ngàn đời: "Thượng hữu thiên đàng, hạ hữu Tô Hàng" (Ý nói: Trên trời có cõi thiên đàng, dưới đất có Tô Châu, Hàng Châu) để ca ngợi vẻ đẹp tuyệt mỹ, thanh bình, và giàu có bậc nhất của vùng đất Giang Nam này.</li>
                                 <li>Khoảng cách địa lý từ Thượng Hải đi Hàng Châu chỉ khoảng 170km, tàu viên đạn cao tốc xé gió băng qua những khu công nghiệp trù phú sầm uất nhất Trung Quốc chỉ trong cái chớp mắt (45-60 phút).</li>
@@ -1682,7 +556,7 @@
                             </ul>`
                         }
                     },
-                    {
+                    { 
                         id: "d8-2", time: "14:00 - 17:30", desc: "Tản bộ dọc Tây Hồ rợp bóng liễu.", cn: "西湖风景名胜区", transport: "DiDi.", note: "Không gian thoáng đãng chìm trong sương mây.",
                         details: {
                             trivia: `<ul>
@@ -1714,10 +588,10 @@
                             ]
                         }
                     },
-                    {
+                    { 
                         id: "d8-3", time: "18:30 - 21:00", desc: "Ban công thành phố (City Balcony) & Đèn Tiền Giang.", cn: "钱江新城灯光秀", transport: "DiDi tới TTTM Raffles/MixC.", note: "Đúng 19:30 ra ngắm show ánh sáng siêu đô thị.",
                         lat: 30.252, lng: 120.137,
-                        details: {
+                            details: {
                             trivia: `<ul>
                                 <li>Khu đô thị mới Tiền Giang Tân Thành (Qianjiang New City) được quy hoạch và xây mới thần tốc với ngân sách khổng lồ để phục vụ hội nghị thượng đỉnh G20. Kiến trúc ở đây phá vỡ mọi quy chuẩn, được thế giới đánh giá là mang thiết kế siêu viễn tưởng (Futuristic) của thế kỷ 22.</li>
                                 <li>Điểm nhấn kiến trúc là Tòa nhà Intercontinental mang hình dáng Trăng Vàng khổng lồ tròn vo và Tòa Trung tâm hội nghị Thị chính hình đóa hoa sen thép bung nở nhô lên từ mặt đất.</li>
@@ -1741,10 +615,10 @@
                 date: "Ngày 9 (Thứ Ba, 5/5)",
                 title: "Hàng Châu 🚗 Ô Trấn (Đi về trong ngày)",
                 tasks: [
-                    {
+                    { 
                         id: "d9-1", time: "08:30 - 16:30", desc: "Khám phá cổ trấn 1000 năm tuổi Tây Sách - Ô Trấn.", cn: "乌镇西栅景区", transport: "Thuê bao xe riêng (1.5 tiếng).", note: "Lái xe êm, bé ngủ ngoan. Cảnh cáo đường đá xanh.",
                         lat: 30.252, lng: 120.137,
-                        details: {
+                            details: {
                             trivia: `<ul>
                                 <li>Ô Trấn (Wuzhen) là thủy trấn cổ kính tự hào mang danh hiệu "Venice của phương Đông", một cổ trấn có bề dày lịch sử hơn 1300 năm, nằm trên mạng lưới sông ngòi chằng chịt của vùng sinh thái ngập nước sông nước Giang Nam (vùng trũng giữa Tam giác Thượng Hải - Hàng Châu - Tô Châu).</li>
                                 <li>Khu Tây Sách (Xizha) là khu vực quy mô rộng lớn nhất và được một tập đoàn tư nhân đổ tiền đầu tư phục dựng, quản lý theo chuẩn resort nghỉ dưỡng đẳng cấp 5 sao: Nhà cửa cổ kính rêu phong, giữ nguyên vẹn cột kèo mọt gỗ nhưng hệ thống cơ sở hạ tầng ngầm lại vô cùng hiện đại: xử lý nước thải sinh hoạt sạch trong vắt, đường dây điện chôn ngầm không có mạng nhện, đường ván gỗ thẳng tắp, không có một cọng rác nào trôi nổi trên kênh, và đặc biệt toilet công cộng luôn có máy lạnh và tinh dầu thơm lừng.</li>
@@ -1787,19 +661,19 @@
                 date: "Ngày 10 (Thứ Tư, 6/5)",
                 title: "Hàng Châu ✈️ Sài Gòn (Chuyển tiếp Vũ Hán)",
                 tasks: [
-                    {
+                    { 
                         id: "d10-1", time: "09:00 - 12:30", desc: "Dọn đồ, trả phòng. Ăn trưa & Gom quà lưu niệm.", cn: "杭州市区商场", transport: "DiDi dạo phố.", note: "Ngày cuối gom quà.",
                         lat: 30.252, lng: 120.137,
-                        details: {
+                            details: {
                             tips: `<ul>
                                 <li><strong>Gom chiến lợi phẩm thông minh:</strong> Tã bỉm mang theo đã dùng gần hết nên chắc chắn sẽ dư ra một khoảng không gian trống khổng lồ lùng bùng trong vali. Hãy dùng khoảng không quý giá này để nhồi nhét an toàn các đồ chơi mua cho Tùng Văn ở Disneyland, các hộp trà Long Tỉnh thiếc cứng, và cuộn tròn khăn lụa mua về làm quà biếu ông bà chèn vào các khe hở. Nhớ để gọn bình sữa sạch, chăn len mỏng và tã dự phòng vào một túi riêng để xách tay lên máy bay tiện lấy.</li>
                             </ul>`
                         }
                     },
-                    {
+                    { 
                         id: "d10-2", time: "13:00 - 16:00", desc: "Lấy đồ, bắt xe VIP ra Sân bay Tiêu Sơn bay chặng 1 về Vũ Hán.", cn: "杭州萧山国际机场", transport: "DiDi VIP thẳng ra sảnh đi.", note: "Sân bay rộng, soi chiếu gắt gao.",
                         lat: 30.252, lng: 120.137,
-                        details: {
+                            details: {
                             tips: `<ul>
                                 <li><strong>Quy tắc phòng ngự 3 tiếng rưỡi:</strong> HGH là sân bay lớn tấp nập và khâu kiểm tra soi chiếu hải quan xuất cảnh của TQ hiện cực kỳ gắt gao chậm chạp. ĐỪNG ĐI SÁT GIỜ. Hãy luôn trừ hao có mặt trước sân bay tối thiểu 3 tiếng rưỡi (210 phút) để thong thả đẩy xe nôi check-in, xếp hàng rồng rắn làm thủ tục soi túi xách, và dọn dẹp thay tã sạch sẽ cho bé trước giờ ra cổng Boarding.</li>
                             </ul>`,
@@ -1815,8 +689,8 @@
         const container = document.getElementById('timelineContainer');
         const searchInput = document.getElementById('searchInput');
         let totalTasks = 0;
-        let serverImages = {};
-        let serverProgress = {};
+        let serverImages = {}; 
+        let serverProgress = {}; 
 
         // === HỆ THỐNG MODAL MẬT KHẨU ===
         let passwordPromiseResolve = null;
@@ -1831,12 +705,12 @@
         }
         function closePasswordModal() {
             document.getElementById('passwordModal').style.display = 'none';
-            if (passwordPromiseResolve) passwordPromiseResolve(null);
+            if(passwordPromiseResolve) passwordPromiseResolve(null);
         }
         function submitPasswordModal() {
             const pass = document.getElementById('modalPassword').value;
             document.getElementById('passwordModal').style.display = 'none';
-            if (passwordPromiseResolve) passwordPromiseResolve(pass);
+            if(passwordPromiseResolve) passwordPromiseResolve(pass);
         }
 
         // === RENDER CHÍNH ===
@@ -1846,7 +720,7 @@
             let currentTasks = 0;
 
             itineraryData.forEach(day => {
-                const hasMatch = day.tasks.some(task =>
+                const hasMatch = day.tasks.some(task => 
                     task.desc.toLowerCase().includes(filterText) || task.cn.toLowerCase().includes(filterText) || day.title.toLowerCase().includes(filterText)
                 );
 
@@ -1854,12 +728,12 @@
 
                 const dayCard = document.createElement('div');
                 dayCard.className = 'day-card';
-
+                
                 let tasksHTML = '';
                 day.tasks.forEach(task => {
                     totalTasks++;
                     const isChecked = serverProgress[task.id] === true || serverProgress[task.id] === "true";
-                    if (isChecked) currentTasks++;
+                    if(isChecked) currentTasks++;
 
                     const hasImage = !!serverImages[task.id];
                     const imageSrc = hasImage ? serverImages[task.id] : '';
@@ -1960,7 +834,7 @@
 
             const password = await requirePassword("Xác thực tải ảnh lên");
             if (!password) {
-                event.target.value = "";
+                event.target.value = ""; 
                 return;
             }
 
@@ -1989,14 +863,14 @@
                 document.getElementById(`img-container-${taskId}`).style.display = 'none';
                 document.getElementById(`upload-wrapper-${taskId}`).style.display = 'block';
             }
-            event.target.value = "";
+            event.target.value = ""; 
         }
 
-        window.deleteImage = async function (taskId) {
-            if (confirm("Xóa ảnh tham khảo này?")) {
+        window.deleteImage = async function(taskId) {
+            if(confirm("Xóa ảnh tham khảo này?")) {
                 const password = await requirePassword("Xác thực xóa ảnh");
                 if (!password) return;
-
+                
                 showToast("Đang xóa...");
                 try {
                     const res = await fetch('./api.php?action=delete', {
@@ -2023,13 +897,13 @@
         async function updateProgress(checkbox) {
             const isChecked = checkbox.checked;
             serverProgress[checkbox.id] = isChecked;
-
+            
             const contentDiv = document.getElementById(`content-${checkbox.id}`);
             isChecked ? contentDiv.classList.add('completed') : contentDiv.classList.remove('completed');
 
             let currentTasks = 0;
             Object.values(serverProgress).forEach(status => {
-                if (status === true || status === "true") currentTasks++;
+                if(status === true || status === "true") currentTasks++;
             });
             updateProgressBar(currentTasks, totalTasks);
 
@@ -2046,15 +920,15 @@
         }
 
         function updateProgressBar(current, total) {
-            if (total === 0) return;
+            if(total === 0) return;
             const percent = Math.round((current / total) * 100);
             document.getElementById('progressFill').style.width = percent + '%';
             document.getElementById('progressPercent').innerText = percent + '%';
         }
 
-        window.toggleDetails = function (taskId) {
+        window.toggleDetails = function(taskId) {
             const detailsDiv = document.getElementById(`details-${taskId}`);
-            if (detailsDiv) detailsDiv.classList.toggle('open');
+            if(detailsDiv) detailsDiv.classList.toggle('open');
         };
 
         function showToast(msg) {
@@ -2064,7 +938,7 @@
             setTimeout(() => { toast.className = toast.className.replace("show", ""); }, 2000);
         }
 
-        window.copyText = function (text) {
+        window.copyText = function(text) {
             navigator.clipboard.writeText(text).then(() => { showToast("Đã copy thành công!"); });
         }
 
@@ -2074,8 +948,8 @@
             fetch('./api.php?action=get_data').then(r => r.json()),
             fetch('./api.php?action=get_progress').then(r => r.json())
         ]).then(([imgRes, progRes]) => {
-            if (imgRes.success && imgRes.data) serverImages = imgRes.data;
-            if (progRes.success && progRes.data) serverProgress = progRes.data;
+            if(imgRes.success && imgRes.data) serverImages = imgRes.data;
+            if(progRes.success && progRes.data) serverProgress = progRes.data;
             renderItinerary();
         }).catch(() => renderItinerary());
 
@@ -2083,7 +957,7 @@
             navigator.serviceWorker.register('./sw.js').catch(console.error);
         }
 
-        window.switchTab = function (tabName, index) {
+        window.switchTab = function(tabName, index) {
             const slider = document.getElementById('tabSlider');
             slider.style.transform = `translateX(${index * 100}%)`;
             const btns = document.querySelectorAll('.tab-btn');
@@ -2095,7 +969,7 @@
             document.getElementById('flightContainer').style.display = tabName === 'flight' ? 'block' : 'none';
         }
 
-        window.radarSearch = function (keywordCN, lat, lng) {
+        window.radarSearch = function(keywordCN, lat, lng) {
             if (!lat || !lng) {
                 alert("Chưa có tọa độ cho địa điểm này!");
                 return;
@@ -2103,12 +977,12 @@
 
             const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
             const kw = encodeURIComponent(keywordCN);
-
+            
             // Giao thức quét bán kính 1000m của Cao Đức (Amap)
-            let amapScheme = isIOS
+            let amapScheme = isIOS 
                 ? `iosamap://arroundpoi?sourceApplication=TungVanTrip&keywords=${kw}&lat=${lat}&lon=${lng}&radius=1000&dev=0`
                 : `androidamap://arroundpoi?sourceApplication=TungVanTrip&keywords=${kw}&lat=${lat}&lon=${lng}&radius=1000&dev=0`;
-
+                
             // Fallback ra web nếu máy chưa cài Amap
             const fallbackUrl = `https://uri.amap.com/search?keyword=${kw}&center=${lng},${lat}`;
 
@@ -2123,7 +997,7 @@
             }, 2000);
         };
 
-        window.openMap = function (appType, locationName, lat = null, lng = null) {
+        window.openMap = function(appType, locationName, lat = null, lng = null) {
             const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
             const keyword = encodeURIComponent(locationName);
             let appScheme = '';
@@ -2139,11 +1013,11 @@
                 webFallbackUrl = `https://map.baidu.com/mobile/webapp/search/search/qt=s&wd=${keyword}`;
             } else if (appType === 'amap') {
                 if (lat && lng) {
-                    appScheme = isIOS
+                    appScheme = isIOS 
                         ? `iosamap://path?sourceApplication=TungVanTrip&dlat=${lat}&dlon=${lng}&dname=${keyword}&dev=0&t=0`
                         : `amapuri://route/plan?sourceApplication=TungVanTrip&dlat=${lat}&dlon=${lng}&dname=${keyword}&dev=0&t=0`;
                 } else {
-                    appScheme = isIOS
+                    appScheme = isIOS 
                         ? `iosamap://poi?sourceApplication=TungVanTrip&name=${keyword}`
                         : `androidamap://poi?sourceApplication=TungVanTrip&name=${keyword}`;
                 }
@@ -2151,7 +1025,7 @@
             }
 
             const clickedAt = +new Date();
-
+            
             window.location.href = appScheme;
 
             setTimeout(() => {
@@ -2161,7 +1035,4 @@
                 }
             }, 2000);
         };
-    </script>
-</body>
-
-</html>
+    
